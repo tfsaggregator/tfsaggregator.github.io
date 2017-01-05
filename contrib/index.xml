@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Contribs on TFS Aggregator Docs</title>
+    <link>https://tfsaggregator.github.io/contrib/index.xml</link>
+    <description>Recent content in Contribs on TFS Aggregator Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://tfsaggregator.github.io/contrib/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Contributing</title>
+      <link>https://tfsaggregator.github.io/contrib/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/contrib/</guid>
+      <description>
+
+&lt;h2 id=&#34;contributors-guide&#34;&gt;Contributors&amp;rsquo; Guide&lt;/h2&gt;
+
+&lt;p&gt;Contributors are welcome!&lt;/p&gt;
+
+&lt;p&gt;Even if you are not a developer, you can help the project by testing new versions or reviewing the documentation.&lt;/p&gt;
+
+&lt;p&gt;In this guide you can discover TFS Aggregator internal structure and the teams&amp;rsquo; rules.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Contributors</title>
+      <link>https://tfsaggregator.github.io/contrib/developer-intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/contrib/developer-intro/</guid>
+      <description>
+
+&lt;p&gt;So, you want to build yourself the binaries or want to fix a bug.&lt;/p&gt;
+
+&lt;p&gt;To enhance or fix bugs, please read &lt;a href=&#34;https://tfsaggregator.github.io/contrib/source-code&#34;&gt;Source code&lt;/a&gt; page to introduce yourself to the code. In &lt;a href=&#34;https://tfsaggregator.github.io/contrib/local-build&#34;&gt;Local build&lt;/a&gt;, we describe the build process: a mandatory read.
+Useful tips are contained in &lt;a href=&#34;https://tfsaggregator.github.io/contrib/debugging&#34;&gt;Debugging&lt;/a&gt; and &lt;a href=&#34;https://tfsaggregator.github.io/admin/troubleshooting&#34;&gt;Troubleshooting&lt;/a&gt; pages.&lt;/p&gt;
+
+&lt;h2 id=&#34;tfs-breaking-changes&#34;&gt;TFS Breaking changes&lt;/h2&gt;
+
+&lt;p&gt;TFS Server API changed frequently in the past: TFS Aggregator contains specific checks for the TFS version.
+These check can be:
+- source code conditional compile
+- WiX sources
+- MSBuild project files
+So, &lt;em&gt;caveat emptor&lt;/em&gt;: TFS versions are scattered all-over the places.&lt;/p&gt;
+
+&lt;h2 id=&#34;compile&#34;&gt;Compile&lt;/h2&gt;
+
+&lt;p&gt;Note that to rebuild, edit or debug the code you must use Visual Studio 2015, Community or Professional Edition at a minimum (see &lt;a href=&#34;https://tfsaggregator.github.io/contrib/local-build&#34;&gt;Local build&lt;/a&gt; for details).
+TFS is not required locally: you can use Remote Debugging.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://tfsaggregator.github.io/contrib/continuous-integration&#34;&gt;CI build&lt;/a&gt; page explains some important things of our CI build infrastructure in &lt;a href=&#34;https://tfsaggregator.visualstudio.com/&#34;&gt;VSTS&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;branches&#34;&gt;Branches&lt;/h2&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Branch&lt;/th&gt;
+&lt;th&gt;Artifacts&lt;/th&gt;
+&lt;th&gt;Purpose&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;master&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;Released code, versions are tagged&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;hotfix/*&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;Fast release cycle for bug fixes, branches from tag, merged to master after Issuer confirms fix is working&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;release/*&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;Release candidates, branch named after soon-to-be-relased version, tags mark interim releases&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;develop&lt;/td&gt;
+&lt;td&gt;No&lt;/td&gt;
+&lt;td&gt;Integration branch for developers&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;feature/*&lt;/td&gt;
+&lt;td&gt;No&lt;/td&gt;
+&lt;td&gt;New feature, idea&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;wiki&#34;&gt;Wiki&lt;/h2&gt;
+
+&lt;p&gt;Wiki &lt;code&gt;master&lt;/code&gt; branch content must match the latest release. To prepare documentation for a future release, use a branch as in the code repository.&lt;/p&gt;
+
+&lt;h2 id=&#34;release-process&#34;&gt;Release process&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;collect solved issues&lt;/li&gt;
+&lt;li&gt;prepare Markdown release notes&lt;/li&gt;
+&lt;li&gt;update wiki &lt;code&gt;release/v#&lt;/code&gt; branch&lt;/li&gt;
+&lt;li&gt;tag repo&lt;/li&gt;
+&lt;li&gt;merge &lt;code&gt;release/v#&lt;/code&gt; branch to &lt;code&gt;master&lt;/code&gt; (use PR when possible)&lt;/li&gt;
+&lt;li&gt;create GitHub Release pasting release notes&lt;/li&gt;
+&lt;li&gt;merge wiki &lt;code&gt;release/v#&lt;/code&gt; branch to &lt;code&gt;master&lt;/code&gt; and delete it&lt;/li&gt;
+&lt;li&gt;download binaries and upload to Release&lt;/li&gt;
+&lt;li&gt;merge &lt;code&gt;master&lt;/code&gt; branch to &lt;code&gt;develop&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;increment v# in &lt;code&gt;develop&lt;/code&gt; branch and push&lt;/li&gt;
+&lt;li&gt;update Visual Studio Gallery pasting release notes&lt;/li&gt;
+&lt;li&gt;spread the news: Twitter, Blog&lt;/li&gt;
+&lt;li&gt;wait for bugs to arrive&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Source Code</title>
+      <link>https://tfsaggregator.github.io/contrib/source-code/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/contrib/source-code/</guid>
+      <description>
+
+&lt;p&gt;This page explains the design and internal organization of TFS Aggregator v2&amp;rsquo;s code.
+If you want to rebuild, customize, submit changes this is the place to start.&lt;/p&gt;
+
+&lt;h1 id=&#34;major-components&#34;&gt;Major Components&lt;/h1&gt;
+
+&lt;p&gt;The &lt;code&gt;Aggregator.Core&lt;/code&gt; assembly contains the logic to process a Work Item and run the aggregate scripts.
+It is normally used by &lt;code&gt;Aggregator.ServerPlugin&lt;/code&gt; which intercept the TFS server side events and forward them to Aggregator.Core.
+&lt;code&gt;Aggregator.ConsoleApp&lt;/code&gt; is a simple console app that helps users in developing and testing policies without installing the server plugin.&lt;/p&gt;
+
+&lt;h1 id=&#34;source-code-organization&#34;&gt;Source Code Organization&lt;/h1&gt;
+
+&lt;p&gt;The project is available on &lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator&#34;&gt;GitHub&lt;/a&gt;.
+We use a simple master/develop/pull-request branching scheme.
+All the source is available in the &lt;code&gt;TFS-Aggregator-2.sln&lt;/code&gt; Visual Studio 2015 solution.
+To produce the MSI, see [Local build/contrib/local-build).&lt;/p&gt;
+
+&lt;h2 id=&#34;policy-data&#34;&gt;Policy data&lt;/h2&gt;
+
+&lt;p&gt;Aggregator parses the Policy file at start. The logic is contained in Aggregator.Core/Configuration;
+whose entry point is the &lt;code&gt;Aggregator.Core.Configuration.TFSAggregatorSettings&lt;/code&gt; class.
+That class is also the root of the configuration data model: Aggregator code gets a reference to a &lt;code&gt;TFSAggregatorSettings&lt;/code&gt; instance to configure.&lt;/p&gt;
+
+&lt;p&gt;You can populate this class from a different source like a database.&lt;/p&gt;
+
+&lt;h2 id=&#34;object-model&#34;&gt;Object Model&lt;/h2&gt;
+
+&lt;p&gt;Aggregator&amp;rsquo;s Object Model solves some objectives:
+ 1. simplifying the scripts
+ 2. decouple from TFS Object Model
+ 3. Ease mocking i.e. testing&lt;/p&gt;
+
+&lt;p&gt;You find the OM interfaces in Aggregator.Core/Interfaces and the implementation for the TFS OM in Aggregator.Core/Facade.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;https://tfsaggregator.github.io/using/scripting&#34;&gt;Scripting&lt;/a&gt; for an introduction.&lt;/p&gt;
+
+&lt;h2 id=&#34;scripting&#34;&gt;Scripting&lt;/h2&gt;
+
+&lt;p&gt;Aggregator.Core/Script contains the build and execute logic for all scripting engines.
+For C# and VB, the script code is compiled once and the produced assembly is reused until the plug-in restarts.
+The &lt;code&gt;DotNetScriptEngine&lt;/code&gt; base class contains all the logic while &lt;code&gt;CSharpScriptEngine&lt;/code&gt; and &lt;code&gt;VBNetScriptEngine&lt;/code&gt; define how to sew the script&amp;rsquo;s code snippets toghether.
+Powershell support is experimental.&lt;/p&gt;
+
+&lt;h2 id=&#34;logging&#34;&gt;Logging&lt;/h2&gt;
+
+&lt;p&gt;The Core is decoupled from the logging sub-system: interesting events are pushed via the &lt;code&gt;Aggregator.Core.ILogEvents&lt;/code&gt; interface that each client must implement.
+This way the same event generate a message in the log file or on the console. Important messages create EventLog messages on the server but not on the console application.&lt;/p&gt;
+
+&lt;p&gt;To add a message you have to:
+ 1. add a method to &lt;code&gt;ILogEvents&lt;/code&gt; interface
+ 2. implement the method in &lt;code&gt;TextLogComposer&lt;/code&gt; class&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Note that the calling site is invoking a method passing typed parameters.
+&lt;code&gt;TextLogComposer&lt;/code&gt; implementation set the message level and compose the text properly formatting the parameters.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;what-s-next&#34;&gt;What&amp;rsquo;s next&lt;/h2&gt;
+
+&lt;p&gt;Please read &lt;a href=&#34;https://tfsaggregator.github.io/contrib/local-build&#34;&gt;Local build&lt;/a&gt;, &lt;a href=&#34;https://tfsaggregator.github.io/contrib/debugging&#34;&gt;Debugging&lt;/a&gt; and &lt;a href=&#34;https://tfsaggregator.github.io/admin/troubleshooting&#34;&gt;Troubleshooting&lt;/a&gt; to get a complete picture.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Local Build</title>
+      <link>https://tfsaggregator.github.io/contrib/local-build/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/contrib/local-build/</guid>
+      <description>
+
+&lt;h2 id=&#34;building-the-solution&#34;&gt;Building the Solution&lt;/h2&gt;
+
+&lt;p&gt;To rebuild, edit or debug the code you must use Visual Studio 2015, Community or Professional Edition at a minimum.
+In addition you must install the following extensions from Visual Studio Gallery:
+- WiX 3.10
+- xUnit.net 1.0&lt;/p&gt;
+
+&lt;p&gt;TFS is not required to build nor debugging (for this latter you can use &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/y7f5zaaa.aspx&#34;&gt;Remote Debugging&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h3 id=&#34;references&#34;&gt;References&lt;/h3&gt;
+
+&lt;p&gt;Building requires a number of TFS assemblies that cannot be redistributed. You can find the complete list in these files&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;TFS 2013 update 2 or newer: &lt;code&gt;References/2013/PLACEHOLDER.txt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;TFS 2015: &lt;code&gt;References/2015/PLACEHOLDER.txt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;TFS 2015 Update 1: &lt;code&gt;References/2015.1/PLACEHOLDER.txt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;TFS 2015 Update 2: &lt;code&gt;References/2015.2/PLACEHOLDER.txt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;TFS 2017: &lt;code&gt;References/2017/PLACEHOLDER.txt&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;if you have TFS installed on your development machine, the assemblies for that version will be loaded automatically from the installation folder.&lt;/p&gt;
+
+&lt;h3 id=&#34;solution-configurations&#34;&gt;Solution Configurations&lt;/h3&gt;
+
+&lt;p&gt;The Build Configuration selected, like &lt;em&gt;Debug-2013&lt;/em&gt; or &lt;em&gt;Release-2015&lt;/em&gt;, determines the target TFS version, that is the referenced assemblies.&lt;/p&gt;
+
+&lt;p&gt;Sadly, similar &lt;a href=&#34;http://blogs.ripple-rock.com/rorystreet/2014/05/08/WhereIsWorkItemChangedEventInTFS2013Update2.aspx&#34;&gt;to the release of TFS 2013 update 2 when there were breaking changes&lt;/a&gt;, &lt;a href=&#34;http://blogs.msdn.com/b/visualstudioalm/archive/2015/10/13/breaking-change-in-tfs-2015-update-1-for-server-side-plugins.aspx&#34;&gt;TFS 2015 Update 1 introduces a breaking change in the API&lt;/a&gt;, so you can find some &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/4y6tbswk.aspx&#34;&gt;conditionally compiled&lt;/a&gt; code based on the symbols &lt;code&gt;TFS2013&lt;/code&gt;, &lt;code&gt;TFS2015&lt;/code&gt; or &lt;code&gt;TFS2015u1&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;version-numbers&#34;&gt;Version numbers&lt;/h3&gt;
+
+&lt;p&gt;Assemblies produced locally always have the &lt;code&gt;2.2.0.0&lt;/code&gt; version, at least until we further enhance the build scripts.&lt;/p&gt;
+
+&lt;h2 id=&#34;produce-the-msi-windows-installer&#34;&gt;Produce the MSI Windows Installer&lt;/h2&gt;
+
+&lt;p&gt;The &lt;code&gt;build-installer.proj&lt;/code&gt; MSBuild script takes care of generating the Windows Installer MSI file.&lt;/p&gt;
+
+&lt;p&gt;The MSI packages all three Aggregator flavors, one for each supported TFS version.
+The installer detects the TFS version installed and deploy the correct assemblies.&lt;/p&gt;
+
+&lt;p&gt;The MSBuild script builds three times the &lt;code&gt;TFS-Aggregator-2.sln&lt;/code&gt; solution, one for each supported TFS version.
+Then the files are copied in a simple layout in the &lt;code&gt;_collect&lt;/code&gt; folder. Some WiX source is generated and finally the &lt;code&gt;Setup.Aggregator\Setup.Aggregator.wixproj&lt;/code&gt; is launched to produce the MSI package.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Caveat: TFS versions values are all-over the places&lt;/strong&gt;, e.g.
+- source code conditional compile
+- WiX sources
+- MSBuild project files&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;To generate the MSI, in an &lt;em&gt;MSBuild Command Prompt&lt;/em&gt; (VS2015) or a &lt;em&gt;Developer Command Prompt&lt;/em&gt; (VS2013) run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;msbuild build-installer.proj /p:Configuration=Release
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;strong&gt;&lt;code&gt;Configuration&lt;/code&gt;&lt;/strong&gt; property is mandatory; allowed values are &lt;em&gt;Debug&lt;/em&gt; and &lt;em&gt;Release&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Three MSBuild properties &lt;code&gt;BuildSolution&lt;/code&gt;, &lt;code&gt;CollectFiles&lt;/code&gt;, &lt;code&gt;BuildMSI&lt;/code&gt;, whose meaning is self-explanatory, can be used to skip some process&amp;rsquo; steps.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;msbuild build-installer.proj /p:Configuration=Release /p:BuildSolution=False /p:CollectFiles=False /p:BuildMSI=True
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;MSI file is available in &lt;code&gt;Setup.Aggregator\bin\$(Configuration)&lt;/code&gt; as &lt;code&gt;TFSAggregator-0.2.2-alpha+local-$(Configuration).msi&lt;/code&gt;. Notice the zero version number to highlight that is has been produced locally.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Caveat: avoid modifying anything in this area unless you are fluent in MSBuild, WiX and Windows Installer technologies.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Debugging</title>
+      <link>https://tfsaggregator.github.io/contrib/debugging/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/contrib/debugging/</guid>
+      <description>
+
+&lt;p&gt;For the best development experience, use a TFS 2013 or 2015 Virtual Machine with Visual Studio 2015 installed and work directly on the machine.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Do not &lt;em&gt;ever&lt;/em&gt; debug on a production server!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;You can then set the output folder for the project to
+&lt;code&gt;C:\Program Files\Microsoft Team Foundation Server 12.0\Application Tier\Web Services\bin\Plugins\&lt;/code&gt;
+or use the &lt;code&gt;deploy.cmd&lt;/code&gt; file in &lt;em&gt;Aggregator.ServerPlugin&lt;/em&gt; project to refresh Aggregator&amp;rsquo;s assembly on a target test system. Here is a sample&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;@echo off
+set CONFIGURATION=%1
+set TARGETDIR=%2
+set PLUGIN_FOLDER=C:\Program Files\Microsoft Team Foundation Server 14.0\Application Tier\Web Services\bin\Plugins
+
+echo Deploy &#39;%CONFIGURATION%&#39; from &#39;%TARGETDIR%&#39; to &#39;%PLUGIN_FOLDER%&#39;
+
+copy /Y &amp;quot;%TARGETDIR%\TFSAggregator2.Core.dll&amp;quot; &amp;quot;%PLUGIN_FOLDER%&amp;quot;
+copy /Y &amp;quot;%TARGETDIR%\TFSAggregator2.Core.pdb&amp;quot; &amp;quot;%PLUGIN_FOLDER%&amp;quot;
+copy /Y &amp;quot;%TARGETDIR%\TFSAggregator2.ServerPlugin.dll&amp;quot; &amp;quot;%PLUGIN_FOLDER%&amp;quot;
+copy /Y &amp;quot;%TARGETDIR%\TFSAggregator2.ServerPlugin.pdb&amp;quot; &amp;quot;%PLUGIN_FOLDER%&amp;quot;
+
+IF NOT EXIST &amp;quot;%PLUGIN_FOLDER%\TFSAggregator2.ServerPlugin.policies&amp;quot; (
+    copy &amp;quot;samples\TFSAggregator2.ServerPlugin.policies&amp;quot; &amp;quot;%PLUGIN_FOLDER%&amp;quot;
+)
+
+echo Deploy complete.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Do not commit changes to this file!&lt;/p&gt;
+
+&lt;p&gt;To debug attach to the &lt;code&gt;w3wp.exe&lt;/code&gt; on the server and set breakpoints as you would normally.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Note. Use &lt;code&gt;12.0&lt;/code&gt; for TFS 2013, &lt;code&gt;14.0&lt;/code&gt; for TFS 2015 and &lt;code&gt;15.0&lt;/code&gt; for TFS 2017.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;remote-debugging&#34;&gt;Remote Debugging&lt;/h2&gt;
+
+&lt;p&gt;TFS is not required to successfully build and debug Aggregator. Infact we successfully used &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/y7f5zaaa.aspx&#34;&gt;Remote Debugging&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&#34;https://tfsaggregator.github.io/contrib/local-build&#34;&gt;Local build&lt;/a&gt; for additional details.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Continuous Integration</title>
+      <link>https://tfsaggregator.github.io/contrib/continuous-integration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/contrib/continuous-integration/</guid>
+      <description>
+
+&lt;p&gt;We moved to &lt;a href=&#34;https://tfsaggregator.visualstudio.com/&#34;&gt;VSTS&lt;/a&gt; for Continuous Integration.&lt;/p&gt;
+
+&lt;p&gt;CI Builds for:
+ * develop
+ * feature/*
+do not produce artifacts, i.e. the MSI file.&lt;/p&gt;
+
+&lt;p&gt;Builds that actually generate artifacts:
+ * master
+ * release/*
+ * hotfix/*&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;Reference&lt;/code&gt; folder is filled with files from &lt;code&gt;$/TfsAggregator2/References&lt;/code&gt; as the assemblies are not redistributable.
+As explained in &lt;a href=&#34;https://tfsaggregator.github.io/contrib/local-build&#34;&gt;Local build&lt;/a&gt; these assemblies are tied to the target TFS version.&lt;/p&gt;
+
+&lt;p&gt;The script build &lt;strong&gt;Debug&lt;/strong&gt; and &lt;strong&gt;Release&lt;/strong&gt; configuration of &lt;code&gt;TFS-Aggregator-2.sln&lt;/code&gt; and run tests.&lt;/p&gt;
+
+&lt;p&gt;If the tests are green, it produces the per-configuration MSIs launching the &lt;code&gt;build-installer.proj&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;asking-access&#34;&gt;Asking access&lt;/h2&gt;
+
+&lt;p&gt;VSTS does not currently offers public projects, so if you need access to the CI build, ask the team for an invite.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

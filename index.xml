@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TFS Aggregator Docs</title>
+    <link>https://tfsaggregator.github.io/index.xml</link>
+    <description>Recent content on TFS Aggregator Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://tfsaggregator.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Introduction</title>
+      <link>https://tfsaggregator.github.io/intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/intro/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>How it Works</title>
+      <link>https://tfsaggregator.github.io/intro/how-it-works/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/intro/how-it-works/</guid>
+      <description>
+
+&lt;h2 id=&#34;web-hooks&#34;&gt;Web Hooks&lt;/h2&gt;
+
+&lt;p&gt;TODO&lt;/p&gt;
+
+&lt;h2 id=&#34;server-plugin&#34;&gt;Server Plugin&lt;/h2&gt;
+
+&lt;p&gt;The following diagram may help understand the control flow.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;./live-scenario.png&#34; alt=&#34;Plugin flow&#34; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;A user changes some work item&amp;rsquo;s data using Visual Studio or TFS Web Interface, then presses the &lt;strong&gt;Save&lt;/strong&gt; button (or hits &lt;code&gt;Ctrl-S&lt;/code&gt;);&lt;/li&gt;
+&lt;li&gt;TFS validates the edit and saves the changes to the database;&lt;/li&gt;
+&lt;li&gt;TFS notifies the Aggregator plugin of the &lt;em&gt;ID&lt;/em&gt; of the changed work item&lt;/li&gt;
+&lt;li&gt;Aggregator see which Rules apply and execute them, which may cause the loading and saving of additional work items.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Note that step 4 may trigger Aggregator again on the just saved work items.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Keep also in mind that scripts and applications can change work items without user intervention, like &lt;a href=&#34;https://visualstudiogallery.msdn.microsoft.com/eb77e739-c98c-4e36-9ead-fa115b27fefe&#34;&gt;Team Foundation Server Integration Tools&lt;/a&gt;. Make sure that TFS Aggregator kicks in only when intended.&lt;/p&gt;
+
+&lt;h2 id=&#34;configuration-changes&#34;&gt;Configuration changes&lt;/h2&gt;
+
+&lt;p&gt;Aggregator loads and parses the Rules from &lt;code&gt;TFSAggregator2.ServerPlugin.policies&lt;/code&gt; file at first run. The result is cached in memory and the cache invalidates if the file changes.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Code of Conduct</title>
+      <link>https://tfsaggregator.github.io/intro/slack-coc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/intro/slack-coc/</guid>
+      <description>
+
+&lt;h2 id=&#34;tfs-aggregator-slack-code-of-conduct&#34;&gt;TFS Aggregator Slack - Code of Conduct&lt;/h2&gt;
+
+&lt;p&gt;TODO&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Users&#39; Guide</title>
+      <link>https://tfsaggregator.github.io/using/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/using/</guid>
+      <description>
+
+&lt;h2 id=&#34;users-guide-to-tfs-aggregator&#34;&gt;Users&amp;rsquo; Guide to TFS Aggregator&lt;/h2&gt;
+
+&lt;p&gt;This Guide explains how to write the Rules.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Writing Rules and Policies</title>
+      <link>https://tfsaggregator.github.io/using/writing-rules/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/using/writing-rules/</guid>
+      <description>
+
+&lt;p&gt;The &lt;code&gt;samples\TFSAggregator2.ServerPlugin.policies&lt;/code&gt; should be your &lt;strong&gt;starting point&lt;/strong&gt;. This file contains a no-harm policy: it simply logs an &amp;ldquo;&lt;em&gt;Hello, World&lt;/em&gt;&amp;rdquo; message when invoked. The comments remind the syntax.&lt;/p&gt;
+
+&lt;h2 id=&#34;editing-a-policy&#34;&gt;Editing a policy&lt;/h2&gt;
+
+&lt;p&gt;The XML Schema definition is in file &lt;code&gt;Aggregator.Core\Configuration\AggregatorConfiguration.xsd&lt;/code&gt;. This is the ultimate truth: policy file is checked against XSD before being used.&lt;/p&gt;
+
+&lt;p&gt;It can also help you editing the policy file in Visual Studio.
+Open TfsAggregator2 solution in Visual Studio, open a policy file using built-in Xml editor, Select &lt;strong&gt;XML&lt;/strong&gt; from the main menu, then &lt;strong&gt;Schemas&lt;/strong&gt;. In the dialog windows select &lt;strong&gt;Use this Schema&lt;/strong&gt; for &lt;code&gt;AggregatorConfiguration.xsd&lt;/code&gt; from the drop-down list.
+&lt;img src=&#34;./VisualStudio-Xml-Schema.png&#34; alt=&#34;Select AggregatorConfiguration.xsd&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Configuration XML syntax</title>
+      <link>https://tfsaggregator.github.io/using/policy-syntax/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/using/policy-syntax/</guid>
+      <description>
+
+&lt;h2 id=&#34;reference-to-xml-syntax-of-policies-file&#34;&gt;Reference to XML syntax of Policies file.&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is the basic beginning to an XML file. Do not change it.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;AggregatorConfiguration&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;AggregatorConfiguration&lt;/strong&gt;: The main node for all the configuration options. (Single)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    &amp;lt;runtime debug=&amp;quot;False&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;runtime&lt;/strong&gt;: Configure generic behavior. (Once, Optional)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;debug&lt;/strong&gt;: turns on debugging options (Optional, default: False)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;        &amp;lt;rateLimiting interval=&amp;quot;00:00:10.00&amp;quot; changes=&amp;quot;10&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;rateLimiting&lt;/strong&gt;: Define how Aggregator rejects incoming requests. (Once, Optional)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;interval&lt;/strong&gt;: Timespan to validate. (Optional, default: 00:00:01.00)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;changes&lt;/strong&gt;: Maximum number of changes in interval. (Optional, default: 5 )&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Use RateLimiting.policy to test your configuration on a server.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;        &amp;lt;logging level=&amp;quot;Diagnostic&amp;quot;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;logging&lt;/strong&gt;: Define logging behavior. (Once, Optional)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;level&lt;/strong&gt;: The level of logging. (Optional)
+Valid values are:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Critical&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Error&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Warning&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Information&lt;/code&gt; or &lt;code&gt;Normal&lt;/code&gt; &amp;ndash; default value&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Verbose&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Diagnostic&lt;/code&gt;.
+See the Help page for more information: &lt;a href=&#34;https://tfsaggregator.github.io/admin/troubleshooting&#34;&gt;TFS Aggregator Troubleshooting&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;        &amp;lt;script language=&amp;quot;C#&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;script&lt;/strong&gt;: Define script engine behavior. (Once, Optional)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;language&lt;/strong&gt;: The language used to express the rules. (Optional)
+Valid values are:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;CS&lt;/code&gt;,&lt;code&gt;CSHARP&lt;/code&gt;,&lt;code&gt;C#&lt;/code&gt; &amp;ndash; default value&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;VB&lt;/code&gt;,&lt;code&gt;VB.NET&lt;/code&gt;,&lt;code&gt;VBNET&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;PS&lt;/code&gt;,&lt;code&gt;POWERSHELL&lt;/code&gt; &amp;ndash; &lt;em&gt;Experimental&lt;/em&gt;!&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;        &amp;lt;server baseUrl=&amp;quot;http://localhost:8080/tfs&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;server&lt;/strong&gt;: Define server configuration. (2.1, Once, Optional)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;baseUrl&lt;/strong&gt;: Forces the URL that Aggregator use to access TFS. (Optional)
+Can be useful is TFS is misconfigured, or you have some special requirements.
+Avoid to use if possibile.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;        &amp;lt;authentication autoImpersonate=&amp;quot;true&amp;quot; /&amp;gt;
+        &amp;lt;authentication personalToken=&amp;quot;abcd1234654sdfsfsdfs45645654645&amp;quot; /&amp;gt;
+        &amp;lt;authentication username=&amp;quot;user1&amp;quot; password=&amp;quot;password1&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;authentication&lt;/strong&gt;: Define authentication behavior. (Once, Optional)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;autoImpersonate&lt;/strong&gt;: &lt;code&gt;false&lt;/code&gt; (default) the TFS Service account, &lt;code&gt;true&lt;/code&gt; the user requesting. (Optional)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;personalToken&lt;/strong&gt;: A Personal Access Token. (WebHooks, Optional)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;username&lt;/strong&gt;: A Username. (WebHooks, Optional)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;password&lt;/strong&gt;: A Password in clear text. (WebHooks, Optional)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;    &amp;lt;snippet name=&amp;quot;MySnippet&amp;quot;&amp;gt;
+    &amp;lt;/snippet&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;snippet&lt;/strong&gt;: Represents a code macro rule. (2.2, Repeatable)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;name&lt;/strong&gt;: The name of this code macro. (Mandatory)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;    &amp;lt;function&amp;gt;
+    &amp;lt;/function&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;function&lt;/strong&gt;: Contains methods callable from rules. (2.2, Repeatable)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    &amp;lt;rule name=&amp;quot;Noop&amp;quot; appliesTo=&amp;quot;Task,Bug&amp;quot; hasFields=&amp;quot;System.Title,System.Description&amp;quot;&amp;gt;
+    &amp;lt;/rule&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;rule&lt;/strong&gt;: Represents a single rule. (Repeatable)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;name&lt;/strong&gt;: The name of this rule. (Mandatory)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;appliesTo&lt;/strong&gt;: The name of the work item type that this rule will target. (All: *, List, Optional, List separators: ,;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;hasFields&lt;/strong&gt;: The work item must have the listed fields for the rule to apply. (All: *, List, Optional, List separators: ,;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;changes&lt;/strong&gt;: &lt;code&gt;New,Change,Delete,Restore&lt;/code&gt; (default) what change event triggers the Rule. (WebHooks, Optional)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;content&lt;/em&gt;&lt;/strong&gt;: the script to execute when the rule triggers. (Mandatory)
+The &lt;code&gt;self&lt;/code&gt; (&lt;code&gt;$self&lt;/code&gt; in PowerShell) variable contains the work item that triggered the plugin.
+The &lt;code&gt;self&lt;/code&gt; (&lt;code&gt;$self&lt;/code&gt; in PowerShell) variable contains the work item that triggered the plugin.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We recommended using &lt;a href=&#34;http://www.w3.org/TR/REC-xml/#sec-cdata-sect&#34;&gt;CDATA&lt;/a&gt; to wrap script code.
+See &lt;a href=&#34;Scripting&#34;&gt;Scripting&lt;/a&gt; for additional details on Rules&amp;rsquo; code.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    &amp;lt;policy name=&amp;quot;DefaultPolicy&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;policy&lt;/strong&gt;: Represent a set of aggregation rules that apply to a particular scope. (Repeatable)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;name&lt;/strong&gt;: The name of this policy. (Mandatory)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All scopes must match for the policy to apply (logical &lt;em&gt;and&lt;/em&gt;).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;        &amp;lt;collectionScope collections=&amp;quot;DefaultCollection&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;collectionScope&lt;/strong&gt;: Scope the policy to a list of collections. (Optional)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;collections&lt;/strong&gt;: The TFS Collection to which the policy applies. (All: *, List, Mandatory, List separators: ,;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;        &amp;lt;templateScope name=&amp;quot;Scrum&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;templateScope&lt;/strong&gt;: Scope the policy to Team Projects using a particular Process Template. (Optional, Repeatable)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;name&lt;/strong&gt;: Name of Process Template matching. (Mandatory, mutually exclusive with typeid)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;templateScope&lt;/strong&gt; requires that &lt;strong&gt;name&lt;/strong&gt; must be present.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;        &amp;lt;projectScope projects=&amp;quot;Project1,Project2&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;projectScope&lt;/strong&gt;: Scope the policy to listed Team Projects. (Optional)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;projects&lt;/strong&gt;: List of Team Project names. (All: *, List, Mandatory, List separators: ,;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;        &amp;lt;ruleRef name=&amp;quot;Noop&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;ruleRef&lt;/strong&gt;: Reference to a previously declared rule. (Repeatable)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;name&lt;/strong&gt;: Name of existing Rule. (Required)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Rules apply in order.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Scripting the Rules</title>
+      <link>https://tfsaggregator.github.io/using/scripting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/using/scripting/</guid>
+      <description>
+
+&lt;h2 id=&#34;script-languages&#34;&gt;Script languages&lt;/h2&gt;
+
+&lt;p&gt;You can use C# and VB.Net to write your rules. Powershell also works but we had little tested it.&lt;/p&gt;
+
+&lt;h3 id=&#34;c-and-vb&#34;&gt;C# and VB&lt;/h3&gt;
+
+&lt;p&gt;You can use only types from these assemblies:
+ * &lt;code&gt;System&lt;/code&gt;
+ * &lt;code&gt;System.Core&lt;/code&gt;
+ * &lt;code&gt;Microsoft.TeamFoundation.WorkItemTracking.Client&lt;/code&gt;
+ * &lt;code&gt;Aggregator.Core&lt;/code&gt;
+Any other reference will result in compile errors.&lt;/p&gt;
+
+&lt;p&gt;The following namespaces are imported (C# &lt;code&gt;using&lt;/code&gt;, VB &lt;code&gt;Imports&lt;/code&gt;):
+ * &lt;code&gt;Microsoft.TeamFoundation.WorkItemTracking.Client&lt;/code&gt;
+ * &lt;code&gt;System.Linq&lt;/code&gt;
+ * &lt;code&gt;Microsoft.TeamFoundation.WorkItemTracking.Client.CoreFieldReferenceNames&lt;/code&gt;
+ * &lt;code&gt;Aggregator.Core&lt;/code&gt; and descendants&lt;/p&gt;
+
+&lt;h2 id=&#34;code&#34;&gt;Code&lt;/h2&gt;
+
+&lt;p&gt;You can make your code more modular, using macro snippets or functions.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;snippet name=&amp;quot;MySnippet&amp;quot;&amp;gt;&amp;lt;![CDATA[
+    logger.Log(&amp;quot;You entered MySnippet snippet.&amp;quot;);
+]]&amp;gt;&amp;lt;/snippet&amp;gt;
+
+&amp;lt;function&amp;gt;&amp;lt;![CDATA[
+  int MyFunc() { return 42; }
+]]&amp;gt;&amp;lt;/function&amp;gt;
+
+&amp;lt;rule name=&amp;quot;MyFirstRule&amp;quot; appliesTo=&amp;quot;Task&amp;quot; hasFields=&amp;quot;Title&amp;quot;&amp;gt;&amp;lt;![CDATA[
+    ${MySnippet}
+    logger.Log(&amp;quot;Hello, World from {1} #{0}!&amp;quot;, self.Id, self.TypeName);
+    logger.Log(&amp;quot;MyFunc returns {0}.&amp;quot;, MyFunc());
+]]&amp;gt;&amp;lt;/rule&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This way you can reuse the same code in multiple rules.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Objects Reference</title>
+      <link>https://tfsaggregator.github.io/using/object-model/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/using/object-model/</guid>
+      <description>&lt;p&gt;Aggregator exposes some predefined objects or variables to your rules:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tfsaggregator.github.io/using/objects-reference/self-object&#34;&gt;&lt;code&gt;self&lt;/code&gt;&lt;/a&gt; as the pivot for all computation.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tfsaggregator.github.io/using/objects-reference/store-object&#34;&gt;&lt;code&gt;store&lt;/code&gt;&lt;/a&gt; to access the entire set of work items.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tfsaggregator.github.io/using/objects-reference/logger-object&#34;&gt;&lt;code&gt;logger&lt;/code&gt;&lt;/a&gt; to add a trace message to the log output.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://tfsaggregator.github.io/using/objects-reference/library-objects&#34;&gt;&lt;code&gt;Library&lt;/code&gt;&lt;/a&gt; access to a library of pre-canned functions.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We will refer the TeamCollection containing the &lt;code&gt;self&lt;/code&gt; work item as the &lt;em&gt;current&lt;/em&gt; Collection.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>self Object</title>
+      <link>https://tfsaggregator.github.io/using/objects-reference/self-object/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/using/objects-reference/self-object/</guid>
+      <description>
+
+&lt;p&gt;Represents the work item that triggered the rule and corresponds to the &lt;code&gt;IWorkItemExposed&lt;/code&gt; interface.&lt;/p&gt;
+
+&lt;h2 id=&#34;fields-collection&#34;&gt;Fields collection&lt;/h2&gt;
+
+&lt;p&gt;You can access the &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.aspx&#34;&gt;Fields&lt;/a&gt; collection using either syntax:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;self.Fields[&amp;quot;field_name&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Prefer using Reference names e.g. &lt;code&gt;System.Title&lt;/code&gt; as they do not depend on localization and are more resilient to Process template changes.&lt;/p&gt;
+
+&lt;p&gt;To simply access a field value, you can use &lt;code&gt;self[&amp;quot;field_name&amp;quot;]&lt;/code&gt; as a shorthand for &lt;code&gt;self.Fields[&amp;quot;field_name&amp;quot;].Value&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;For numeric and dates you may prefer using&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var num = self.GetField&amp;lt;int&amp;gt;(&amp;quot;field_name&amp;quot;, 42);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;for other type of fields we suggest to use the following syntax&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var str = self[&amp;quot;field_name&amp;quot;]?.ToString();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The Aggregator &lt;code&gt;Field&lt;/code&gt; exposes the following properties:
+ * &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.name.aspx&#34;&gt;&lt;code&gt;Name&lt;/code&gt;&lt;/a&gt;
+ * &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.referencename.aspx&#34;&gt;&lt;code&gt;ReferenceName&lt;/code&gt;&lt;/a&gt;
+ * &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.value.aspx&#34;&gt;&lt;code&gt;Value&lt;/code&gt;&lt;/a&gt;
+ * &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.status.aspx&#34;&gt;&lt;code&gt;Status&lt;/code&gt;&lt;/a&gt;
+ * &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.originalvalue.aspx&#34;&gt;&lt;code&gt;OriginalValue&lt;/code&gt;&lt;/a&gt;
+ * &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.fielddefinition.systemtype.aspx&#34;&gt;&lt;code&gt;DataType&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;parent-property&#34;&gt;Parent property&lt;/h2&gt;
+
+&lt;p&gt;Helper property to navigate a work item&amp;rsquo;s parent in the Parent-Child hierarchy. Applies to any work item object.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;self.Parent[&amp;quot;System.Title&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;children-property&#34;&gt;Children property&lt;/h2&gt;
+
+&lt;p&gt;Helper property to navigate a work item&amp;rsquo;s children in the Parent-Child hierarchy.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;foreach (var child in self.Children)
+{
+   if (child.TypeName == &amp;quot;Bug&amp;quot;)
+   {
+      //...
+   }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;hasparent-haschildren-hasrelation-methods&#34;&gt;HasParent / HasChildren / HasRelation methods&lt;/h2&gt;
+
+&lt;p&gt;Helper methods to avoid referencing null properties. Applies to any work item object.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;if (self.HasParent()) {
+   self.Parent[&amp;quot;System.Title&amp;quot;] = &amp;quot;*** &amp;quot; + self.Parent[&amp;quot;System.Title&amp;quot;];
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Always prefer the Immutable name of the Link Type, e.g. &lt;code&gt;System.LinkTypes.Hierarchy-Reverse&lt;/code&gt; instead of &lt;code&gt;Parent&lt;/code&gt; in
+&lt;code&gt;HasRelation&lt;/code&gt;.
+You can use the pre-defined &lt;code&gt;WorkItemImplementationBase.ChildRelationship&lt;/code&gt; and &lt;code&gt;WorkItemImplementationBase.ParentRelationship&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;addworkitemlink-methods&#34;&gt;AddWorkItemLink methods&lt;/h2&gt;
+
+&lt;p&gt;Add a link to another work item.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var parent = self;
+if (!self.HasChildren())
+{
+    var child = store.MakeNewWorkItem((string)parent[&amp;quot;System.TeamProject&amp;quot;], &amp;quot;Task&amp;quot;);
+    child[&amp;quot;Title&amp;quot;] = &amp;quot;Task auto-generated for &amp;quot; + parent[&amp;quot;Title&amp;quot;];
+    child.AddWorkItemLink(parent, WorkItemImplementationBase.ParentRelationship);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can use the pre-defined &lt;code&gt;WorkItemImplementationBase.ChildRelationship&lt;/code&gt; and &lt;code&gt;WorkItemImplementationBase.ParentRelationship&lt;/code&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Be careful to use the Immutable name of a Link Type, e.g. &lt;code&gt;System.LinkTypes.Hierarchy-Reverse&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;addhyperlink-method&#34;&gt;AddHyperlink method&lt;/h2&gt;
+
+&lt;p&gt;Add an hyperlink to an URL.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;self.AddHyperlink(&amp;quot;https://github.com/tfsaggregator/tfsaggregator&amp;quot;, &amp;quot;Automatically added&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;history-and-related-properties&#34;&gt;History and related properties&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;self&lt;/code&gt; offers the &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.history.aspx&#34;&gt;&lt;code&gt;History&lt;/code&gt;&lt;/a&gt; &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.reviseddate.aspx&#34;&gt;RevisedDate&lt;/a&gt; and &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.revision.aspx&#34;&gt;Revision&lt;/a&gt; properties.&lt;/p&gt;
+
+&lt;p&gt;In addition, the &lt;code&gt;LastRevision&lt;/code&gt; property offers access to latest Fields values. While &lt;code&gt;PreviousRevision&lt;/code&gt; and &lt;code&gt;NextRevision&lt;/code&gt; can be used to traverse the history of the workitem.&lt;/p&gt;
+
+&lt;h2 id=&#34;miscellaneous-properties&#34;&gt;Miscellaneous properties&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.isvalid.aspx&#34;&gt;&lt;code&gt;IsValid&lt;/code&gt;&lt;/a&gt; method is important to check is you set some invalid field value on a work item.&lt;/p&gt;
+
+&lt;p&gt;You can get the &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.id.aspx&#34;&gt;&lt;code&gt;Id&lt;/code&gt;&lt;/a&gt; and &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitemtype.name.aspx&#34;&gt;&lt;code&gt;TypeName&lt;/code&gt;&lt;/a&gt; of a work item&lt;/p&gt;
+
+&lt;!--
+    // state helpers; must be on interface to work on WorkItemLazyReference
+    void TransitionToState(string state, string comment);
+--&gt;
+
+&lt;h2 id=&#34;fluent-queries&#34;&gt;Fluent Queries&lt;/h2&gt;
+
+&lt;p&gt;You can get work items related using the utility methods to build a query. Applies to any work item object.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WhereTypeIs&lt;/code&gt; filters on work item type&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;AtMost&lt;/code&gt; depth of search, i.e. maximum number of links to follow&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;FollowingLinks&lt;/code&gt; filters on link type&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It is particularly useful for traversing many links.&lt;/p&gt;
+
+&lt;h3 id=&#34;example&#34;&gt;Example&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;var tests = self.FollowingLinks(&amp;quot;Microsoft.VSTS.Common.TestedBy-Forward&amp;quot;).WhereTypeIs(&amp;quot;Test Case&amp;quot;);
+foreach (var test in tests)
+{
+   if (test[&amp;quot;Microsoft.VSTS.Common.Severity&amp;quot;] == &amp;quot;1 - Critical&amp;quot;) {
+      // do something
+   }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;linq&#34;&gt;Linq&lt;/h2&gt;
+
+&lt;p&gt;You can use Linq queries on these collections:
+ - &lt;code&gt;Children&lt;/code&gt;
+ - &lt;code&gt;Fields&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
+
+&lt;p&gt;Roll-up code&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var totalEffort = self.Parent.Children.Where(child =&amp;gt; child.TypeName == &amp;quot;Task&amp;quot;).Sum(child =&amp;gt; child.GetField(&amp;quot;TaskEffort&amp;quot;, 0));
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Sum children&amp;rsquo;s estimate&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;foreach (var child in self.Children.Where(child =&amp;gt; child.Field.Any(field =&amp;gt; field.ReferenceName == &amp;quot;Microsoft.VSTS.Scheduling.OriginalEstimate&amp;quot;)))
+{
+   if (child.TypeName != &amp;quot;autogenerated&amp;quot;)
+   {
+      checkedValue += child.GetField&amp;lt;double&amp;gt;(&amp;quot;Microsoft.VSTS.Scheduling.OriginalEstimate&amp;quot;, 0.0);
+      othersCount += 1;
+   }
+   else
+   {
+      autogeneratedCount += 1;
+   }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>store Object</title>
+      <link>https://tfsaggregator.github.io/using/objects-reference/store-object/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/using/objects-reference/store-object/</guid>
+      <description>
+
+&lt;p&gt;Represents the current Collection&amp;rsquo;s Work Items and corresponds to the &lt;code&gt;IWorkItemRepositoryExposed&lt;/code&gt; interface.
+It exposes only two methods &lt;code&gt;GetWorkItem&lt;/code&gt; and &lt;code&gt;MakeNewWorkItem&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;getworkitem-method&#34;&gt;GetWorkItem method&lt;/h2&gt;
+
+&lt;p&gt;Retrieves a work item from the current Collection by ID.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var myWorkitem = store.GetWorkItem(42);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;makenewworkitem-methods&#34;&gt;MakeNewWorkItem methods&lt;/h2&gt;
+
+&lt;p&gt;Add a new WorkItem to current Collection.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var newWorkItem = store.MakeNewWorkItem(self, &amp;quot;Bug&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This syntax will create the new work item in the same TeamProject as &lt;code&gt;self&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var newWorkItem = store.MakeNewWorkItem(&amp;quot;MyProject&amp;quot;, &amp;quot;Bug&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Using this overload, you can specify the TeamProject.&lt;/p&gt;
+
+&lt;p&gt;Both methods require specifying the new work item&amp;rsquo;s type.&lt;/p&gt;
+
+&lt;p&gt;The new work item Fields have default values; it is not committed to the database until all the rules have fired and Aggregator returns control to TFS.&lt;/p&gt;
+
+&lt;!--
+## GetGlobalList method
+Retrieves the collection of items for the named Global List.
+
+```
+var items = store.GetGlobalList(&#34;Aggregator - UserParameters&#34;);
+```
+
+&gt; The global list name must be unique per-collection.
+--&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>logger Object</title>
+      <link>https://tfsaggregator.github.io/using/objects-reference/logger-object/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/using/objects-reference/logger-object/</guid>
+      <description>
+
+&lt;p&gt;Allows to add a trace message to the log output via the &lt;code&gt;Log&lt;/code&gt; method.
+It works like &lt;code&gt;Console.WriteLine&lt;/code&gt;, accepting a format string followed by optional arguments.
+If you do not specify the importance, the message will be logged at &lt;code&gt;Verbose&lt;/code&gt; level.&lt;/p&gt;
+
+&lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;logger.Log(&amp;quot;Hello, World from {1} #{0}!&amp;quot;, self.Id, self.TypeName);
+
+logger.Log(LogLevel.Warning, &amp;quot;Unexpected work item state!&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Possible values are:
+ * Critical
+ * Error
+ * Warning
+ * Information
+ * Verbose
+ * Diagnostic&lt;/p&gt;
+
+&lt;p&gt;Each message goes to
+* Debug output (visible using DebugView)
+* Windows &lt;em&gt;Application&lt;/em&gt; EventLog using &lt;code&gt;TFS Aggregator&lt;/code&gt; source, when level is at &lt;strong&gt;Warning&lt;/strong&gt; or &lt;strong&gt;Critical&lt;/strong&gt; level
+* .Net Trace listeners&lt;/p&gt;
+
+&lt;p&gt;The .Net Trace Source for user messages is &lt;code&gt;TfsAggregator.User&lt;/code&gt;; TFS Aggregator own messages have &lt;code&gt;TfsAggregator.ServerPlugin&lt;/code&gt; Trace Source.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Library Objects</title>
+      <link>https://tfsaggregator.github.io/using/objects-reference/library-objects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/using/objects-reference/library-objects/</guid>
+      <description>
+
+&lt;p&gt;Library of utility functions. (&lt;strong&gt;v2.2&lt;/strong&gt;)
+It exposes two static methods &lt;code&gt;SendMail&lt;/code&gt; and &lt;code&gt;GetEmailAddress&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;getemailaddress&#34;&gt;GetEmailAddress&lt;/h2&gt;
+
+&lt;p&gt;Retrieve the email address for a user.&lt;/p&gt;
+
+&lt;p&gt;You can use the DOMAIN\user form,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;string email = Library.GetEmailAddress(&amp;quot;WIN-3H7CMUV7KDM\\User1&amp;quot;, &amp;quot;does-not-exists@example.com&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or the User Display name.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;string email = Library.GetEmailAddress(&amp;quot;User One&amp;quot;, &amp;quot;does-not-exists@example.com&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;sendmail&#34;&gt;SendMail&lt;/h2&gt;
+
+&lt;p&gt;Send an email using TFS current configuration.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;string to = &amp;quot;test@example.com&amp;quot;;
+string subject = &amp;quot;Sent from a Rule&amp;quot;;
+string body = &amp;quot;It worked!&amp;quot;;
+Library.SendMail(to, subject, body);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;From&lt;/code&gt; address is configured in TFS and cannot be changed.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Examples of Policies</title>
+      <link>https://tfsaggregator.github.io/using/policy-examples/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/using/policy-examples/</guid>
+      <description>
+
+&lt;h2 id=&#34;sample-polices&#34;&gt;Sample polices&lt;/h2&gt;
+
+&lt;p&gt;The Unit tests use policy files from &lt;code&gt;UnitTests.Core\ConfigurationsForTests&lt;/code&gt; folder, this are the most correct and tested. They do not show how to solve real world&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;samples\TFSAggregator2.ServerPlugin.policies&lt;/code&gt; should be your &lt;strong&gt;starting point&lt;/strong&gt;. This file contains a no-harm policy: it simply logs an &amp;ldquo;&lt;em&gt;Hello, World&lt;/em&gt;&amp;rdquo; message when invoked. The comments remind the syntax.&lt;/p&gt;
+
+&lt;p&gt;From time to time, we test the policies contained in the &lt;code&gt;ManualTests&lt;/code&gt; folder. They are good to learn but should not be trusted 100%, at least until we are able to setup automated integration testing.&lt;/p&gt;
+
+&lt;h2 id=&#34;example-aggregations&#34;&gt;Example Aggregations&lt;/h2&gt;
+
+&lt;h3 id=&#34;calculated-field&#34;&gt;Calculated field&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;rule name=&amp;quot;Sum&amp;quot; appliesTo=&amp;quot;Task&amp;quot; hasFields=&amp;quot;Title,Description&amp;quot;&amp;gt;&amp;lt;![CDATA[
+    self[&amp;quot;Estimated Work&amp;quot;] = (double)self[&amp;quot;Estimated Dev Work&amp;quot;] + (double)self[&amp;quot;Estimated Test Work&amp;quot;];
+]]&amp;gt;&amp;lt;/rule&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This aggregation will total the values found in the Estimated Dev Work and Estimated Test Work fields for any Task work item.
+The total will be placed in the Estimated Work field on the same work item as the source values were found.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;./calculated-field.png&#34; alt=&#34;Calculated field in form&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;rollup-field-on-parent&#34;&gt;Rollup field on parent&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;rule name=&amp;quot;Rollup&amp;quot; hasFields=&amp;quot;Estimated Dev Work;Estimated Test Work&amp;quot;&amp;gt;&amp;lt;![CDATA[
+  if (self.HasParent()) {
+    self.Parent[&amp;quot;Total Estimate&amp;quot;] = (double)self.Parent[&amp;quot;Estimated Dev Work&amp;quot;] + (double)self[&amp;quot;Estimated Test Work&amp;quot;];
+  }
+]]&amp;gt;&amp;lt;/rule&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This aggregation will total the values found in the Estimated Dev Work and Estimated Test Work fields for all Task work items on the parent.
+The total will go in the Total Estimate field on the parent one level up from the Task (i.e. the direct parent).
+In the Microsoft Visual Studio Scrum template that is always a Bug or Product Backlog Item.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note on States&lt;/strong&gt;: TFS has controls setup on State Transitions.
+Most templates do not allow you to go directly from a New state to a Done state.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;pick-children-satisfying-condition&#34;&gt;Pick children satisfying condition&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;var child in self.Children.Where(
+   child =&amp;gt; child.Field.Any(
+      field =&amp;gt; field.ReferenceName == &amp;quot;Custom.Product&amp;quot;)
+);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;using-linq-to-aggregate&#34;&gt;Using Linq to Aggregate&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;rule name=&amp;quot;RollupTask&amp;quot; appliesTo=&amp;quot;Task&amp;quot;&amp;gt;&amp;lt;![CDATA[
+if (self.HasParent())
+{
+    var parent = self.Parent;
+    parent[&amp;quot;Microsoft.VSTS.Scheduling.CompletedWork&amp;quot;] = parent.Children.Sum(task =&amp;gt; task.GetField&amp;lt;double&amp;gt;(&amp;quot;Microsoft.VSTS.Scheduling.CompletedWork&amp;quot;, 0d));
+    parent[&amp;quot;Microsoft.VSTS.Scheduling.RemainingWork&amp;quot;] = parent.Children.Sum(task =&amp;gt; task.GetField&amp;lt;double&amp;gt;(&amp;quot;Microsoft.VSTS.Scheduling.RemainingWork&amp;quot;, 0d));
+    parent[&amp;quot;Microsoft.VSTS.Scheduling.OriginalEstimate&amp;quot;] = parent.Children.Sum(task =&amp;gt; task.GetField&amp;lt;double&amp;gt;(&amp;quot;Microsoft.VSTS.Scheduling.OriginalEstimate&amp;quot;, 0d));
+}
+]]&amp;gt;&amp;lt;/rule&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This rule updates a Product Backlog Item or Bug whenever any child Task is added or changes. The &lt;em&gt;Completed Work&lt;/em&gt;, &lt;em&gt;Remaining Work&lt;/em&gt; and &lt;em&gt;Original Estimate&lt;/em&gt; on the parent become the sum of the corresponding fields of children Tasks.
+Note that children Bug or Test Case do not update the parent.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Auto-Open and Auto-Close</title>
+      <link>https://tfsaggregator.github.io/using/examples/auto-open-auto-close/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/using/examples/auto-open-auto-close/</guid>
+      <description>
+
+&lt;h1 id=&#34;example-auto-open-auto-close&#34;&gt;Example: Auto-open, Auto Close&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;Process template:&lt;/em&gt; Scrum&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;rule name=&amp;quot;AutoOpen&amp;quot; appliesTo=&amp;quot;Task&amp;quot;&amp;gt;
+    &amp;lt;!-- Update Work Item to Committed if a task became &amp;quot;active&amp;quot; --&amp;gt;
+    &amp;lt;![CDATA[
+    if (new[] {&amp;quot;In Progress&amp;quot;, &amp;quot;To Do&amp;quot;}.Contains((string)self[&amp;quot;System.State&amp;quot;]))
+    {
+        if(self.HasParent() &amp;amp;&amp;amp; ((string)self.Parent[&amp;quot;System.State&amp;quot;]) != &amp;quot;Committed&amp;quot;)
+        {
+            self.Parent.TransitionToState(&amp;quot;Committed&amp;quot;, &amp;quot;Auto Activated&amp;quot;);
+        }
+    }
+    ]]&amp;gt;
+&amp;lt;/rule&amp;gt;
+
+&amp;lt;rule name=&amp;quot;AutoClose&amp;quot; appliesTo=&amp;quot;Task&amp;quot;&amp;gt;
+    &amp;lt;!-- Update Work Item to Done if a all child tasks are Done or Removed --&amp;gt;
+    &amp;lt;![CDATA[
+    if ((string)self[&amp;quot;System.State&amp;quot;] == &amp;quot;Done&amp;quot; &amp;amp;&amp;amp; self.HasParent() &amp;amp;&amp;amp; ((string)self.Parent[&amp;quot;System.State&amp;quot;]) != &amp;quot;Done&amp;quot;)
+    {
+        if (self.Parent.Children.All(child =&amp;gt; new[] {&amp;quot;Removed&amp;quot;, &amp;quot;Done&amp;quot;}.Contains((string)child[&amp;quot;System.State&amp;quot;])))
+        {
+            self.Parent.TransitionToState(&amp;quot;Done&amp;quot;, &amp;quot;Auto done&amp;quot;);
+        }
+    }
+    ]]&amp;gt;
+&amp;lt;/rule&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Auto-Create Children</title>
+      <link>https://tfsaggregator.github.io/using/examples/auto-create-children/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/using/examples/auto-create-children/</guid>
+      <description>
+
+&lt;h1 id=&#34;example-auto-create-children&#34;&gt;Example: Auto-Create Children&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;Process template:&lt;/em&gt; Any&lt;/p&gt;
+
+&lt;p&gt;This example can serve to create a set of standard tasks for work items of a certain type. Say:
+ * Analyze issue
+ * Fix issue
+ * Test issue&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;!-- WorkItems --&amp;gt;
+&amp;lt;rule name=&amp;quot;NewTask&amp;quot;
+      appliesTo=&amp;quot;Bug&amp;quot;&amp;gt;
+    &amp;lt;![CDATA[
+    var parent = self;
+    if (!self.HasChildren())
+    {
+        // use self to pass in the Team Project Context
+        var child = store.MakeNewWorkItem(self, &amp;quot;Task&amp;quot;);
+        child[&amp;quot;Title&amp;quot;] = &amp;quot;Task auto-generated for &amp;quot; + parent[&amp;quot;Title&amp;quot;];
+  
+        // use the name of the relationship or one of the pre-defined static values
+        // by adding the link to the child, you don&#39;t change the parent in this script.
+        child.AddWorkItemLink(parent, &amp;quot;parent&amp;quot;);
+        // child.AddWorkItemLink(parent, WorkItemImplementationBase.ParentRelationship); //should also work
+    }
+    ]]&amp;gt;
+&amp;lt;/rule&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;See also:
+ * &lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator/blob/master/UnitTests.Core/ConfigurationsForTests/NewObjects.policies&#34;&gt;https://github.com/tfsaggregator/tfsaggregator/blob/master/UnitTests.Core/ConfigurationsForTests/NewObjects.policies&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

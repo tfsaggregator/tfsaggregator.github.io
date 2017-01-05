@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/intro/</loc>
+    <lastmod>2016-12-31T19:37:58+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/intro/how-it-works/</loc>
+    <lastmod>2017-01-02T19:13:53+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/intro/slack-coc/</loc>
+    <lastmod>2017-01-04T21:35:39+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/using/</loc>
+    <lastmod>2017-01-05T21:27:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/using/writing-rules/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/using/policy-syntax/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/using/scripting/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/using/object-model/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/using/objects-reference/self-object/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/using/objects-reference/store-object/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/using/objects-reference/logger-object/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/using/objects-reference/library-objects/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/using/policy-examples/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/using/examples/auto-open-auto-close/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/using/examples/auto-create-children/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/using/scripting-tricks-n-tips/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/using/scripting-pitfalls/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/using/History-Field/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/using/upgrade-from-v1/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/admin/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/admin/install/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/admin/install-webhooks/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/admin/console-app/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/admin/troubleshooting/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/admin/security/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/contrib/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/contrib/developer-intro/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/contrib/source-code/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/contrib/local-build/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/contrib/debugging/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/contrib/continuous-integration/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/CHANGELOG/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/admin/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/contrib/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/intro/</loc>
+    <lastmod>2017-01-04T21:35:39+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/</loc>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/</loc>
+    <lastmod>2017-01-05T21:27:59+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/using/</loc>
+    <lastmod>2017-01-05T21:27:59+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

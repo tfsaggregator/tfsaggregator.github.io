@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Intros on TFS Aggregator Docs</title>
+    <link>https://tfsaggregator.github.io/intro/index.xml</link>
+    <description>Recent content in Intros on TFS Aggregator Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://tfsaggregator.github.io/intro/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Introduction</title>
+      <link>https://tfsaggregator.github.io/intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/intro/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>How it Works</title>
+      <link>https://tfsaggregator.github.io/intro/how-it-works/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/intro/how-it-works/</guid>
+      <description>
+
+&lt;h2 id=&#34;web-hooks&#34;&gt;Web Hooks&lt;/h2&gt;
+
+&lt;p&gt;TODO&lt;/p&gt;
+
+&lt;h2 id=&#34;server-plugin&#34;&gt;Server Plugin&lt;/h2&gt;
+
+&lt;p&gt;The following diagram may help understand the control flow.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;./live-scenario.png&#34; alt=&#34;Plugin flow&#34; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;A user changes some work item&amp;rsquo;s data using Visual Studio or TFS Web Interface, then presses the &lt;strong&gt;Save&lt;/strong&gt; button (or hits &lt;code&gt;Ctrl-S&lt;/code&gt;);&lt;/li&gt;
+&lt;li&gt;TFS validates the edit and saves the changes to the database;&lt;/li&gt;
+&lt;li&gt;TFS notifies the Aggregator plugin of the &lt;em&gt;ID&lt;/em&gt; of the changed work item&lt;/li&gt;
+&lt;li&gt;Aggregator see which Rules apply and execute them, which may cause the loading and saving of additional work items.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Note that step 4 may trigger Aggregator again on the just saved work items.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Keep also in mind that scripts and applications can change work items without user intervention, like &lt;a href=&#34;https://visualstudiogallery.msdn.microsoft.com/eb77e739-c98c-4e36-9ead-fa115b27fefe&#34;&gt;Team Foundation Server Integration Tools&lt;/a&gt;. Make sure that TFS Aggregator kicks in only when intended.&lt;/p&gt;
+
+&lt;h2 id=&#34;configuration-changes&#34;&gt;Configuration changes&lt;/h2&gt;
+
+&lt;p&gt;Aggregator loads and parses the Rules from &lt;code&gt;TFSAggregator2.ServerPlugin.policies&lt;/code&gt; file at first run. The result is cached in memory and the cache invalidates if the file changes.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Code of Conduct</title>
+      <link>https://tfsaggregator.github.io/intro/slack-coc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/intro/slack-coc/</guid>
+      <description>
+
+&lt;h2 id=&#34;tfs-aggregator-slack-code-of-conduct&#34;&gt;TFS Aggregator Slack - Code of Conduct&lt;/h2&gt;
+
+&lt;p&gt;TODO&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

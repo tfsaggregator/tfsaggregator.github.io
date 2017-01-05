@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Admins on TFS Aggregator Docs</title>
+    <link>https://tfsaggregator.github.io/admin/index.xml</link>
+    <description>Recent content in Admins on TFS Aggregator Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://tfsaggregator.github.io/admin/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Administrator Guide</title>
+      <link>https://tfsaggregator.github.io/admin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/admin/</guid>
+      <description>
+
+&lt;h2 id=&#34;administrator-guide-to-tfs-aggregator&#34;&gt;Administrator Guide to TFS Aggregator&lt;/h2&gt;
+
+&lt;p&gt;This Guide explains how install TFS Aggregator on premise and in the cloud for both the Web Hooks and Server Plugin flavors.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Installing the Plugin</title>
+      <link>https://tfsaggregator.github.io/admin/install/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/admin/install/</guid>
+      <description>
+
+&lt;blockquote&gt;
+&lt;p&gt;This information does &lt;strong&gt;not&lt;/strong&gt; apply to the WebHooks version.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;pre-requisites&#34;&gt;Pre-requisites&lt;/h2&gt;
+
+&lt;h3 id=&#34;tfs&#34;&gt;TFS&lt;/h3&gt;
+
+&lt;p&gt;The TFS Aggregator works with the following versions of TFS:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;TFS 2013 update 2,3,4,5&lt;/li&gt;
+&lt;li&gt;TFS 2015 RTM&lt;/li&gt;
+&lt;li&gt;TFS 2015 update 1,2,3&lt;/li&gt;
+&lt;li&gt;TFS 2017 RTM&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The installer will detect the correct TFS version and will install the appropriate binary. If you&amp;rsquo;re upgrading, please uninstall your current TFS Aggregator version, upgrade TFS, then run the installer to automatically install the matching version.&lt;/p&gt;
+
+&lt;h3 id=&#34;windows-event-log&#34;&gt;Windows Event log&lt;/h3&gt;
+
+&lt;p&gt;The TFS Aggregator plugins writes to Windows Event log critical errors; the &lt;strong&gt;TFSAggregator&lt;/strong&gt; Source must be defined in the Application log. The MSI takes care of this.&lt;/p&gt;
+
+&lt;h3 id=&#34;account-permissions&#34;&gt;Account permissions&lt;/h3&gt;
+
+&lt;p&gt;The TFS service account must have permissions to change your work items (on behalf of others if you have enabled impersonation).&lt;/p&gt;
+
+&lt;h2 id=&#34;automated-setup-using-windows-installer&#34;&gt;Automated Setup using Windows Installer&lt;/h2&gt;
+
+&lt;p&gt;Download TFSAggregator MSI file from the latest &lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator/releases&#34;&gt;Release&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Unblock the downloaded file.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;./unblock-MSI.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Launch the installer and accept the license&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;./accept-license.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The MSI packages all three Aggregator flavors, one for each supported TFS version.
+The installer detects the TFS version installed and deploy the correct assemblies.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;The installer detects automatically the TFS version: it fails if TFS is not present.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&#34;./TFS-required.png&#34; alt=&#34;Error message when TFS is not installed&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It will install under &lt;code&gt;%ProgramFiles%&lt;/code&gt;, typically &lt;code&gt;C:\Program Files\TFS Aggregator&lt;/code&gt;, three folders: &lt;code&gt;bin&lt;/code&gt;, &lt;code&gt;docs&lt;/code&gt; and &lt;code&gt;samples&lt;/code&gt;.
+&lt;img src=&#34;./program-files.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Furthermore it installs the plugin in the proper directory &amp;mdash; for TFS 2015 can be &lt;code&gt;C:\Program Files\Microsoft Team Foundation Server 14.0\Application Tier\Web Services\bin\Plugins&lt;/code&gt; &amp;mdash; the plugin assemblies and the default no-op Policy file &lt;code&gt;samples\TFSAggregator2.ServerPlugin.policies&lt;/code&gt;.
+&amp;gt; &lt;strong&gt;An existing Policy file is not overwritten.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;sample-install-scripts&#34;&gt;Sample Install scripts&lt;/h3&gt;
+
+&lt;p&gt;In the &lt;code&gt;samples&lt;/code&gt; folder you will find two Powershell scripts to install or remove Aggregator in case the TFS Administrator does not want (or can) use the MSI file.
+The scripts require an elevated Powershell prompt.&lt;/p&gt;
+
+&lt;h2 id=&#34;configure&#34;&gt;Configure&lt;/h2&gt;
+
+&lt;p&gt;To configure Aggregator you must add new rules in the policy file.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Edit a copy of the sample &lt;code&gt;TFSAggregator2.ServerPlugin.policies&lt;/code&gt; file.&lt;/li&gt;
+&lt;li&gt;Test your new policy using &lt;code&gt;TFSAggregator2.ConsoleApp.exe&lt;/code&gt; command line tool&lt;/li&gt;
+&lt;li&gt;Copy the new file to the plugin folder; usually at this path for TFS 2015:
+&lt;code&gt;C:\Program Files\Microsoft Team Foundation Server 14.0\Application Tier\Web Services\bin\Plugins&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Verify that your new policy works; see &lt;a href=&#34;https://tfsaggregator.github.io/admin/troubleshooting&#34;&gt;TFS Aggregator Troubleshooting&lt;/a&gt; in case of problems.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;See &lt;a href=&#34;https://tfsaggregator.github.io/admin/console-app&#34;&gt;Console Application&lt;/a&gt; for more information on using the command line tool.&lt;/p&gt;
+
+&lt;h2 id=&#34;upgrade-tfs-to-a-new-version&#34;&gt;Upgrade TFS to a new version&lt;/h2&gt;
+
+&lt;p&gt;Due to the fact that there have been breaking changes between TFS Server Object Model versions, there may be a need to fix the TFS aggregator after an upgrade.&lt;/p&gt;
+
+&lt;p&gt;When upgrading from/to specific versions, you need to uninstall TFS aggregator before upgrading the Application Tier server re-install it afterwards.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;TFS 2013 update 5
+
+&lt;ul&gt;
+&lt;li&gt;to TFS 2015 RTM&lt;/li&gt;
+&lt;li&gt;to TFS 2015 update 3&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;TFS 2015 RTM
+
+&lt;ul&gt;
+&lt;li&gt;to TFS 2015 update 3&lt;/li&gt;
+&lt;li&gt;to TFS 2017 RTM&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;TFS 2015 Update 3
+
+&lt;ul&gt;
+&lt;li&gt;to TFS 2017&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;An uninstall+reinstall is required, repairing may not work. TFS will detect the incompatibility and will not load the plugin if the version mismatches.&lt;/p&gt;
+
+&lt;h2 id=&#34;manual-setup&#34;&gt;Manual Setup&lt;/h2&gt;
+
+&lt;h3 id=&#34;manual-install&#34;&gt;Manual install&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Download and extract the binaries from the latest release&lt;/li&gt;
+&lt;li&gt;Create &lt;code&gt;TFSAggregator2.ServerPlugin.policies&lt;/code&gt; using one of the provides examples to build your actual policy.
+
+&lt;ul&gt;
+&lt;li&gt;You will find the &lt;a href=&#34;https://tfsaggregator.github.io/using/policy-syntax&#34;&gt;complete syntax&lt;/a&gt; and &lt;a href=&#34;https://tfsaggregator.github.io/using/policy-examples&#34;&gt;examples&lt;/a&gt; following the links.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Test your policy using  &lt;code&gt;TFSAggregator2.ConsoleApp.exe&lt;/code&gt; command line tool, see &lt;a href=&#34;https://tfsaggregator.github.io/admin/troubleshooting&#34;&gt;TFS Aggregator Troubleshooting&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Register the EventLog source for TFS Aggregator, using an elevated Powershell prompt, by running
+&lt;code&gt;
+New-EventLog -LogName &amp;quot;Application&amp;quot; -Source &amp;quot;TFSAggregator&amp;quot;
+&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Copy &lt;code&gt;TFSAggregator2.ServerPlugin.dll&lt;/code&gt;, &lt;code&gt;TFSAggregator2.Core.dll&lt;/code&gt; and &lt;code&gt;TFSAggregator2.ServerPlugin.policies&lt;/code&gt; to the plugin location on the Application Tier of your TFS Servers:
+
+&lt;ul&gt;
+&lt;li&gt;The plugin folder is usually at this path for TFS 2015: &lt;code&gt;C:\Program Files\Microsoft Team Foundation Server 14.0\Application Tier\Web Services\bin\Plugins&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;You must copy the exact same files on all TFS Application Tier servers.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;TFS detects automatically that a file was copied in and will load it in.&lt;/p&gt;
+
+&lt;p&gt;You can verify if assembly version matches TFS version using this Powershell code&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$pathToAssemblyFile = &amp;quot;C:\Program Files\Microsoft Team Foundation Server 14.0\Application Tier\Web Services\bin\Plugins\TFSAggregator2.ServerPlugin.dll&amp;quot;
+[System.Reflection.Assembly]::LoadFile($pathToAssemblyFile).GetCustomAttributesData() | ?{ $_.AttributeType -eq [System.Reflection.AssemblyConfigurationAttribute] } | select ConstructorArguments
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;manual-uninstall&#34;&gt;Manual Uninstall&lt;/h3&gt;
+
+&lt;p&gt;Remove the &lt;code&gt;TFSAggregator2.*&lt;/code&gt; files from the plugin location on the Application Tier of your TFS Servers&lt;/p&gt;
+
+&lt;p&gt;The plugin folder is usually at this path:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;TFS 2015: &lt;code&gt;C:\Program Files\Microsoft Team Foundation Server 14.0\Application Tier\Web Services\bin\Plugins&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;TFS 2013: &lt;code&gt;C:\Program Files\Microsoft Team Foundation Server 12.0\Application Tier\Web Services\bin\Plugins&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Installing WebHooks</title>
+      <link>https://tfsaggregator.github.io/admin/install-webhooks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/admin/install-webhooks/</guid>
+      <description>
+
+&lt;p&gt;Installing TFS Aggregator WebHooks is a six step process:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#grant-access-to-vststfs&#34;&gt;Grant access to VSTS/TFS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#deploy-tfsaggregator-webhooks-web-application&#34;&gt;Deploy TfsAggregator WebHooks web application&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#configure-tfs-aggregator&#34;&gt;Configure TFS Aggregator&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#define-the-policy&#34;&gt;Define the policy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#setup-logging-optional&#34;&gt;Setup logging (optional)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#setup-the-web-hooks-in-tfsvsts&#34;&gt;Setup the Web Hooks in TFS/VSTS&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;grant-access-to-vsts-tfs&#34;&gt;Grant access to VSTS/TFS&lt;/h2&gt;
+
+&lt;p&gt;There are  three possible options to grant access. In most cases you will have to change the configuration later using the values collected in this step.&lt;/p&gt;
+
+&lt;h3 id=&#34;1-using-a-personal-access-token&#34;&gt;1. Using a Personal Access Token&lt;/h3&gt;
+
+&lt;p&gt;a. Create a Personal Access Token &lt;img src=&#34;.//0-PAT1.png&#34; alt=&#34;Create Personal Access Token  screenshot&#34; /&gt;
+&amp;gt; Leave &lt;strong&gt;All scopes&lt;/strong&gt; select; TFS Aggregator use the old Object Model (see &lt;a href=&#34;https://social.msdn.microsoft.com/Forums/vstudio/en-US/5564cb2b-4e46-4a41-b12c-bc50304c777b/authentication-issue-using-personal-access-token-when-all-options-of-selected-scope-are-selected?forum=TFService&#34;&gt;Authentication issue using Personal Access Token when all options of &amp;ldquo;Selected Scope&amp;rdquo; are selected&lt;/a&gt;).
+b. Capture Personal Access Token&amp;rsquo;s value and store it for later &lt;img src=&#34;.//0-PAT2.png&#34; alt=&#34;Personal Access Token&#39;s value&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;NOTE: this is per-account value you can use (User Profile/Security)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;2-tfs-only-account-permissions&#34;&gt;2. [TFS only] Account permissions&lt;/h3&gt;
+
+&lt;p&gt;instead of a PAT, you can give permission to the account running the Application Pool (see &lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator/wiki/troubleshooting&#34;&gt;https://github.com/tfsaggregator/tfsaggregator/wiki/troubleshooting&lt;/a&gt;)&lt;/p&gt;
+
+&lt;h3 id=&#34;3-tfs-only-explicit-credentials&#34;&gt;3. [TFS only] Explicit credentials&lt;/h3&gt;
+
+&lt;p&gt;or put username and password in clear text in the &lt;code&gt;/AggregatorConfiguration/runtime/authentication&lt;/code&gt; node of the policy file&lt;/p&gt;
+
+&lt;p&gt;If you do not allow access expect a similar error
+&lt;img src=&#34;.//0-error.png&#34; alt=&#34;Access denied&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;deploy-tfsaggregator-webhooks-web-application&#34;&gt;Deploy TfsAggregator WebHooks web application&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-tfs-only-install-on-iis&#34;&gt;1. [TFS only] Install on IIS&lt;/h3&gt;
+
+&lt;p&gt;To install TfsAggregator WebHooks web application you can use the &lt;code&gt;Deploy-TfsAggregatorWebHooks.ps1&lt;/code&gt; as a sample script
+ * use SSL to avoid exposing credentials
+ * the account running Aggregator application pool must have proper permissions on the target TFS &lt;em&gt;or&lt;/em&gt; you set some credentials in the policy file&lt;/p&gt;
+
+&lt;h3 id=&#34;2-deploy-to-azure&#34;&gt;2. Deploy to Azure&lt;/h3&gt;
+
+&lt;p&gt;Use the &lt;a href=&#34;https://azuredeploy.net/&#34;&gt;&lt;img src=&#34;http://azuredeploy.net/deploybutton.png&#34; alt=&#34;Deploy to Azure&#34; /&gt;&lt;/a&gt; button.
+This is the simplest option for VSTS.&lt;/p&gt;
+
+&lt;p&gt;In the wizard specify the&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;.//1-deploy1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;.//1-deploy2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;.//1-deploy3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Please take note of the URL for the next steps.&lt;/p&gt;
+
+&lt;p&gt;You can check that the deploy worked, by opening a browser to the above URL appending &lt;code&gt;/api/workitem&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;.//1-deploy4-validate.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;configure-tfs-aggregator&#34;&gt;Configure TFS Aggregator&lt;/h2&gt;
+
+&lt;p&gt;To edit the deployed files, use Kudu console&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;.//2-config1.png&#34; alt=&#34;Kudu console&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;at the &lt;code&gt;https://&lt;/code&gt;&lt;name_chosen_in_previous_step&gt;&lt;code&gt;.scm.azurewebsites.net&lt;/code&gt; URL. Navigate to &lt;code&gt;site\wwwroot&lt;/code&gt; folder via &lt;strong&gt;Debug console&lt;/strong&gt; menu.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;.//2-config2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;add-users-to-web-config-file&#34;&gt;Add users to &lt;code&gt;web.config&lt;/code&gt; file&lt;/h3&gt;
+
+&lt;p&gt;Add at least one user in the &lt;code&gt;Users&lt;/code&gt; section&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  &amp;lt;Users&amp;gt;
+    &amp;lt;add key=&amp;quot;vsts&amp;quot; value=&amp;quot;P@ssw0rd!&amp;quot; /&amp;gt;
+  &amp;lt;/Users&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;configure-the-policy-mapping&#34;&gt;Configure the policy mapping&lt;/h3&gt;
+
+&lt;p&gt;Define the &lt;code&gt;policyFilePath&lt;/code&gt; in &lt;code&gt;web.config&lt;/code&gt;; the default value is the static path of the sample policy.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;.//2-config3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Instead of a static path you can use a variable value from the incoming request e.g. &lt;code&gt;&amp;lt;add key=&amp;quot;policyFilePath&amp;quot; value=&amp;quot;~/App_Data/{CollectionId}.policies&amp;quot; /&amp;gt;&lt;/code&gt;.
+The possible variables for &lt;code&gt;policyFilePath&lt;/code&gt;, extracted from the incoming request data are:
+ * &lt;code&gt;{EventType}&lt;/code&gt; could be &lt;code&gt;workitem.created&lt;/code&gt; &lt;code&gt;workitem.updated&lt;/code&gt; &lt;code&gt;workitem.restored&lt;/code&gt; or &lt;code&gt;workitem.deleted&lt;/code&gt;
+ * &lt;code&gt;{AccountId}&lt;/code&gt; Guid of VSTS Account (TFS 2017 or later)
+ * &lt;code&gt;{CollectionId}&lt;/code&gt; Guid of collection
+ * &lt;code&gt;{TeamProject}&lt;/code&gt; name of the Team Project
+ * &lt;code&gt;{TfsCollectionUri}&lt;/code&gt; URL of the collection&lt;/p&gt;
+
+&lt;h2 id=&#34;define-the-policy&#34;&gt;Define the policy&lt;/h2&gt;
+
+&lt;p&gt;Navigate to the &lt;code&gt;App_Data&lt;/code&gt; folder to edit the policy files&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;.//2-config4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The default HelloWorld policy works for any kind of work items.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;specify-authentication-in-the-policy&#34;&gt;Specify Authentication in the policy&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;runtime/authentication&lt;/code&gt; element accept two new options&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Explicit credentials
+&lt;code&gt;&amp;lt;authentication username=&amp;quot;DOMAIN\user&amp;quot; password=&amp;quot;***&amp;quot; /&amp;gt;&lt;/code&gt;
+not much secure, but handy for testing and some edge scenario&lt;/li&gt;
+&lt;li&gt;Personal Access Token (obtained on step 1)
+&lt;code&gt;&amp;lt;authentication personalToken=&amp;quot;***&amp;quot; /&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;In the policies you may have to set the credentials chosen in the first step, e.g. the PAT.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;.//2-config5.png&#34; alt=&#34;Personal Access Token in Policy file&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;setup-logging-optional&#34;&gt;Setup logging (optional)&lt;/h2&gt;
+
+&lt;p&gt;This step is not mandatory, but recommended in the initial phase.&lt;/p&gt;
+
+&lt;p&gt;In the &lt;a href=&#34;https://portal.azure.com/&#34;&gt;Azure Portal&lt;/a&gt; navigate to &lt;strong&gt;App Services&lt;/strong&gt; and select the App Service hosting TFS Aggregator. Scroll down to &lt;strong&gt;Diagnostic logs&lt;/strong&gt; and turn on &lt;strong&gt;Application Logging&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;.//3-log1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Select the Verbosity level and save.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;You can store the logs in Azure storage for auditing.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In the Kudu console navigate to the &lt;code&gt;LogFiles\Application&lt;/code&gt; folder to find the log files produced by TFS Aggregator.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;.//3-log2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;By opening the file you see a snapshot of log file&amp;rsquo;s content.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;.//3-log3.png&#34; alt=&#34;Content of a log file&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;setup-the-web-hooks-in-tfs-vsts&#34;&gt;Setup the Web Hooks in TFS/VSTS&lt;/h2&gt;
+
+&lt;p&gt;This is the last step: setup the caller, i.e. configure VSTS/TFS to invoke TFS Aggregator (see also &lt;a href=&#34;https://www.visualstudio.com/en-us/docs/integrate/get-started/service-hooks/services/webhooks&#34;&gt;Web Hooks&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h3 id=&#34;using-powershell&#34;&gt;Using Powershell&lt;/h3&gt;
+
+&lt;p&gt;In the &lt;code&gt;samples&lt;/code&gt; folder you can find the &lt;code&gt;Create-Subscriptions.ps1&lt;/code&gt; Powershell script to quickly setup the subscription.
+It requires six arguments and creates the subcription for create, update and restore events.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Argument&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;th&gt;Sample value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;tfsURL&lt;/td&gt;
+&lt;td&gt;TFS/VSTS base URL&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;https://me.visualstudio.com/&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;ProjectName&lt;/td&gt;
+&lt;td&gt;TFS/VSTS project name&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;My Project&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;PersonalAccessToken&lt;/td&gt;
+&lt;td&gt;Personal Access Token generated in step 1&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;jocxco3i7twydcif25bh7yysbodwnq4ppuannhro4yryfcbab4na&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;aggregatorURL&lt;/td&gt;
+&lt;td&gt;URL of TFS Aggregator WebHooks API&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;https://mytfsaggregator.azurewebsites.net/api/workitem/&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;aggregatorUsername&lt;/td&gt;
+&lt;td&gt;Username listed in TFS Aggregator WebHooks &lt;code&gt;web.config&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;vsts&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;aggregatorPassword&lt;/td&gt;
+&lt;td&gt;Password for the above&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;P@ssw0rd!&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The &lt;code&gt;workitem.deleted&lt;/code&gt; fails with error &lt;code&gt;TF26198: The work item does not exist, or you do not have permission to access it.&lt;/code&gt;
+This is an issue with VSTS/TFS that we cannot solve.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;manual-configuration&#34;&gt;Manual configuration&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;NOTE: this is a per-project configuration (Project/Admin).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&#34;.//4-hooks1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;.//4-hooks2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Select &lt;strong&gt;Web Hooks&lt;/strong&gt;
+&lt;img src=&#34;.//4-hooks3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Select the triggering event
+&lt;img src=&#34;.//4-hooks4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;You may have to repeat this step for all four event:
+* New/created
+* Change/updated
+* Delete
+* Restore&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Insert the URL, e.g. &lt;code&gt;https://&lt;/code&gt;&lt;name_chosen_in_deploy_step&gt;&lt;code&gt;.azurewebsites.net/api/workitem&lt;/code&gt; and one user listed in TFS Aggregator &lt;code&gt;web.config&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;.//4-hooks5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;NOTE the &lt;strong&gt;Test&lt;/strong&gt; button above may send a well-formed document or not, so to test if everything works you really must create/modify some work item.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This is the result with a single hooked event.
+&lt;img src=&#34;.//4-hooks6.png&#34; alt=&#34;First service hook&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And after all four events are defined.
+&lt;img src=&#34;.//4-hooks7.png&#34; alt=&#34;Four service hooks, one per event&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;final-testing&#34;&gt;Final testing&lt;/h2&gt;
+
+&lt;p&gt;At this point the configuration is complete and you can test, e.g. creating a new work item.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;.//5-test1.png&#34; alt=&#34;New Work Item&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You see in the &lt;strong&gt;Service Hooks&lt;/strong&gt; page&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;.//5-test2.png&#34; alt=&#34;Service Hooks page after a few calls&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;the success or failure.
+Remember that you can see the TFS Aggregator log to help troubleshooting.
+&lt;img src=&#34;.//3-log3.png&#34; alt=&#34;Content of a log file&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using the console to test Policies</title>
+      <link>https://tfsaggregator.github.io/admin/console-app/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/admin/console-app/</guid>
+      <description>
+
+&lt;p&gt;The &lt;code&gt;TFSAggregator2.ConsoleApp.exe&lt;/code&gt; command line tool is extremely useful to test and validate
+your policy files before applying to TFS.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;BEWARE&lt;/strong&gt; Any changed workitem is written to TFS database! Use a test TFS instance.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;syntax&#34;&gt;Syntax&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt; TFSAggregator2.ConsoleApp.exe &amp;lt;command&amp;gt; [&amp;lt;options&amp;gt;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The only supported command is &lt;code&gt;run&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you launch the command without arguments, it will display an help screen.&lt;/p&gt;
+
+&lt;h3 id=&#34;options&#34;&gt;Options&lt;/h3&gt;
+
+&lt;p&gt;The available options are:&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Option &lt;br&gt; (short form)&lt;/th&gt;
+&lt;th&gt;Option &lt;br&gt; (long form)&lt;/th&gt;
+&lt;th&gt;Usage&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;-h&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;--help&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Shows help message and exit&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;-f&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;--policyFile=VALUE&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Policy file to test&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;-c&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;--teamProjectCollectionUrl=VALUE&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;TFS Team Project Collection Url, e.g. &lt;code&gt;http://localhost:8080/tfs/DefaultCollection&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;-p&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;--teamProjectName=VALUE&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;TFS Team Project&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;-n&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;--id=VALUE[,VALUE...] &amp;lt;br&amp;gt; --workItemId=VALUE[,VALUE...]&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;List of Work Item Ids&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;-l&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;--logLevel=VALUE&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Logging level (critical, error, warning, information, normal, verbose, diagnostic)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The log level specified on the command line takes precedence over the level written in the policy file.&lt;/p&gt;
+
+&lt;h3 id=&#34;sample-invocation&#34;&gt;Sample invocation&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;TFSAggregator2.ConsoleApp.exe run --policyFile=samples\TFSAggregator2.ServerPlugin.policies --teamProjectCollectionUrl=http://localhost:8080/tfs/DefaultCollection --teamProjectName=TfsAggregatorTest1 --workItemId=42 --logLevel=diagnostic
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;sample-output&#34;&gt;Sample output&lt;/h3&gt;
+
+&lt;p&gt;The output from the previous invocation should be similar to the following screenshot.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;./console-app.png&#34; alt=&#34;Console App screenshot&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;differences-from-tfs-plugin&#34;&gt;Differences from TFS Plugin&lt;/h2&gt;
+
+&lt;p&gt;Here are some major behavioral differences.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;All logging is redirected to the console.&lt;/li&gt;
+&lt;li&gt;If a work item is changed by the rule, it will be processed again by the tool to emulate TFS behavior.&lt;/li&gt;
+&lt;li&gt;The order of processing may be different from TFS.&lt;/li&gt;
+&lt;li&gt;TFS may use different application tier servers to process rules.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The following diagrams may help understand the control flow.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;./live-scenario.png&#34; alt=&#34;Plugin flow&#34; /&gt;
+&lt;strong&gt;Normal flow using plugin&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;./test-scenario.png&#34; alt=&#34;Console App flow&#34; /&gt;
+&lt;strong&gt;Development flow using Console Application&lt;/strong&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Troubleshooting</title>
+      <link>https://tfsaggregator.github.io/admin/troubleshooting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/admin/troubleshooting/</guid>
+      <description>
+
+&lt;p&gt;So you setup TFS Aggregator and it just sits there&amp;hellip;. doing nothing&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Well, this is a check list of things to double check.&lt;/p&gt;
+
+&lt;h2 id=&#34;checklist&#34;&gt;Checklist&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You are using it on a TFS 2013 (update 2 or later) or 2015 (RTM or later) server (and you have the right version for the right server).&lt;/li&gt;
+&lt;li&gt;You have updated a work item that triggers a rule. (The TFS Aggregation only works once a work item that has aggregation rules on it is updated. This may change in a future version.)&lt;/li&gt;
+&lt;li&gt;If the rule navigates between work items, work items have a proper Link (e.g. Parent-Child).&lt;/li&gt;
+&lt;li&gt;You copied the DLLs and the Policies file to the plugins location on all TFS Application Tier Servers (Usually at: &lt;Drive&gt;&lt;code&gt;:\Program Files\Microsoft Team Foundation Server {version}\Application Tier\Web Services\bin\Plugins&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;You have valid names for source and destination fields in &lt;code&gt;TFSAggregator2.ServerPlugin.policies&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;When you saved the file you saved it as UTF-8 encoding (in Notepad++ it is called “utf-8 without BOM”) (This should not be an issue, but it does not hurt to check).&lt;/li&gt;
+&lt;li&gt;You have given permission to the user running the plugin, e.g. add the &amp;ldquo;TFS Service Account&amp;rdquo; to the &lt;strong&gt;Project Collection Administrators&lt;/strong&gt; TFS Group.
+
+&lt;ul&gt;
+&lt;li&gt;You may have to do this from the commandline using &lt;code&gt;tfssecurity /collection:http://server:8080/tfs/DefaultCollection /g+ &amp;quot;Project Collection administrators&amp;quot; &amp;quot;LOCAL SERVICE&amp;quot;&lt;/code&gt; if your service account is either LocalService, NetworkService or any other Windows Well-known identity, since they are no longer shown in the permission UI.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;When using the Impersonation option, make sure the user executing the plugin (generally the TFS Service account) has the &amp;ldquo;Make requests on behalf of others&amp;rdquo; &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/ms252587.aspx&#34;&gt;permission at the server level&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;If you upgraded your TFS from 2013.x to 2015.* or to 2017 and from 2015rtm to 2015.1 and did not uninstall the TFS Aggregator before doing this TFS upgrade the aggregator does not work. Remove the TFS Aggregator from the TFS 2013 Program Files folder or run the uninstall of the TFS Aggegrator (backup your policies!). Then re-install the TFS Aggegrator setup or install manually for TFS 2015 &lt;a href=&#34;https://tfsaggregator.github.io/admin/install&#34;&gt;as described here&lt;/a&gt;. Every TFS version has its &amp;ldquo;own&amp;rdquo; assembly for the aggregator so it is important to use the right version against the right TFS. Check&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Also if you are having issues we recommend debugging your Policies file using &lt;code&gt;TFSAggregator2.ConsoleApp.exe&lt;/code&gt; and trying that out.&lt;/p&gt;
+
+&lt;h2 id=&#34;use-console-application&#34;&gt;Use Console Application&lt;/h2&gt;
+
+&lt;p&gt;The &lt;code&gt;TFSAggregator2.ConsoleApp.exe&lt;/code&gt; command line tool is extremely useful to test and validate your policy files before applying to TFS.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Sample invocation&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;TFSAggregator2.ConsoleApp.exe run --logLevel=diagnostic --policyFile=samples\TFSAggregator2.ServerPlugin.policies --teamProjectCollectionUrl=http://localhost:8080/tfs/DefaultCollection --teamProjectName=TfsAggregatorTest1 --workItemId=42
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;See &lt;a href=&#34;https://tfsaggregator.github.io/admin/console-app&#34;&gt;Console Application&lt;/a&gt; for more information on using the command line tool.&lt;/p&gt;
+
+&lt;h2 id=&#34;enable-debug-logging&#34;&gt;Enable Debug Logging&lt;/h2&gt;
+
+&lt;p&gt;You can also enable Logging. There are two parts to enable logging.&lt;/p&gt;
+
+&lt;p&gt;The first is that you have to set a &lt;code&gt;level&lt;/code&gt; attribute to the &lt;code&gt;logging&lt;/code&gt; element in your &lt;code&gt;TFSAggregator2.ServerPlugin.policies&lt;/code&gt; file.
+Use a value like &lt;code&gt;Verbose&lt;/code&gt; or &lt;code&gt;Diagnostic&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;AggregatorConfiguration&amp;gt;
+    &amp;lt;runtime&amp;gt;
+        &amp;lt;logging level=&amp;quot;Diagnostic&amp;quot;/&amp;gt;
+    &amp;lt;/runtime&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then you need to download &lt;a href=&#34;https://technet.microsoft.com/en-us/sysinternals/debugview.aspx&#34;&gt;&lt;strong&gt;DebugView&lt;/strong&gt;&lt;/a&gt; from Microsoft&amp;rsquo;s SysInternals site.&lt;/p&gt;
+
+&lt;p&gt;DebugView is a Trace Listener and will capture the trace messages from TFSAggregator.
+&lt;img src=&#34;./messages-in-dbgview.png&#34; alt=&#34;TFSAggregator messages in DebugView&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;You have to run DebugView on &lt;em&gt;all&lt;/em&gt; TFS Application Tier machines&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;We would recommend adding the &lt;code&gt;*TFSAggregator*&lt;/code&gt; filter to DebugView so that you only see the TFSAggregator traces.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;./dbg-view-filter.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Make sure to enable the &lt;strong&gt;Capture Global Win32&lt;/strong&gt; option.
+Download DebugView at &lt;a href=&#34;http://technet.microsoft.com/en-us/sysinternals/bb896647&#34;&gt;http://technet.microsoft.com/en-us/sysinternals/bb896647&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Note that you can use the &lt;a href=&#34;https://tfsaggregator.github.io/using/objects-reference/logger-object/&#34;&gt;&lt;code&gt;logger&lt;/code&gt; object&lt;/a&gt; in your rules to trace execution and  values.&lt;/p&gt;
+
+&lt;h2 id=&#34;production-logging-2-1&#34;&gt;Production Logging (2.1)&lt;/h2&gt;
+
+&lt;p&gt;TFS Aggregator log messages go to:
+- Debug output (appers in the Output window of a debugger)
+- Application EventLog (&lt;em&gt;TFS Aggregator&lt;/em&gt; source) when message level is &lt;code&gt;Warning&lt;/code&gt; or &lt;code&gt;Critical&lt;/code&gt;
+- Trace listeners&lt;/p&gt;
+
+&lt;p&gt;User messages &amp;ndash; i.e. &lt;code&gt;logger.Log&lt;/code&gt; calls in Rules &amp;ndash; use a specific Trace source: &lt;code&gt;TfsAggregator.User&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now, you can send traces to a file by adding to TFS &lt;code&gt;web.config&lt;/code&gt; a &lt;code&gt;system.diagnostics&lt;/code&gt; section similar to the this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;system.diagnostics&amp;gt;
+  &amp;lt;sources&amp;gt;
+    &amp;lt;source name=&amp;quot;TfsAggregator.ServerPlugin&amp;quot; switchValue=&amp;quot;All&amp;quot;&amp;gt;
+      &amp;lt;listeners&amp;gt;
+        &amp;lt;remove name=&amp;quot;Default&amp;quot; /&amp;gt;
+        &amp;lt;add name=&amp;quot;filelog&amp;quot; /&amp;gt;
+      &amp;lt;/listeners&amp;gt;
+    &amp;lt;/source&amp;gt;
+    &amp;lt;source name=&amp;quot;TfsAggregator.User&amp;quot; switchValue=&amp;quot;All&amp;quot;&amp;gt;
+      &amp;lt;listeners&amp;gt;
+        &amp;lt;remove name=&amp;quot;Default&amp;quot; /&amp;gt;
+        &amp;lt;add name=&amp;quot;filelog&amp;quot; /&amp;gt;
+      &amp;lt;/listeners&amp;gt;
+    &amp;lt;/source&amp;gt;
+  &amp;lt;/sources&amp;gt;
+  &amp;lt;sharedListeners&amp;gt;
+    &amp;lt;add name=&amp;quot;filelog&amp;quot;
+         type=&amp;quot;Microsoft.VisualBasic.Logging.FileLogTraceListener, 
+                   Microsoft.VisualBasic, Version=10.0.0.0, 
+                   Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&amp;quot;
+         BaseFileName=&amp;quot;TfsAggregator.log&amp;quot;
+         DiskSpaceExhaustedBehavior=&amp;quot;ThrowException&amp;quot;
+         Location=&amp;quot;Custom&amp;quot;
+         CustomLocation = &amp;quot;C:\Temp&amp;quot;
+         MaxFileSize=&amp;quot;81920000&amp;quot;
+         LogFileCreationSchedule=&amp;quot;Daily&amp;quot;/&amp;gt;
+  &amp;lt;/sharedListeners&amp;gt;
+  &amp;lt;trace autoflush=&amp;quot;true&amp;quot;/&amp;gt;
+&amp;lt;/system.diagnostics&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;TFS web.config is located in &lt;code&gt;C:\Program Files\Microsoft Team Foundation Server 14.0\Application Tier\Web Services\web.config&lt;/code&gt; or similar.&lt;/p&gt;
+
+&lt;h2 id=&#34;support&#34;&gt;Support&lt;/h2&gt;
+
+&lt;p&gt;If you check all the above items and it still does not work , create a new Issue on GitHub. Please add any useful information like:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Aggregator version&lt;/li&gt;
+&lt;li&gt;TFS version&lt;/li&gt;
+&lt;li&gt;Content of your &lt;code&gt;TFSAggregator2.ServerPlugin.policies&lt;/code&gt; file (e.g. save it on &lt;a href=&#34;https://gist.github.com/&#34;&gt;https://gist.github.com/&lt;/a&gt; and copy the link in the Issue)&lt;/li&gt;
+&lt;li&gt;Definition of your work item types (use &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/dd312129.aspx&#34;&gt;witadmin exportwitd&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you built the assemblies yourselves, they have a fixed &lt;code&gt;2.0.0.0&lt;/code&gt; version. Please report, the source code version (Tag or commit SHA) used to build your binaries.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Remove any sensitive information before posting!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Consider that this is a voluntary work and we have families and daily jobs, which means: no guarantee of fast response.
+Timezone differences may also impact on response times.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Security</title>
+      <link>https://tfsaggregator.github.io/admin/security/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/admin/security/</guid>
+      <description>&lt;p&gt;We strove to limit the API exposed to Rules and the chance of unwanted access.&lt;/p&gt;
+
+&lt;p&gt;It is up to the TFS Administrator validate and deploy the policy file on production TFS.&lt;/p&gt;
+
+&lt;p&gt;Test the policy file on a TFS staging environment with a single Application Tier server. If you have more than one enabled, TFS can be turned temporarily off on a server using &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/ff470382.aspx&#34;&gt;TFSServiceControl&lt;/a&gt; &lt;code&gt;quiesce&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;Use the Rate Limit feature to reduce the chance of infinite loops.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
