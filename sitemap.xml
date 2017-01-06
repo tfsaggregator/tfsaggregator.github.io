@@ -3,165 +3,196 @@
   
   <url>
     <loc>https://tfsaggregator.github.io/intro/</loc>
-    <lastmod>2016-12-31T19:37:58+01:00</lastmod>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/intro/how-it-works/</loc>
-    <lastmod>2017-01-02T19:13:53+01:00</lastmod>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/intro/slack-coc/</loc>
-    <lastmod>2017-01-04T21:35:39+01:00</lastmod>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/using/</loc>
-    <lastmod>2017-01-05T21:27:59+01:00</lastmod>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/using/writing-rules/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/using/policy-syntax/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/using/scripting/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/using/object-model/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/using/objects-reference/self-object/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/using/objects-reference/store-object/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/using/objects-reference/logger-object/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/using/objects-reference/library-objects/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/using/policy-examples/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/using/examples/auto-open-auto-close/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/using/examples/auto-create-children/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/using/scripting-tricks-n-tips/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/using/scripting-pitfalls/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/using/History-Field/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/using/upgrade-from-v1/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/admin/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/admin/install/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/admin/install-webhooks/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/admin/console-app/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/admin/troubleshooting/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/admin/security/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/contrib/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/contrib/developer-intro/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/contrib/source-code/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/contrib/local-build/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/contrib/debugging/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/contrib/continuous-integration/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/CHANGELOG/</loc>
+    <lastmod>2017-01-06T09:45:42+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/admin/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/contrib/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/intro/</loc>
-    <lastmod>2017-01-04T21:35:39+01:00</lastmod>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/</loc>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/</loc>
-    <lastmod>2017-01-05T21:27:59+01:00</lastmod>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/using/</loc>
-    <lastmod>2017-01-05T21:27:59+01:00</lastmod>
+    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
     <priority>0</priority>
   </url>
   
