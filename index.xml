@@ -14,7 +14,100 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tfsaggregator.github.io/intro/</guid>
-      <description></description>
+      <description>
+
+&lt;p&gt;TFS Aggregator is a extension for Team Foundation Server (TFS) and Visual Studio Team Services (VSTS)
+that enables running custom script when Work Items change,
+allowing dynamic calculation of field values in TFS and more.
+(For example: Dev work + Test Work = Total Work).&lt;/p&gt;
+
+&lt;p&gt;You can use the &lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator&#34;&gt;&lt;strong&gt;Server Plugin&lt;/strong&gt;&lt;/a&gt;, for TFS 2013 update 2 up to TFS 2017 RTM, or the &lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator-webhooks&#34;&gt;&lt;strong&gt;Web Hooks&lt;/strong&gt;&lt;/a&gt; version, for VSTS or TFS 2015 and later.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The Web Hooks version is still in beta.&lt;/p&gt;
+
+&lt;p&gt;TFS Server API changed frequently in the past: the Server Plugin contains specific checks for the TFS version.
+TFS Aggregator Server Plugin binaries will work only with a specific TFS version.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;See the &lt;a href=&#34;https://tfsaggregator.github.io/CHANGELOG/&#34;&gt;Changelog&lt;/a&gt; for an history of releases.&lt;/p&gt;
+
+&lt;h2 id=&#34;example-uses&#34;&gt;Example Uses&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Update the state of a Bug, PBI (or any parent) to &amp;ldquo;In Progress&amp;rdquo; when a child gets moved to &amp;ldquo;In Progress&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Update the state of a Bug, PBI (or any parent) to &amp;ldquo;Done&amp;rdquo; when all children get moved to &amp;ldquo;Done&amp;rdquo; or &amp;ldquo;Removed&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Update the &amp;ldquo;Work Remaining&amp;rdquo; on a Bug, PBI, etc with the sum of all the Task&amp;rsquo;s &amp;ldquo;Work Remaining&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;Update the &amp;ldquo;Work Remaining&amp;rdquo; on a Sprint with the sum of all the &amp;ldquo;Work Remaining&amp;rdquo; of its grandchildren (i.e. tasks of the PBIs and Bugs in the Sprint).&lt;/li&gt;
+&lt;li&gt;Sum up totals on a single work item (i.e. Dev Estimate + Test Estimate = Total Estimate)&lt;/li&gt;
+&lt;li&gt;Create new work items&lt;/li&gt;
+&lt;li&gt;Create new work item links&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;setup-install&#34;&gt;Setup &amp;amp; install&lt;/h2&gt;
+
+&lt;p&gt;The easiest way to deploy the &lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator-webhooks&#34;&gt;&lt;strong&gt;Web Hooks&lt;/strong&gt;&lt;/a&gt; version is to use the &lt;em&gt;Deploy to Azure&lt;/em&gt; button on the &lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator-webhooks&#34;&gt;repository page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The latest &lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator/releases&#34;&gt;Install&lt;/a&gt; package contains A fully automated setup for the &lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator&#34;&gt;&lt;strong&gt;Server Plugin&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;A manual installation after building from source follows the following process:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Download and extract the binaries from the latest release&lt;/li&gt;
+&lt;li&gt;Create a file named &lt;code&gt;TFSAggregator2.ServerPlugin.policies&lt;/code&gt; (or rename one of the existing samples to get started) and change the example settings to your actual settings. &lt;a href=&#34;https://tfsaggregator.github.io/using/policy-syntax&#34;&gt;Syntax Example&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Test your policy using the command line tool.&lt;/li&gt;
+&lt;li&gt;Copy &lt;code&gt;TFSAggregator2.ServerPlugin.dll&lt;/code&gt;, &lt;code&gt;TFSAggregator2.Core.dll&lt;/code&gt; and &lt;code&gt;TFSAggregator2.ServerPlugin.policies&lt;/code&gt; to the plugin location on the Application Tier of your TFS Servers&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;That is all. TFS will detect that a file was copied in and will load it in.&lt;/p&gt;
+
+&lt;p&gt;We ship with an MSI installer which will automatically detect your TFS server folder.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;WARNING When upgrading your TFS server you should uninstall the TFS Aggregator Server Plugin prior to the upgrade and then run the new installer when your server upgrade has completed.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;betas&#34;&gt;Betas&lt;/h2&gt;
+
+&lt;p&gt;You can pick development binaries directly from VSTS, asking access to the team, see &lt;a href=&#34;https://tfsaggregator.github.io/contrib/continuous-integration&#34;&gt;CI build&lt;/a&gt; for details.&lt;/p&gt;
+
+&lt;h2 id=&#34;troubleshooting&#34;&gt;Troubleshooting&lt;/h2&gt;
+
+&lt;p&gt;Is it not working? Here is the troubleshooting and how to get help page: &lt;a href=&#34;https://tfsaggregator.github.io/admin/troubleshooting&#34;&gt;TFS Aggregator Troubleshooting&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;migrating-from-v2-x&#34;&gt;Migrating from v2.x&lt;/h2&gt;
+
+&lt;p&gt;No action required.&lt;/p&gt;
+
+&lt;h2 id=&#34;migrating-from-v1&#34;&gt;Migrating from v1&lt;/h2&gt;
+
+&lt;p&gt;If you used TFS Aggregator in the past, &lt;a href=&#34;https://tfsaggregator.github.io/using/upgrade-from-v1&#34;&gt;here&lt;/a&gt; are the instructions on switching from older versions.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;rsquo;re looking for the latest version of V1 (including a large number of fixes and security updates), you can still find it &lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator/tree/8ae990810f580c161247a6f6f4720d9b72d98288&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: we won&amp;rsquo;t provide any further support on this old version. But if you have a large investment in the old-style rules, it may provide you a better, stabler version until you&amp;rsquo;re ready to move to V2.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: You can run both V1 and V2 side-by-side on the same TFS system, you will have to be extra careful not to create infinite loops though.&lt;/p&gt;
+
+&lt;h2 id=&#34;build-and-customize&#34;&gt;Build and customize&lt;/h2&gt;
+
+&lt;p&gt;We used Visual Studio Community Edition 2015 Update 2 to develop this version.
+Compiling requires a number of TFS assemblies that cannot be redistributed.&lt;/p&gt;
+
+&lt;p&gt;You can find the complete list in these files:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2013 Update 2 and later: &lt;code&gt;References/2013/PLACEHOLDER.txt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;2015 RTM: &lt;code&gt;References/2015/PLACEHOLDER.txt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;2015 Update 1: &lt;code&gt;References/2015.1/PLACEHOLDER.txt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;2015 Update 2 or 3: &lt;code&gt;References/2015.2/PLACEHOLDER.txt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;2017 RTM: &lt;code&gt;References/2017/PLACEHOLDER.txt&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you have TFS installed on your development machine, the assemblies for that version will be loaded automatically from the installation folder.&lt;/p&gt;
+
+&lt;p&gt;More information on customizing and the internal design of TFS Aggregator is &lt;a href=&#34;https://tfsaggregator.github.io/contrib/developer-intro&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
     </item>
     
     <item>
