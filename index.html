@@ -1,627 +1,142 @@
 <!DOCTYPE html>
 <html lang="en-us" class="js csstransforms3d">
   <head>
+	<meta name="generator" content="Hugo 0.18.1" />
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="generator" content="Hugo 0.18.1" />
     <meta name="description" content="TFS Aggregator Documentation">
 <meta name="author" content="TFS Aggregator Team">
 
     <link rel="shortcut icon" href="https://tfsaggregator.github.io/images/favicon.png" type="image/x-icon" />
 
-    
-    <title>Overview</title>
-    <link href="https://tfsaggregator.github.io//css/nucleus.css" rel="stylesheet">
-    <link href="https://tfsaggregator.github.io//css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://tfsaggregator.github.io//css/hybrid.css" rel="stylesheet">
-    <link href="https://tfsaggregator.github.io//css/featherlight.min.css" rel="stylesheet">
-    <link href="https://tfsaggregator.github.io//css/perfect-scrollbar.min.css" rel="stylesheet">
-    <link href="https://tfsaggregator.github.io//css/horsey.css" rel="stylesheet">
-    <link href="https://tfsaggregator.github.io//css/theme.css" rel="stylesheet">
-    <link href="https://tfsaggregator.github.io//css/hugo-theme.css" rel="stylesheet">
-    <script src="https://tfsaggregator.github.io//js/jquery-2.x.min.js"></script>
-    <style type="text/css">:root #header + #content > #left > #rlblock_left
-    {display:none !important;}</style>
+    <title>TFS Aggregator</title>
     
 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link href="https://tfsaggregator.github.io//css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://tfsaggregator.github.io//css/hugo-theme.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://tfsaggregator.github.io//css/home-page-style.css">
+    <link rel="stylesheet" type="text/css" href="https://tfsaggregator.github.io//css/home-page-style-responsive.css">    
+
   </head>
-  <body class="" data-url="/">
-    <nav id="sidebar">
-  <div id="header-wrapper">
-    <div id="header">
-      <table style="border: none">
-  <tr>
-<td style="border: none">
-<a id="logo" href="https://tfsaggregator.github.io/">
-  <svg width="64pt" height="64pt" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <body data-url="/">
+
+
+    <!--full page image header area start-->
+    <div id="top" class="header">
+      <div class="vert-text">
+        <a href="#intro">
+  <svg class="logo" alt="TFS Aggregator logo" width="128pt" height="128pt" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path fill="#67217a" d=" M 0.00 0.00 L 256.00 0.00 L 256.00 256.00 L 0.00 256.00 L 0.00 0.00 Z" />
   <path fill="#ffffff" d=" M 17.06 22.33 C 64.21 22.35 111.36 22.26 158.51 22.37 C 158.55 35.94 158.57 49.51 158.49 63.08 C 132.37 63.47 106.23 63.07 80.10 63.28 C 82.26 66.12 84.60 68.83 87.05 71.42 C 91.26 70.04 94.98 67.51 99.22 66.25 C 101.06 65.50 102.60 67.10 104.05 67.98 C 115.48 76.67 126.96 85.29 138.59 93.70 C 158.53 73.23 178.15 52.46 198.09 32.00 C 214.00 38.19 229.79 44.69 245.68 50.96 C 245.08 96.98 245.80 143.03 245.31 189.05 C 229.48 195.67 213.45 201.86 197.42 208.00 C 182.35 191.95 166.51 176.63 151.13 160.86 C 147.11 156.87 143.34 152.62 139.07 148.88 C 126.48 157.93 114.29 167.53 101.77 176.69 C 97.62 174.24 93.52 171.67 89.09 169.75 C 84.11 175.31 79.28 181.03 75.20 187.28 C 103.49 187.49 131.78 187.24 160.07 187.41 C 160.33 200.92 160.43 214.43 160.32 227.95 C 111.80 228.05 63.27 228.03 14.75 227.96 C 14.67 217.29 14.69 206.62 14.73 195.96 C 14.57 194.50 15.33 193.27 16.22 192.22 C 28.37 177.36 40.40 162.41 52.52 147.54 C 59.10 138.87 66.55 130.88 72.85 122.00 C 68.63 116.03 63.47 110.81 58.78 105.22 C 45.32 89.38 31.70 73.67 18.17 57.89 C 16.64 56.35 17.09 54.03 16.97 52.07 C 17.08 42.16 16.90 32.24 17.06 22.33 Z" />
   <path fill="#67217a" d=" M 24.90 30.93 C 67.15 30.90 109.40 30.76 151.65 31.00 C 151.68 38.75 151.69 46.51 151.65 54.26 C 121.70 54.50 91.74 54.23 61.79 54.39 C 70.37 64.79 79.23 74.97 88.07 85.14 C 93.20 83.35 97.74 80.27 102.78 78.28 C 114.68 87.58 126.41 97.13 138.64 105.98 C 157.56 87.44 175.94 68.33 195.00 49.92 C 206.84 54.51 218.61 59.27 230.37 64.06 C 230.43 101.98 230.50 139.90 230.34 177.82 C 219.78 182.24 209.08 186.30 198.51 190.70 C 196.92 191.24 194.69 192.47 193.43 190.68 C 175.17 172.40 156.94 154.09 138.63 135.88 C 126.38 144.79 114.64 154.38 102.66 163.65 C 97.99 161.68 93.69 158.93 89.00 157.05 C 87.45 157.70 86.56 159.27 85.44 160.45 C 75.66 172.62 65.70 184.64 55.93 196.81 C 88.46 197.08 121.00 196.63 153.53 197.04 C 153.55 204.68 153.55 212.33 153.53 219.98 C 109.78 220.29 66.01 220.15 22.26 220.05 C 22.21 214.68 22.21 209.30 22.20 203.93 C 22.28 202.33 22.04 200.50 23.30 199.28 C 43.25 174.88 63.09 150.38 83.04 125.97 C 83.99 124.77 84.88 123.53 85.77 122.28 C 67.61 100.77 49.17 79.49 30.93 58.04 C 28.97 55.65 26.59 53.53 25.09 50.80 C 24.50 44.20 24.95 37.55 24.90 30.93 Z" />
   <path fill="#ffffff" d=" M 157.63 120.97 C 169.84 111.17 182.27 101.63 194.68 92.07 C 194.73 111.34 194.75 130.61 194.67 149.88 C 182.33 140.23 169.87 130.73 157.63 120.97 Z" />
   <path fill="#ffffff" d=" M 102.11 100.26 C 105.75 102.38 108.43 105.69 111.41 108.59 C 115.46 112.73 119.70 116.68 123.61 120.96 C 119.83 125.06 115.77 128.89 111.86 132.87 C 108.73 135.96 105.82 139.35 102.10 141.77 C 102.76 139.96 103.55 138.19 104.78 136.69 C 109.18 131.18 113.80 125.86 118.09 120.26 C 112.85 113.54 106.10 107.85 102.11 100.26 Z" />
   </svg>
-</a>
-</td>
-    <td style="border: none; text-align: left">
-<div style="font-weight: 300">
-  TFS Aggregator
-</div>
-    </td>
-</tr>
-</table>
+        </a>
+        <div class="buttonbox">
+            <a class="btn-primary btn btn-lg" href="https://tfsaggregator.github.io/intro/">
+                Docs <i class="fa fa-lightbulb-o"></i>
+            </a>
+            <a class="btn-success btn btn-lg" href="https://github.com/tfsaggregator/tfsaggregator/releases">
+                Install Plugin <i class="fa fa-arrow-circle-down"></i>
+            </a>
+            <a class="btn-info btn btn-lg" href="https://github.com/tfsaggregator/tfsaggregator-webhooks#readme">
+                Deploy Web Service <i class="fa fa-arrow-circle-right"></i>
+            </a>
+            <a class="btn-danger btn btn-lg" href="https://slackin-tfsaggregator.herokuapp.com/">
+                Community <i class="fa fa-slack"></i>
+            </a>
+            <a class="btn-default btn btn-lg" href="https://github.com/tfsaggregator">
+                GitHub <i class="fa fa-github"></i>
+            </a>
+        </div>
+      </div>
     </div>
-    
-        <div class="searchbox">
-    <label for="search-by"><i class="fa fa-search"></i></label>
-    <input id="search-by" type="text" placeholder="Search">
-    <span data-search-clear=""><i class="fa fa-close"></i></span>
-</div>
-<script type="text/javascript" src="https://tfsaggregator.github.io//js/lunr.min.js"></script>
-<script type="text/javascript" src="https://tfsaggregator.github.io//js/horsey.js"></script>
-<script type="text/javascript">
-    var baseurl = "https:\/\/tfsaggregator.github.io\/";
-</script>
-<script type="text/javascript" src="https://tfsaggregator.github.io//js/search.js"></script>
-
-    
-</div>
+    <!--full page image header area end-->
 
 
-  <div class="highlightable">
-    <ul class="topics">
-      
-      
-        
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-          
-            
-          
-        
-      
-      
-      
-      
+        <!--intro start-->
+        <div id="intro" class="counterpoint">
+          <div class="container">
 
-      
-        
-      
-      
-      
-
-      <li class="dd-item  " data-nav-id="/intro/">
-        <a href="https://tfsaggregator.github.io/intro/">
-          <span>
-            
-              <b>1. </b>
-            
-             Introduction
-            
-           </span>
-        </a>
-        
-        <ul>
-          
-          
-          
-          
-            <li class="dd-item " data-nav-id="/intro/how-it-works/">
-              <a href="https://tfsaggregator.github.io/intro/how-it-works/">
-                <span>How it Works     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/intro/slack-coc/">
-              <a href="https://tfsaggregator.github.io/intro/slack-coc/">
-                <span>Code of Conduct     </i></span>
-              </a>
-            </li>
-          
-          
-        </ul>
-        
-      </li>
-      
-      
-      
-
-      
-        
-      
-      
-      
-
-      <li class="dd-item  " data-nav-id="/using/">
-        <a href="https://tfsaggregator.github.io/using/">
-          <span>
-            
-              <b>2. </b>
-            
-             Users&#39; Guide
-            
-           </span>
-        </a>
-        
-        <ul>
-          
-          
-          
-          
-            <li class="dd-item " data-nav-id="/using/writing-rules/">
-              <a href="https://tfsaggregator.github.io/using/writing-rules/">
-                <span>Writing Rules and Policies     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/using/policy-syntax/">
-              <a href="https://tfsaggregator.github.io/using/policy-syntax/">
-                <span>Configuration XML syntax     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/using/scripting/">
-              <a href="https://tfsaggregator.github.io/using/scripting/">
-                <span>Scripting the Rules     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/using/object-model/">
-              <a href="https://tfsaggregator.github.io/using/object-model/">
-                <span>Objects Reference     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/using/objects-reference/self-object/">
-              <a href="https://tfsaggregator.github.io/using/objects-reference/self-object/">
-                <span>self Object     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/using/objects-reference/store-object/">
-              <a href="https://tfsaggregator.github.io/using/objects-reference/store-object/">
-                <span>store Object     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/using/objects-reference/logger-object/">
-              <a href="https://tfsaggregator.github.io/using/objects-reference/logger-object/">
-                <span>logger Object     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/using/objects-reference/library-objects/">
-              <a href="https://tfsaggregator.github.io/using/objects-reference/library-objects/">
-                <span>Library Objects     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/using/policy-examples/">
-              <a href="https://tfsaggregator.github.io/using/policy-examples/">
-                <span>Examples of Policies     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/using/examples/auto-open-auto-close/">
-              <a href="https://tfsaggregator.github.io/using/examples/auto-open-auto-close/">
-                <span>Auto-Open and Auto-Close     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/using/examples/auto-create-children/">
-              <a href="https://tfsaggregator.github.io/using/examples/auto-create-children/">
-                <span>Auto-Create Children     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/using/scripting-tricks-n-tips/">
-              <a href="https://tfsaggregator.github.io/using/scripting-tricks-n-tips/">
-                <span>Tricks &amp; Tips     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/using/scripting-pitfalls/">
-              <a href="https://tfsaggregator.github.io/using/scripting-pitfalls/">
-                <span>Common Pitfalls     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/using/History-Field/">
-              <a href="https://tfsaggregator.github.io/using/History-Field/">
-                <span>History field     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/using/upgrade-from-v1/">
-              <a href="https://tfsaggregator.github.io/using/upgrade-from-v1/">
-                <span>Upgrading from v1     </i></span>
-              </a>
-            </li>
-          
-          
-        </ul>
-        
-      </li>
-      
-      
-      
-
-      
-        
-      
-      
-      
-
-      <li class="dd-item  " data-nav-id="/admin/">
-        <a href="https://tfsaggregator.github.io/admin/">
-          <span>
-            
-              <b>3. </b>
-            
-             Administrator Guide
-            
-           </span>
-        </a>
-        
-        <ul>
-          
-          
-          
-          
-            <li class="dd-item " data-nav-id="/admin/install/">
-              <a href="https://tfsaggregator.github.io/admin/install/">
-                <span>Installing the Plugin     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/admin/install-webhooks/">
-              <a href="https://tfsaggregator.github.io/admin/install-webhooks/">
-                <span>Installing WebHooks     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/admin/console-app/">
-              <a href="https://tfsaggregator.github.io/admin/console-app/">
-                <span>Using the console to test Policies     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/admin/troubleshooting/">
-              <a href="https://tfsaggregator.github.io/admin/troubleshooting/">
-                <span>Troubleshooting     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/admin/security/">
-              <a href="https://tfsaggregator.github.io/admin/security/">
-                <span>Security     </i></span>
-              </a>
-            </li>
-          
-          
-        </ul>
-        
-      </li>
-      
-      
-      
-
-      
-        
-      
-      
-      
-
-      <li class="dd-item  " data-nav-id="/contrib/">
-        <a href="https://tfsaggregator.github.io/contrib/">
-          <span>
-            
-              <b>4. </b>
-            
-             Contributing
-            
-           </span>
-        </a>
-        
-        <ul>
-          
-          
-          
-          
-            <li class="dd-item " data-nav-id="/contrib/developer-intro/">
-              <a href="https://tfsaggregator.github.io/contrib/developer-intro/">
-                <span>Introduction to Contributors     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/contrib/source-code/">
-              <a href="https://tfsaggregator.github.io/contrib/source-code/">
-                <span>Source Code     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/contrib/local-build/">
-              <a href="https://tfsaggregator.github.io/contrib/local-build/">
-                <span>Local Build     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/contrib/debugging/">
-              <a href="https://tfsaggregator.github.io/contrib/debugging/">
-                <span>Debugging     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/contrib/continuous-integration/">
-              <a href="https://tfsaggregator.github.io/contrib/continuous-integration/">
-                <span>Continuous Integration     </i></span>
-              </a>
-            </li>
-          
-          
-        </ul>
-        
-      </li>
-      
-      
-    </ul>
-    <hr>
-     
-     <section id="contacts">
-  <div style="padding-left: 1em; ">
-    <a href="mailto:tfsaggregator@outlook.com"><i class="fa fa-envelope">&nbsp;</i>tfsaggregator@outlook.com</a>
-    <br/>
-    <a href="https://twitter.com/tfsaggregator"><i class="fa fa-twitter">&nbsp;</i>@tfsaggregator</a>
-    <br/>
-    <div style="padding-top: 4pt;">
-    <a href="https://slackin-tfsaggregator.herokuapp.com/">
-      <img alt="Slack Team Badge" src="https://slackin-tfsaggregator.herokuapp.com/badge.svg" />
-    </a>
-    </div>
-  </div>
-</section>
-    <section id="footer">
-      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fa fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
-    </section>
-  </div>
-</nav>
-
-        <section id="body">
-        <div id="overlay"></div>
-
-        <div class="padding highlightable">
-
-            <div id="top-bar">
-              
-                
-                
-                
-              <div id="top-github-link">
-                  <a class="github-link" href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/edit/master/content/index.md" target="blank">
-                    <i class="fa fa-code-fork"></i>
-                    Edit this page
-                  </a>
+            <!--row start-->
+            <div class="row">
+              <div class="text-center col-md-6 col-md-offset-3">
+                  <h2>Welcome to TFS Aggregator!</h2>
+                <p class="lead">
+              TFS Aggregator is a extension for Team Foundation Server (TFS) and Visual Studio Team Services (VSTS)
+              that enables running custom script when Work Items change, allowing dynamic calculation of field values in TFS and more.
+                </p>
               </div>
-                
-              
-              <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
-                  <span id="sidebar-toggle-span">
-                      <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
-                        <i class="fa fa-bars"></i>
-                      </a>
-                  </span>
-                
-                
-                
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                  
-                
-                <span itemprop="title"> Overview</span>
-              </div>
-              
-
             </div>
-            
-              <div id="chapter">
-            
-    	        <div id="body-inner">
-                
+            <!--row end-->
 
-
-
-<p>TFS Aggregator is a extension for Team Foundation Server (TFS) and Visual Studio Team Services (VSTS)
-that enables running custom script when Work Items change,
-allowing dynamic calculation of field values in TFS and more.
-(For example: Dev work + Test Work = Total Work).</p>
-
-<p>You can use the <a href="https://github.com/tfsaggregator/tfsaggregator"><strong>Server Plugin</strong></a>, for TFS 2013 update 2 up to TFS 2017 RTM, or the <a href="https://github.com/tfsaggregator/tfsaggregator-webhooks"><strong>Web Hooks</strong></a> version, for VSTS or TFS 2015 and later.</p>
-
-<blockquote>
-<p>The Web Hooks version is still in beta.</p>
-
-<p>TFS Server API changed frequently in the past: the Server Plugin contains specific checks for the TFS version.
-TFS Aggregator Server Plugin binaries will work only with a specific TFS version.</p>
-</blockquote>
-
-<p>See the <a href="https://tfsaggregator.github.io/CHANGELOG/">Changelog</a> for an history of releases.</p>
-
-<h2 id="example-uses">Example Uses</h2>
-
-<ul>
-<li>Update the state of a Bug, PBI (or any parent) to &ldquo;In Progress&rdquo; when a child gets moved to &ldquo;In Progress&rdquo;</li>
-<li>Update the state of a Bug, PBI (or any parent) to &ldquo;Done&rdquo; when all children get moved to &ldquo;Done&rdquo; or &ldquo;Removed&rdquo;</li>
-<li>Update the &ldquo;Work Remaining&rdquo; on a Bug, PBI, etc with the sum of all the Task&rsquo;s &ldquo;Work Remaining&rdquo;.</li>
-<li>Update the &ldquo;Work Remaining&rdquo; on a Sprint with the sum of all the &ldquo;Work Remaining&rdquo; of its grandchildren (i.e. tasks of the PBIs and Bugs in the Sprint).</li>
-<li>Sum up totals on a single work item (i.e. Dev Estimate + Test Estimate = Total Estimate)</li>
-<li>Create new work items</li>
-<li>Create new work item links</li>
-</ul>
-
-<h2 id="setup-install">Setup &amp; install</h2>
-
-<p>The easiest way to deploy the <a href="https://github.com/tfsaggregator/tfsaggregator-webhooks"><strong>Web Hooks</strong></a> version is to use the <em>Deploy to Azure</em> button on the <a href="https://github.com/tfsaggregator/tfsaggregator-webhooks">repository page</a>.</p>
-
-<p>The latest <a href="https://github.com/tfsaggregator/tfsaggregator/releases">Install</a> package contains A fully automated setup for the <a href="https://github.com/tfsaggregator/tfsaggregator"><strong>Server Plugin</strong></a>.</p>
-
-<p>A manual installation after building from source follows the following process:</p>
-
-<ol>
-<li>Download and extract the binaries from the latest release</li>
-<li>Create a file named <code>TFSAggregator2.ServerPlugin.policies</code> (or rename one of the existing samples to get started) and change the example settings to your actual settings. <a href="https://tfsaggregator.github.io/using/policy-syntax">Syntax Example</a>.</li>
-<li>Test your policy using the command line tool.</li>
-<li>Copy <code>TFSAggregator2.ServerPlugin.dll</code>, <code>TFSAggregator2.Core.dll</code> and <code>TFSAggregator2.ServerPlugin.policies</code> to the plugin location on the Application Tier of your TFS Servers</li>
-</ol>
-
-<p>That is all. TFS will detect that a file was copied in and will load it in.</p>
-
-<p>We ship with an MSI installer which will automatically detect your TFS server folder.</p>
-
-<blockquote>
-<p>WARNING When upgrading your TFS server you should uninstall the TFS Aggregator Server Plugin prior to the upgrade and then run the new installer when your server upgrade has completed.</p>
-</blockquote>
-
-<h2 id="betas">Betas</h2>
-
-<p>You can pick development binaries directly from VSTS, asking access to the team, see <a href="https://tfsaggregator.github.io/contrib/continuous-integration">CI build</a> for details.</p>
-
-<h2 id="troubleshooting">Troubleshooting</h2>
-
-<p>Is it not working? Here is the troubleshooting and how to get help page: <a href="https://tfsaggregator.github.io/admin/troubleshooting">TFS Aggregator Troubleshooting</a></p>
-
-<h2 id="migrating-from-v2-x">Migrating from v2.x</h2>
-
-<p>No action required.</p>
-
-<h2 id="migrating-from-v1">Migrating from v1</h2>
-
-<p>If you used TFS Aggregator in the past, <a href="https://tfsaggregator.github.io/using/upgrade-from-v1">here</a> are the instructions on switching from older versions.</p>
-
-<p>If you&rsquo;re looking for the latest version of V1 (including a large number of fixes and security updates), you can still find it <a href="https://github.com/tfsaggregator/tfsaggregator/tree/8ae990810f580c161247a6f6f4720d9b72d98288">here</a>.</p>
-
-<p><strong>Note</strong>: we won&rsquo;t provide any further support on this old version. But if you have a large investment in the old-style rules, it may provide you a better, stabler version until you&rsquo;re ready to move to V2.</p>
-
-<p><strong>Note</strong>: You can run both V1 and V2 side-by-side on the same TFS system, you will have to be extra careful not to create infinite loops though.</p>
-
-<h2 id="build-and-customize">Build and customize</h2>
-
-<p>We used Visual Studio Community Edition 2015 Update 2 to develop this version.
-Compiling requires a number of TFS assemblies that cannot be redistributed.</p>
-
-<p>You can find the complete list in these files:</p>
-
-<ul>
-<li>2013 Update 2 and later: <code>References/2013/PLACEHOLDER.txt</code></li>
-<li>2015 RTM: <code>References/2015/PLACEHOLDER.txt</code></li>
-<li>2015 Update 1: <code>References/2015.1/PLACEHOLDER.txt</code></li>
-<li>2015 Update 2 or 3: <code>References/2015.2/PLACEHOLDER.txt</code></li>
-<li>2017 RTM: <code>References/2017/PLACEHOLDER.txt</code></li>
-</ul>
-
-<p>If you have TFS installed on your development machine, the assemblies for that version will be loaded automatically from the installation folder.</p>
-
-<p>More information on customizing and the internal design of TFS Aggregator is <a href="https://tfsaggregator.github.io/contrib/developer-intro">here</a>.</p>
-
-
-      
-        </div> 
-      
-      </div>
-          <div class="row">
-          <div class="footer-panel">
-<p>Last revision: January 5, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/134c142ebc4c7804ac10ac2a833b2eced77fa13c">Initial commit (134c142)</a>
-            <span style="float: right;">TFS Aggregator Documentation v2.3</span>
-          </p>
           </div>
-      </div>
-    </div>
+        </div>
+        <!--intro end-->
 
-    <div id="navigation">
-        
-        
-        
-    </div>
 
-    </section>
-    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
-      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
-    </div>
-    <script src="https://tfsaggregator.github.io//js/clipboard.min.js"></script>
-    <script src="https://tfsaggregator.github.io//js/perfect-scrollbar.min.js"></script>
-    <script src="https://tfsaggregator.github.io//js/perfect-scrollbar.jquery.min.js"></script>
-    <script src="https://tfsaggregator.github.io//js/jquery.sticky-kit.min.js"></script>
-    <script src="https://tfsaggregator.github.io//js/featherlight.min.js"></script>
-    <script src="https://tfsaggregator.github.io//js/html5shiv-printshiv.min.js"></script>
-    <script src="https://tfsaggregator.github.io//js/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    <script src="https://tfsaggregator.github.io//js/modernizr.custom.71422.js"></script>
-    <script src="https://tfsaggregator.github.io//js/learn.js"></script>
-    <script src="https://tfsaggregator.github.io//js/hugo-learn.js"></script>
-    
+        <!--point start-->
+        <div class="point">
+          <div class="container">
+
+            <!--row start-->
+            <div class="row">
+              <div class="text-center col-md-6 col-md-offset-3">
+                <h2>Any TFS</h2>
+                <p class="lead">
+You can use the <a href="https://github.com/tfsaggregator/tfsaggregator">Server Plugin</a>, for TFS 2013 update 2 up to TFS 2017 RTM,
+or the <a href="https://github.com/tfsaggregator/tfsaggregator-webhooks">Web Service</a> version, for VSTS or TFS 2015 and later.
+                </p>
+
+<div class="alert alert-warning">
+The Web Service version is still in beta.
+</div>
+
+<div class="alert alert-info">
+TFS Server API changed frequently in the past: the Server Plugin contains specific checks for the TFS version.
+TFS Aggregator Server Plugin binaries will work only with a specific TFS version.              
+</div>
+              </div>
+            </div>
+            <!--row end-->
+
+          </div>
+        </div>
+        <!--point end-->
+
+
+        <!--footer start-->
+        <footer>
+          <div class="container">
+
+            <!--row start-->
+            <div class="row">
+              <div class="text-center col-md-6 col-md-offset-3">
+                <ul class="list-inline">
+                    <li><a class="icon-twitter icon-2x" href="https://twitter.com/spf13"></a></li>
+                    <li><a class="icon-octocat icon-2x" href="https://github.com/spf13/hugo"></a></li>
+                </ul>
+                <hr>
+                <p>Copyright &copy; TFS Aggregator Team 2011&ndash;2017</p>
+              </div>
+            </div>
+            <!--row end-->
+
+          </div>
+        </footer>
+        <!--footer end-->
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
   </body>
 </html>
-
