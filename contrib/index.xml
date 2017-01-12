@@ -99,20 +99,21 @@ TFS is not required locally: you can use Remote Debugging.&lt;/p&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h2 id=&#34;wiki&#34;&gt;Wiki&lt;/h2&gt;
+&lt;h2 id=&#34;documentation&#34;&gt;Documentation&lt;/h2&gt;
 
-&lt;p&gt;Wiki &lt;code&gt;master&lt;/code&gt; branch content must match the latest release. To prepare documentation for a future release, use a branch as in the code repository.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator-docs-hugo&#34;&gt;tfsaggregator-docs-hugo&lt;/a&gt; &lt;code&gt;master&lt;/code&gt; branch content must match the latest release.
+To prepare documentation for a future release, use a branch as in the code repository.&lt;/p&gt;
 
 &lt;h2 id=&#34;release-process&#34;&gt;Release process&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;collect solved issues&lt;/li&gt;
 &lt;li&gt;prepare Markdown release notes&lt;/li&gt;
-&lt;li&gt;update wiki &lt;code&gt;release/v#&lt;/code&gt; branch&lt;/li&gt;
+&lt;li&gt;update tfsaggregator-docs-hugo &lt;code&gt;release/v#&lt;/code&gt; branch&lt;/li&gt;
 &lt;li&gt;tag repo&lt;/li&gt;
 &lt;li&gt;merge &lt;code&gt;release/v#&lt;/code&gt; branch to &lt;code&gt;master&lt;/code&gt; (use PR when possible)&lt;/li&gt;
 &lt;li&gt;create GitHub Release pasting release notes&lt;/li&gt;
-&lt;li&gt;merge wiki &lt;code&gt;release/v#&lt;/code&gt; branch to &lt;code&gt;master&lt;/code&gt; and delete it&lt;/li&gt;
+&lt;li&gt;merge tfsaggregator-docs-hugo &lt;code&gt;release/v#&lt;/code&gt; branch to &lt;code&gt;master&lt;/code&gt; and delete it&lt;/li&gt;
 &lt;li&gt;download binaries and upload to Release&lt;/li&gt;
 &lt;li&gt;merge &lt;code&gt;master&lt;/code&gt; branch to &lt;code&gt;develop&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;increment v# in &lt;code&gt;develop&lt;/code&gt; branch and push&lt;/li&gt;

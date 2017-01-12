@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://tfsaggregator.github.io/images/favicon.png" type="image/x-icon" />
 
     
-    <title>Installing WebHooks</title>
+    <title>Installing the Web Service</title>
     <link href="https://tfsaggregator.github.io//css/nucleus.css" rel="stylesheet">
     <link href="https://tfsaggregator.github.io//css/font-awesome.min.css" rel="stylesheet">
     <link href="https://tfsaggregator.github.io//css/hybrid.css" rel="stylesheet">
@@ -310,7 +310,7 @@
           
             <li class="dd-item " data-nav-id="/admin/install/">
               <a href="https://tfsaggregator.github.io/admin/install/">
-                <span>Installing the Plugin     </i></span>
+                <span>Installing the Server Plugin     </i></span>
               </a>
             </li>
           
@@ -318,7 +318,7 @@
           
             <li class="dd-item active" data-nav-id="/admin/install-webhooks/">
               <a href="https://tfsaggregator.github.io/admin/install-webhooks/">
-                <span>Installing WebHooks     </i></span>
+                <span>Installing the Web Service     </i></span>
               </a>
             </li>
           
@@ -487,7 +487,7 @@
                 
                   
                 
-                <span itemprop="title"> Installing WebHooks</span>
+                <span itemprop="title"> Installing the Web Service</span>
               </div>
               
                   <div class="progress">
@@ -502,7 +502,7 @@
 <li><a href="#2-tfs-only-account-permissions">2. [TFS only] Account permissions</a></li>
 <li><a href="#3-tfs-only-explicit-credentials">3. [TFS only] Explicit credentials</a></li>
 </ul></li>
-<li><a href="#deploy-tfsaggregator-webhooks-web-application">Deploy TfsAggregator WebHooks web application</a>
+<li><a href="#deploy-tfsaggregator-web-application">Deploy TfsAggregator web application</a>
 <ul>
 <li><a href="#1-tfs-only-install-on-iis">1. [TFS only] Install on IIS</a></li>
 <li><a href="#2-deploy-to-azure">2. Deploy to Azure</a></li>
@@ -535,16 +535,16 @@
             
     	        <div id="body-inner">
                 
-                <h1>Installing WebHooks</h1>
+                <h1>Installing the Web Service</h1>
                 
 
 
 
-<p>Installing TFS Aggregator WebHooks is a six step process:</p>
+<p>Installing TFS Aggregator Web Service is a six step process:</p>
 
 <ol>
 <li><a href="#grant-access-to-vststfs">Grant access to VSTS/TFS</a></li>
-<li><a href="#deploy-tfsaggregator-webhooks-web-application">Deploy TfsAggregator WebHooks web application</a></li>
+<li><a href="#deploy-tfsaggregator-webhooks-web-application">Deploy TfsAggregator web application</a></li>
 <li><a href="#configure-tfs-aggregator">Configure TFS Aggregator</a></li>
 <li><a href="#define-the-policy">Define the policy</a></li>
 <li><a href="#setup-logging-optional">Setup logging (optional)</a></li>
@@ -557,9 +557,13 @@
 
 <h3 id="1-using-a-personal-access-token">1. Using a Personal Access Token</h3>
 
-<p>a. Create a Personal Access Token <img src=".//0-PAT1.png" alt="Create Personal Access Token  screenshot" />
-&gt; Leave <strong>All scopes</strong> select; TFS Aggregator use the old Object Model (see <a href="https://social.msdn.microsoft.com/Forums/vstudio/en-US/5564cb2b-4e46-4a41-b12c-bc50304c777b/authentication-issue-using-personal-access-token-when-all-options-of-selected-scope-are-selected?forum=TFService">Authentication issue using Personal Access Token when all options of &ldquo;Selected Scope&rdquo; are selected</a>).
-b. Capture Personal Access Token&rsquo;s value and store it for later <img src=".//0-PAT2.png" alt="Personal Access Token's value" /></p>
+<p>a. Create a Personal Access Token <img src="./0-PAT1.png" alt="Create Personal Access Token  screenshot" /></p>
+
+<blockquote>
+<p>Leave <strong>All scopes</strong> select; TFS Aggregator use the old Object Model (see <a href="https://social.msdn.microsoft.com/Forums/vstudio/en-US/5564cb2b-4e46-4a41-b12c-bc50304c777b/authentication-issue-using-personal-access-token-when-all-options-of-selected-scope-are-selected?forum=TFService">Authentication issue using Personal Access Token when all options of &ldquo;Selected Scope&rdquo; are selected</a>).</p>
+</blockquote>
+
+<p>b. Capture Personal Access Token&rsquo;s value and store it for later <img src="./0-PAT2.png" alt="Personal Access Token's value" /></p>
 
 <blockquote>
 <p>NOTE: this is per-account value you can use (User Profile/Security)</p>
@@ -567,22 +571,25 @@ b. Capture Personal Access Token&rsquo;s value and store it for later <img src="
 
 <h3 id="2-tfs-only-account-permissions">2. [TFS only] Account permissions</h3>
 
-<p>instead of a PAT, you can give permission to the account running the Application Pool (see <a href="https://github.com/tfsaggregator/tfsaggregator/wiki/troubleshooting">https://github.com/tfsaggregator/tfsaggregator/wiki/troubleshooting</a>)</p>
+<p>instead of a PAT, you can give permission to the account running the Application Pool (see <a href="https://tfsaggregator.github.io/admin/troubleshooting/">Troubleshooting</a>)</p>
 
 <h3 id="3-tfs-only-explicit-credentials">3. [TFS only] Explicit credentials</h3>
 
 <p>or put username and password in clear text in the <code>/AggregatorConfiguration/runtime/authentication</code> node of the policy file</p>
 
 <p>If you do not allow access expect a similar error
-<img src=".//0-error.png" alt="Access denied" /></p>
+<img src="./0-error.png" alt="Access denied" /></p>
 
-<h2 id="deploy-tfsaggregator-webhooks-web-application">Deploy TfsAggregator WebHooks web application</h2>
+<h2 id="deploy-tfsaggregator-web-application">Deploy TfsAggregator web application</h2>
 
 <h3 id="1-tfs-only-install-on-iis">1. [TFS only] Install on IIS</h3>
 
-<p>To install TfsAggregator WebHooks web application you can use the <code>Deploy-TfsAggregatorWebHooks.ps1</code> as a sample script
- * use SSL to avoid exposing credentials
- * the account running Aggregator application pool must have proper permissions on the target TFS <em>or</em> you set some credentials in the policy file</p>
+<p>To install TfsAggregator web application you can use the <code>Deploy-TfsAggregatorWebHooks.ps1</code> as a sample script</p>
+
+<ul>
+<li>use SSL to avoid exposing credentials</li>
+<li>the account running Aggregator application pool must have proper permissions on the target TFS <em>or</em> you set some credentials in the policy file</li>
+</ul>
 
 <h3 id="2-deploy-to-azure">2. Deploy to Azure</h3>
 
@@ -591,27 +598,27 @@ This is the simplest option for VSTS.</p>
 
 <p>In the wizard specify the</p>
 
-<p><img src=".//1-deploy1.png" alt="" /></p>
+<p><img src="./1-deploy1.png" alt="" /></p>
 
-<p><img src=".//1-deploy2.png" alt="" /></p>
+<p><img src="./1-deploy2.png" alt="" /></p>
 
-<p><img src=".//1-deploy3.png" alt="" /></p>
+<p><img src="./1-deploy3.png" alt="" /></p>
 
 <p>Please take note of the URL for the next steps.</p>
 
 <p>You can check that the deploy worked, by opening a browser to the above URL appending <code>/api/workitem</code></p>
 
-<p><img src=".//1-deploy4-validate.png" alt="" /></p>
+<p><img src="./1-deploy4-validate.png" alt="" /></p>
 
 <h2 id="configure-tfs-aggregator">Configure TFS Aggregator</h2>
 
 <p>To edit the deployed files, use Kudu console</p>
 
-<p><img src=".//2-config1.png" alt="Kudu console" /></p>
+<p><img src="./2-config1.png" alt="Kudu console" /></p>
 
 <p>at the <code>https://</code><name_chosen_in_previous_step><code>.scm.azurewebsites.net</code> URL. Navigate to <code>site\wwwroot</code> folder via <strong>Debug console</strong> menu.</p>
 
-<p><img src=".//2-config2.png" alt="" /></p>
+<p><img src="./2-config2.png" alt="" /></p>
 
 <h3 id="add-users-to-web-config-file">Add users to <code>web.config</code> file</h3>
 
@@ -626,21 +633,24 @@ This is the simplest option for VSTS.</p>
 
 <p>Define the <code>policyFilePath</code> in <code>web.config</code>; the default value is the static path of the sample policy.</p>
 
-<p><img src=".//2-config3.png" alt="" /></p>
+<p><img src="./2-config3.png" alt="" /></p>
 
 <p>Instead of a static path you can use a variable value from the incoming request e.g. <code>&lt;add key=&quot;policyFilePath&quot; value=&quot;~/App_Data/{CollectionId}.policies&quot; /&gt;</code>.
-The possible variables for <code>policyFilePath</code>, extracted from the incoming request data are:
- * <code>{EventType}</code> could be <code>workitem.created</code> <code>workitem.updated</code> <code>workitem.restored</code> or <code>workitem.deleted</code>
- * <code>{AccountId}</code> Guid of VSTS Account (TFS 2017 or later)
- * <code>{CollectionId}</code> Guid of collection
- * <code>{TeamProject}</code> name of the Team Project
- * <code>{TfsCollectionUri}</code> URL of the collection</p>
+The possible variables for <code>policyFilePath</code>, extracted from the incoming request data are:</p>
+
+<ul>
+<li><code>{EventType}</code> could be <code>workitem.created</code> <code>workitem.updated</code> <code>workitem.restored</code> or <code>workitem.deleted</code></li>
+<li><code>{AccountId}</code> Guid of VSTS Account (TFS 2017 or later)</li>
+<li><code>{CollectionId}</code> Guid of collection</li>
+<li><code>{TeamProject}</code> name of the Team Project</li>
+<li><code>{TfsCollectionUri}</code> URL of the collection</li>
+</ul>
 
 <h2 id="define-the-policy">Define the policy</h2>
 
 <p>Navigate to the <code>App_Data</code> folder to edit the policy files</p>
 
-<p><img src=".//2-config4.png" alt="" /></p>
+<p><img src="./2-config4.png" alt="" /></p>
 
 <blockquote>
 <p>The default HelloWorld policy works for any kind of work items.</p>
@@ -660,7 +670,7 @@ not much secure, but handy for testing and some edge scenario</li>
 
 <p>In the policies you may have to set the credentials chosen in the first step, e.g. the PAT.</p>
 
-<p><img src=".//2-config5.png" alt="Personal Access Token in Policy file" /></p>
+<p><img src="./2-config5.png" alt="Personal Access Token in Policy file" /></p>
 
 <h2 id="setup-logging-optional">Setup logging (optional)</h2>
 
@@ -668,7 +678,7 @@ not much secure, but handy for testing and some edge scenario</li>
 
 <p>In the <a href="https://portal.azure.com/">Azure Portal</a> navigate to <strong>App Services</strong> and select the App Service hosting TFS Aggregator. Scroll down to <strong>Diagnostic logs</strong> and turn on <strong>Application Logging</strong>.</p>
 
-<p><img src=".//3-log1.png" alt="" /></p>
+<p><img src="./3-log1.png" alt="" /></p>
 
 <p>Select the Verbosity level and save.</p>
 
@@ -678,11 +688,11 @@ not much secure, but handy for testing and some edge scenario</li>
 
 <p>In the Kudu console navigate to the <code>LogFiles\Application</code> folder to find the log files produced by TFS Aggregator.</p>
 
-<p><img src=".//3-log2.png" alt="" /></p>
+<p><img src="./3-log2.png" alt="" /></p>
 
 <p>By opening the file you see a snapshot of log file&rsquo;s content.</p>
 
-<p><img src=".//3-log3.png" alt="Content of a log file" /></p>
+<p><img src="./3-log3.png" alt="Content of a log file" /></p>
 
 <h2 id="setup-the-web-hooks-in-tfs-vsts">Setup the Web Hooks in TFS/VSTS</h2>
 
@@ -723,13 +733,13 @@ It requires six arguments and creates the subcription for create, update and res
 
 <tr>
 <td>aggregatorURL</td>
-<td>URL of TFS Aggregator WebHooks API</td>
+<td>URL of TFS Aggregator Web Service API</td>
 <td><code>https://mytfsaggregator.azurewebsites.net/api/workitem/</code></td>
 </tr>
 
 <tr>
 <td>aggregatorUsername</td>
-<td>Username listed in TFS Aggregator WebHooks <code>web.config</code></td>
+<td>Username listed in TFS Aggregator Web Service <code>web.config</code></td>
 <td><code>vsts</code></td>
 </tr>
 
@@ -752,58 +762,61 @@ This is an issue with VSTS/TFS that we cannot solve.</p>
 <p>NOTE: this is a per-project configuration (Project/Admin).</p>
 </blockquote>
 
-<p><img src=".//4-hooks1.png" alt="" /></p>
+<p><img src="./4-hooks1.png" alt="" /></p>
 
-<p><img src=".//4-hooks2.png" alt="" /></p>
+<p><img src="./4-hooks2.png" alt="" /></p>
 
 <p>Select <strong>Web Hooks</strong>
-<img src=".//4-hooks3.png" alt="" /></p>
+<img src="./4-hooks3.png" alt="" /></p>
 
 <p>Select the triggering event
-<img src=".//4-hooks4.png" alt="" /></p>
+<img src="./4-hooks4.png" alt="" /></p>
 
 <blockquote>
-<p>You may have to repeat this step for all four event:
-* New/created
-* Change/updated
-* Delete
-* Restore</p>
+<p>You may have to repeat this step for all four event:</p>
+
+<ul>
+<li>New/created</li>
+<li>Change/updated</li>
+<li>Delete</li>
+<li>Restore</li>
+</ul>
 </blockquote>
 
 <p>Insert the URL, e.g. <code>https://</code><name_chosen_in_deploy_step><code>.azurewebsites.net/api/workitem</code> and one user listed in TFS Aggregator <code>web.config</code> file.</p>
 
-<p><img src=".//4-hooks5.png" alt="" /></p>
+<p><img src="./4-hooks5.png" alt="" /></p>
 
 <blockquote>
 <p>NOTE the <strong>Test</strong> button above may send a well-formed document or not, so to test if everything works you really must create/modify some work item.</p>
 </blockquote>
 
 <p>This is the result with a single hooked event.
-<img src=".//4-hooks6.png" alt="First service hook" /></p>
+<img src="./4-hooks6.png" alt="First service hook" /></p>
 
 <p>And after all four events are defined.
-<img src=".//4-hooks7.png" alt="Four service hooks, one per event" /></p>
+<img src="./4-hooks7.png" alt="Four service hooks, one per event" /></p>
 
 <h2 id="final-testing">Final testing</h2>
 
 <p>At this point the configuration is complete and you can test, e.g. creating a new work item.</p>
 
-<p><img src=".//5-test1.png" alt="New Work Item" /></p>
+<p><img src="./5-test1.png" alt="New Work Item" /></p>
 
 <p>You see in the <strong>Service Hooks</strong> page</p>
 
-<p><img src=".//5-test2.png" alt="Service Hooks page after a few calls" /></p>
+<p><img src="./5-test2.png" alt="Service Hooks page after a few calls" /></p>
 
 <p>the success or failure.
 Remember that you can see the TFS Aggregator log to help troubleshooting.
-<img src=".//3-log3.png" alt="Content of a log file" /></p>
+<img src="./3-log3.png" alt="Content of a log file" /></p>
 
 
       
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 5, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/134c142ebc4c7804ac10ac2a833b2eced77fa13c">Initial commit (134c142)</a>
+<p>Last revision: January 11, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/743607bcee37dd04c33ec9f1a7ecc861b0b87131">fix formatting (743607b)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>

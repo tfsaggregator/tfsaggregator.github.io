@@ -139,9 +139,9 @@ Avoid to use if possibile.&lt;/li&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;autoImpersonate&lt;/strong&gt;: &lt;code&gt;false&lt;/code&gt; (default) the TFS Service account, &lt;code&gt;true&lt;/code&gt; the user requesting. (Optional)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;personalToken&lt;/strong&gt;: A Personal Access Token. (WebHooks, Optional)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;username&lt;/strong&gt;: A Username. (WebHooks, Optional)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;password&lt;/strong&gt;: A Password in clear text. (WebHooks, Optional)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;personalToken&lt;/strong&gt;: A Personal Access Token. (WebService, Optional)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;username&lt;/strong&gt;: A Username. (WebService, Optional)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;password&lt;/strong&gt;: A Password in clear text. (WebService, Optional)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;    &amp;lt;snippet name=&amp;quot;MySnippet&amp;quot;&amp;gt;
@@ -170,7 +170,7 @@ Avoid to use if possibile.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;name&lt;/strong&gt;: The name of this rule. (Mandatory)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;appliesTo&lt;/strong&gt;: The name of the work item type that this rule will target. (All: *, List, Optional, List separators: ,;)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;hasFields&lt;/strong&gt;: The work item must have the listed fields for the rule to apply. (All: *, List, Optional, List separators: ,;)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;changes&lt;/strong&gt;: &lt;code&gt;New,Change,Delete,Restore&lt;/code&gt; (default) what change event triggers the Rule. (WebHooks, Optional)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;changes&lt;/strong&gt;: &lt;code&gt;New,Change,Delete,Restore&lt;/code&gt; (default) what change event triggers the Rule. (WebService, Optional)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;&lt;em&gt;content&lt;/em&gt;&lt;/strong&gt;: the script to execute when the rule triggers. (Mandatory)
 The &lt;code&gt;self&lt;/code&gt; (&lt;code&gt;$self&lt;/code&gt; in PowerShell) variable contains the work item that triggered the plugin.
 The &lt;code&gt;self&lt;/code&gt; (&lt;code&gt;$self&lt;/code&gt; in PowerShell) variable contains the work item that triggered the plugin.&lt;/li&gt;

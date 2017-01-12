@@ -310,7 +310,7 @@
           
             <li class="dd-item " data-nav-id="/admin/install/">
               <a href="https://tfsaggregator.github.io/admin/install/">
-                <span>Installing the Plugin     </i></span>
+                <span>Installing the Server Plugin     </i></span>
               </a>
             </li>
           
@@ -318,7 +318,7 @@
           
             <li class="dd-item " data-nav-id="/admin/install-webhooks/">
               <a href="https://tfsaggregator.github.io/admin/install-webhooks/">
-                <span>Installing WebHooks     </i></span>
+                <span>Installing the Web Service     </i></span>
               </a>
             </li>
           
@@ -603,9 +603,9 @@ Avoid to use if possibile.</li>
 
 <ul>
 <li><strong>autoImpersonate</strong>: <code>false</code> (default) the TFS Service account, <code>true</code> the user requesting. (Optional)</li>
-<li><strong>personalToken</strong>: A Personal Access Token. (WebHooks, Optional)</li>
-<li><strong>username</strong>: A Username. (WebHooks, Optional)</li>
-<li><strong>password</strong>: A Password in clear text. (WebHooks, Optional)</li>
+<li><strong>personalToken</strong>: A Personal Access Token. (WebService, Optional)</li>
+<li><strong>username</strong>: A Username. (WebService, Optional)</li>
+<li><strong>password</strong>: A Password in clear text. (WebService, Optional)</li>
 </ul>
 
 <pre><code>    &lt;snippet name=&quot;MySnippet&quot;&gt;
@@ -634,7 +634,7 @@ Avoid to use if possibile.</li>
 <li><strong>name</strong>: The name of this rule. (Mandatory)</li>
 <li><strong>appliesTo</strong>: The name of the work item type that this rule will target. (All: *, List, Optional, List separators: ,;)</li>
 <li><strong>hasFields</strong>: The work item must have the listed fields for the rule to apply. (All: *, List, Optional, List separators: ,;)</li>
-<li><strong>changes</strong>: <code>New,Change,Delete,Restore</code> (default) what change event triggers the Rule. (WebHooks, Optional)</li>
+<li><strong>changes</strong>: <code>New,Change,Delete,Restore</code> (default) what change event triggers the Rule. (WebService, Optional)</li>
 <li><strong><em>content</em></strong>: the script to execute when the rule triggers. (Mandatory)
 The <code>self</code> (<code>$self</code> in PowerShell) variable contains the work item that triggered the plugin.
 The <code>self</code> (<code>$self</code> in PowerShell) variable contains the work item that triggered the plugin.</li>
@@ -699,7 +699,7 @@ See <a href="Scripting">Scripting</a> for additional details on Rules&rsquo; cod
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 5, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/134c142ebc4c7804ac10ac2a833b2eced77fa13c">Initial commit (134c142)</a>
+<p>Last revision: January 9, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/0da38c3ec4c046ff5aab05e1a00acf1d3982cc23">Fix wiki references, ugly .// URLs, replace WebHooks with WebService, hacked how-it-works and CoC (0da38c3)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>

@@ -18,12 +18,12 @@
 
 &lt;h2 id=&#34;administrator-guide-to-tfs-aggregator&#34;&gt;Administrator Guide to TFS Aggregator&lt;/h2&gt;
 
-&lt;p&gt;This Guide explains how install TFS Aggregator on premise and in the cloud for both the Web Hooks and Server Plugin flavors.&lt;/p&gt;
+&lt;p&gt;This Guide explains how install TFS Aggregator on premise and in the cloud for both the Web Service and Server Plugin flavors.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>Installing the Plugin</title>
+      <title>Installing the Server Plugin</title>
       <link>https://tfsaggregator.github.io/admin/install/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -31,7 +31,7 @@
       <description>
 
 &lt;blockquote&gt;
-&lt;p&gt;This information does &lt;strong&gt;not&lt;/strong&gt; apply to the WebHooks version.&lt;/p&gt;
+&lt;p&gt;This information does &lt;strong&gt;not&lt;/strong&gt; apply to the Web Service version.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&#34;pre-requisites&#34;&gt;Pre-requisites&lt;/h2&gt;
@@ -177,18 +177,18 @@ New-EventLog -LogName &amp;quot;Application&amp;quot; -Source &amp;quot;TFSAggre
     </item>
     
     <item>
-      <title>Installing WebHooks</title>
+      <title>Installing the Web Service</title>
       <link>https://tfsaggregator.github.io/admin/install-webhooks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://tfsaggregator.github.io/admin/install-webhooks/</guid>
       <description>
 
-&lt;p&gt;Installing TFS Aggregator WebHooks is a six step process:&lt;/p&gt;
+&lt;p&gt;Installing TFS Aggregator Web Service is a six step process:&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;#grant-access-to-vststfs&#34;&gt;Grant access to VSTS/TFS&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#deploy-tfsaggregator-webhooks-web-application&#34;&gt;Deploy TfsAggregator WebHooks web application&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#deploy-tfsaggregator-webhooks-web-application&#34;&gt;Deploy TfsAggregator web application&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#configure-tfs-aggregator&#34;&gt;Configure TFS Aggregator&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#define-the-policy&#34;&gt;Define the policy&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#setup-logging-optional&#34;&gt;Setup logging (optional)&lt;/a&gt;&lt;/li&gt;
@@ -201,9 +201,13 @@ New-EventLog -LogName &amp;quot;Application&amp;quot; -Source &amp;quot;TFSAggre
 
 &lt;h3 id=&#34;1-using-a-personal-access-token&#34;&gt;1. Using a Personal Access Token&lt;/h3&gt;
 
-&lt;p&gt;a. Create a Personal Access Token &lt;img src=&#34;.//0-PAT1.png&#34; alt=&#34;Create Personal Access Token  screenshot&#34; /&gt;
-&amp;gt; Leave &lt;strong&gt;All scopes&lt;/strong&gt; select; TFS Aggregator use the old Object Model (see &lt;a href=&#34;https://social.msdn.microsoft.com/Forums/vstudio/en-US/5564cb2b-4e46-4a41-b12c-bc50304c777b/authentication-issue-using-personal-access-token-when-all-options-of-selected-scope-are-selected?forum=TFService&#34;&gt;Authentication issue using Personal Access Token when all options of &amp;ldquo;Selected Scope&amp;rdquo; are selected&lt;/a&gt;).
-b. Capture Personal Access Token&amp;rsquo;s value and store it for later &lt;img src=&#34;.//0-PAT2.png&#34; alt=&#34;Personal Access Token&#39;s value&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;a. Create a Personal Access Token &lt;img src=&#34;./0-PAT1.png&#34; alt=&#34;Create Personal Access Token  screenshot&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Leave &lt;strong&gt;All scopes&lt;/strong&gt; select; TFS Aggregator use the old Object Model (see &lt;a href=&#34;https://social.msdn.microsoft.com/Forums/vstudio/en-US/5564cb2b-4e46-4a41-b12c-bc50304c777b/authentication-issue-using-personal-access-token-when-all-options-of-selected-scope-are-selected?forum=TFService&#34;&gt;Authentication issue using Personal Access Token when all options of &amp;ldquo;Selected Scope&amp;rdquo; are selected&lt;/a&gt;).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;b. Capture Personal Access Token&amp;rsquo;s value and store it for later &lt;img src=&#34;./0-PAT2.png&#34; alt=&#34;Personal Access Token&#39;s value&#34; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;NOTE: this is per-account value you can use (User Profile/Security)&lt;/p&gt;
@@ -211,22 +215,25 @@ b. Capture Personal Access Token&amp;rsquo;s value and store it for later &lt;im
 
 &lt;h3 id=&#34;2-tfs-only-account-permissions&#34;&gt;2. [TFS only] Account permissions&lt;/h3&gt;
 
-&lt;p&gt;instead of a PAT, you can give permission to the account running the Application Pool (see &lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator/wiki/troubleshooting&#34;&gt;https://github.com/tfsaggregator/tfsaggregator/wiki/troubleshooting&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;instead of a PAT, you can give permission to the account running the Application Pool (see &lt;a href=&#34;https://tfsaggregator.github.io/admin/troubleshooting/&#34;&gt;Troubleshooting&lt;/a&gt;)&lt;/p&gt;
 
 &lt;h3 id=&#34;3-tfs-only-explicit-credentials&#34;&gt;3. [TFS only] Explicit credentials&lt;/h3&gt;
 
 &lt;p&gt;or put username and password in clear text in the &lt;code&gt;/AggregatorConfiguration/runtime/authentication&lt;/code&gt; node of the policy file&lt;/p&gt;
 
 &lt;p&gt;If you do not allow access expect a similar error
-&lt;img src=&#34;.//0-error.png&#34; alt=&#34;Access denied&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;./0-error.png&#34; alt=&#34;Access denied&#34; /&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;deploy-tfsaggregator-webhooks-web-application&#34;&gt;Deploy TfsAggregator WebHooks web application&lt;/h2&gt;
+&lt;h2 id=&#34;deploy-tfsaggregator-web-application&#34;&gt;Deploy TfsAggregator web application&lt;/h2&gt;
 
 &lt;h3 id=&#34;1-tfs-only-install-on-iis&#34;&gt;1. [TFS only] Install on IIS&lt;/h3&gt;
 
-&lt;p&gt;To install TfsAggregator WebHooks web application you can use the &lt;code&gt;Deploy-TfsAggregatorWebHooks.ps1&lt;/code&gt; as a sample script
- * use SSL to avoid exposing credentials
- * the account running Aggregator application pool must have proper permissions on the target TFS &lt;em&gt;or&lt;/em&gt; you set some credentials in the policy file&lt;/p&gt;
+&lt;p&gt;To install TfsAggregator web application you can use the &lt;code&gt;Deploy-TfsAggregatorWebHooks.ps1&lt;/code&gt; as a sample script&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;use SSL to avoid exposing credentials&lt;/li&gt;
+&lt;li&gt;the account running Aggregator application pool must have proper permissions on the target TFS &lt;em&gt;or&lt;/em&gt; you set some credentials in the policy file&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&#34;2-deploy-to-azure&#34;&gt;2. Deploy to Azure&lt;/h3&gt;
 
@@ -235,27 +242,27 @@ This is the simplest option for VSTS.&lt;/p&gt;
 
 &lt;p&gt;In the wizard specify the&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;.//1-deploy1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./1-deploy1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;.//1-deploy2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./1-deploy2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;.//1-deploy3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./1-deploy3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Please take note of the URL for the next steps.&lt;/p&gt;
 
 &lt;p&gt;You can check that the deploy worked, by opening a browser to the above URL appending &lt;code&gt;/api/workitem&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;.//1-deploy4-validate.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./1-deploy4-validate.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;configure-tfs-aggregator&#34;&gt;Configure TFS Aggregator&lt;/h2&gt;
 
 &lt;p&gt;To edit the deployed files, use Kudu console&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;.//2-config1.png&#34; alt=&#34;Kudu console&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./2-config1.png&#34; alt=&#34;Kudu console&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;at the &lt;code&gt;https://&lt;/code&gt;&lt;name_chosen_in_previous_step&gt;&lt;code&gt;.scm.azurewebsites.net&lt;/code&gt; URL. Navigate to &lt;code&gt;site\wwwroot&lt;/code&gt; folder via &lt;strong&gt;Debug console&lt;/strong&gt; menu.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;.//2-config2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./2-config2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;add-users-to-web-config-file&#34;&gt;Add users to &lt;code&gt;web.config&lt;/code&gt; file&lt;/h3&gt;
 
@@ -270,21 +277,24 @@ This is the simplest option for VSTS.&lt;/p&gt;
 
 &lt;p&gt;Define the &lt;code&gt;policyFilePath&lt;/code&gt; in &lt;code&gt;web.config&lt;/code&gt;; the default value is the static path of the sample policy.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;.//2-config3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./2-config3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Instead of a static path you can use a variable value from the incoming request e.g. &lt;code&gt;&amp;lt;add key=&amp;quot;policyFilePath&amp;quot; value=&amp;quot;~/App_Data/{CollectionId}.policies&amp;quot; /&amp;gt;&lt;/code&gt;.
-The possible variables for &lt;code&gt;policyFilePath&lt;/code&gt;, extracted from the incoming request data are:
- * &lt;code&gt;{EventType}&lt;/code&gt; could be &lt;code&gt;workitem.created&lt;/code&gt; &lt;code&gt;workitem.updated&lt;/code&gt; &lt;code&gt;workitem.restored&lt;/code&gt; or &lt;code&gt;workitem.deleted&lt;/code&gt;
- * &lt;code&gt;{AccountId}&lt;/code&gt; Guid of VSTS Account (TFS 2017 or later)
- * &lt;code&gt;{CollectionId}&lt;/code&gt; Guid of collection
- * &lt;code&gt;{TeamProject}&lt;/code&gt; name of the Team Project
- * &lt;code&gt;{TfsCollectionUri}&lt;/code&gt; URL of the collection&lt;/p&gt;
+The possible variables for &lt;code&gt;policyFilePath&lt;/code&gt;, extracted from the incoming request data are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;{EventType}&lt;/code&gt; could be &lt;code&gt;workitem.created&lt;/code&gt; &lt;code&gt;workitem.updated&lt;/code&gt; &lt;code&gt;workitem.restored&lt;/code&gt; or &lt;code&gt;workitem.deleted&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{AccountId}&lt;/code&gt; Guid of VSTS Account (TFS 2017 or later)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{CollectionId}&lt;/code&gt; Guid of collection&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{TeamProject}&lt;/code&gt; name of the Team Project&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{TfsCollectionUri}&lt;/code&gt; URL of the collection&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&#34;define-the-policy&#34;&gt;Define the policy&lt;/h2&gt;
 
 &lt;p&gt;Navigate to the &lt;code&gt;App_Data&lt;/code&gt; folder to edit the policy files&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;.//2-config4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./2-config4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;The default HelloWorld policy works for any kind of work items.&lt;/p&gt;
@@ -304,7 +314,7 @@ not much secure, but handy for testing and some edge scenario&lt;/li&gt;
 
 &lt;p&gt;In the policies you may have to set the credentials chosen in the first step, e.g. the PAT.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;.//2-config5.png&#34; alt=&#34;Personal Access Token in Policy file&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./2-config5.png&#34; alt=&#34;Personal Access Token in Policy file&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;setup-logging-optional&#34;&gt;Setup logging (optional)&lt;/h2&gt;
 
@@ -312,7 +322,7 @@ not much secure, but handy for testing and some edge scenario&lt;/li&gt;
 
 &lt;p&gt;In the &lt;a href=&#34;https://portal.azure.com/&#34;&gt;Azure Portal&lt;/a&gt; navigate to &lt;strong&gt;App Services&lt;/strong&gt; and select the App Service hosting TFS Aggregator. Scroll down to &lt;strong&gt;Diagnostic logs&lt;/strong&gt; and turn on &lt;strong&gt;Application Logging&lt;/strong&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;.//3-log1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./3-log1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Select the Verbosity level and save.&lt;/p&gt;
 
@@ -322,11 +332,11 @@ not much secure, but handy for testing and some edge scenario&lt;/li&gt;
 
 &lt;p&gt;In the Kudu console navigate to the &lt;code&gt;LogFiles\Application&lt;/code&gt; folder to find the log files produced by TFS Aggregator.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;.//3-log2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./3-log2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;By opening the file you see a snapshot of log file&amp;rsquo;s content.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;.//3-log3.png&#34; alt=&#34;Content of a log file&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./3-log3.png&#34; alt=&#34;Content of a log file&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;setup-the-web-hooks-in-tfs-vsts&#34;&gt;Setup the Web Hooks in TFS/VSTS&lt;/h2&gt;
 
@@ -367,13 +377,13 @@ It requires six arguments and creates the subcription for create, update and res
 
 &lt;tr&gt;
 &lt;td&gt;aggregatorURL&lt;/td&gt;
-&lt;td&gt;URL of TFS Aggregator WebHooks API&lt;/td&gt;
+&lt;td&gt;URL of TFS Aggregator Web Service API&lt;/td&gt;
 &lt;td&gt;&lt;code&gt;https://mytfsaggregator.azurewebsites.net/api/workitem/&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
 &lt;tr&gt;
 &lt;td&gt;aggregatorUsername&lt;/td&gt;
-&lt;td&gt;Username listed in TFS Aggregator WebHooks &lt;code&gt;web.config&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Username listed in TFS Aggregator Web Service &lt;code&gt;web.config&lt;/code&gt;&lt;/td&gt;
 &lt;td&gt;&lt;code&gt;vsts&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 
@@ -396,51 +406,54 @@ This is an issue with VSTS/TFS that we cannot solve.&lt;/p&gt;
 &lt;p&gt;NOTE: this is a per-project configuration (Project/Admin).&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&#34;.//4-hooks1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./4-hooks1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;.//4-hooks2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./4-hooks2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Select &lt;strong&gt;Web Hooks&lt;/strong&gt;
-&lt;img src=&#34;.//4-hooks3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;./4-hooks3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Select the triggering event
-&lt;img src=&#34;.//4-hooks4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;./4-hooks4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;You may have to repeat this step for all four event:
-* New/created
-* Change/updated
-* Delete
-* Restore&lt;/p&gt;
+&lt;p&gt;You may have to repeat this step for all four event:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;New/created&lt;/li&gt;
+&lt;li&gt;Change/updated&lt;/li&gt;
+&lt;li&gt;Delete&lt;/li&gt;
+&lt;li&gt;Restore&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Insert the URL, e.g. &lt;code&gt;https://&lt;/code&gt;&lt;name_chosen_in_deploy_step&gt;&lt;code&gt;.azurewebsites.net/api/workitem&lt;/code&gt; and one user listed in TFS Aggregator &lt;code&gt;web.config&lt;/code&gt; file.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;.//4-hooks5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./4-hooks5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;NOTE the &lt;strong&gt;Test&lt;/strong&gt; button above may send a well-formed document or not, so to test if everything works you really must create/modify some work item.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;This is the result with a single hooked event.
-&lt;img src=&#34;.//4-hooks6.png&#34; alt=&#34;First service hook&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;./4-hooks6.png&#34; alt=&#34;First service hook&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;And after all four events are defined.
-&lt;img src=&#34;.//4-hooks7.png&#34; alt=&#34;Four service hooks, one per event&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;./4-hooks7.png&#34; alt=&#34;Four service hooks, one per event&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;final-testing&#34;&gt;Final testing&lt;/h2&gt;
 
 &lt;p&gt;At this point the configuration is complete and you can test, e.g. creating a new work item.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;.//5-test1.png&#34; alt=&#34;New Work Item&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./5-test1.png&#34; alt=&#34;New Work Item&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You see in the &lt;strong&gt;Service Hooks&lt;/strong&gt; page&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;.//5-test2.png&#34; alt=&#34;Service Hooks page after a few calls&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./5-test2.png&#34; alt=&#34;Service Hooks page after a few calls&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;the success or failure.
 Remember that you can see the TFS Aggregator log to help troubleshooting.
-&lt;img src=&#34;.//3-log3.png&#34; alt=&#34;Content of a log file&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;./3-log3.png&#34; alt=&#34;Content of a log file&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     

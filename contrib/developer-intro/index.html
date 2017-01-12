@@ -310,7 +310,7 @@
           
             <li class="dd-item " data-nav-id="/admin/install/">
               <a href="https://tfsaggregator.github.io/admin/install/">
-                <span>Installing the Plugin     </i></span>
+                <span>Installing the Server Plugin     </i></span>
               </a>
             </li>
           
@@ -318,7 +318,7 @@
           
             <li class="dd-item " data-nav-id="/admin/install-webhooks/">
               <a href="https://tfsaggregator.github.io/admin/install-webhooks/">
-                <span>Installing WebHooks     </i></span>
+                <span>Installing the Web Service     </i></span>
               </a>
             </li>
           
@@ -499,7 +499,7 @@
 <li><a href="#tfs-breaking-changes">TFS Breaking changes</a></li>
 <li><a href="#compile">Compile</a></li>
 <li><a href="#branches">Branches</a></li>
-<li><a href="#wiki">Wiki</a></li>
+<li><a href="#documentation">Documentation</a></li>
 <li><a href="#release-process">Release process</a></li>
 </ul></li>
 </ul>
@@ -583,20 +583,21 @@ TFS is not required locally: you can use Remote Debugging.</p>
 </tbody>
 </table>
 
-<h2 id="wiki">Wiki</h2>
+<h2 id="documentation">Documentation</h2>
 
-<p>Wiki <code>master</code> branch content must match the latest release. To prepare documentation for a future release, use a branch as in the code repository.</p>
+<p><a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo">tfsaggregator-docs-hugo</a> <code>master</code> branch content must match the latest release.
+To prepare documentation for a future release, use a branch as in the code repository.</p>
 
 <h2 id="release-process">Release process</h2>
 
 <ul>
 <li>collect solved issues</li>
 <li>prepare Markdown release notes</li>
-<li>update wiki <code>release/v#</code> branch</li>
+<li>update tfsaggregator-docs-hugo <code>release/v#</code> branch</li>
 <li>tag repo</li>
 <li>merge <code>release/v#</code> branch to <code>master</code> (use PR when possible)</li>
 <li>create GitHub Release pasting release notes</li>
-<li>merge wiki <code>release/v#</code> branch to <code>master</code> and delete it</li>
+<li>merge tfsaggregator-docs-hugo <code>release/v#</code> branch to <code>master</code> and delete it</li>
 <li>download binaries and upload to Release</li>
 <li>merge <code>master</code> branch to <code>develop</code></li>
 <li>increment v# in <code>develop</code> branch and push</li>
@@ -610,7 +611,7 @@ TFS is not required locally: you can use Remote Debugging.</p>
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 5, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/134c142ebc4c7804ac10ac2a833b2eced77fa13c">Initial commit (134c142)</a>
+<p>Last revision: January 9, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/0da38c3ec4c046ff5aab05e1a00acf1d3982cc23">Fix wiki references, ugly .// URLs, replace WebHooks with WebService, hacked how-it-works and CoC (0da38c3)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>

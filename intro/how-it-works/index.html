@@ -310,7 +310,7 @@
           
             <li class="dd-item " data-nav-id="/admin/install/">
               <a href="https://tfsaggregator.github.io/admin/install/">
-                <span>Installing the Plugin     </i></span>
+                <span>Installing the Server Plugin     </i></span>
               </a>
             </li>
           
@@ -318,7 +318,7 @@
           
             <li class="dd-item " data-nav-id="/admin/install-webhooks/">
               <a href="https://tfsaggregator.github.io/admin/install-webhooks/">
-                <span>Installing WebHooks     </i></span>
+                <span>Installing the Web Service     </i></span>
               </a>
             </li>
           
@@ -496,7 +496,7 @@
 <ul>
 <li>
 <ul>
-<li><a href="#web-hooks">Web Hooks</a></li>
+<li><a href="#web-service">Web Service</a></li>
 <li><a href="#server-plugin">Server Plugin</a></li>
 <li><a href="#configuration-changes">Configuration changes</a></li>
 </ul></li>
@@ -516,9 +516,23 @@
 
 
 
-<h2 id="web-hooks">Web Hooks</h2>
+<h2 id="web-service">Web Service</h2>
 
-<p>TODO</p>
+<p>Visual Studio Team Services (VSTS) and TFS (2015 and later) can integrate with other systems through <a href="https://www.visualstudio.com/en-us/docs/integrate/get-started/service-hooks/get-started">Service hooks</a>.
+TFS Aggregator Web Service leverage the <a href="https://www.visualstudio.com/en-us/docs/integrate/get-started/service-hooks/services/webhooks">Web Hooks</a> variant
+to receive notifications of work items changes in VSTS/TFS.</p>
+
+<p>The common scenario is:</p>
+
+<ol>
+<li>A user changes some work item&rsquo;s data using Visual Studio or TFS Web Interface, then presses the <strong>Save</strong> button (or hits <code>Ctrl-S</code>);</li>
+<li>VSTS/TFS validates the edit and saves the changes to the database;</li>
+<li>VSTS/TFS call the Aggregator Web Service using HTTPS, the message contains information on the type of change, the instance, project and work item;</li>
+<li>Aggregator see which Rules apply and execute them, which may call back the loading additional work items;</li>
+<li>Aggregator calls back VSTS/TFS using HTTPS to save any changed work item.</li>
+</ol>
+
+<p>Note that steps 3 and 5 requires authentication.</p>
 
 <h2 id="server-plugin">Server Plugin</h2>
 
@@ -548,7 +562,7 @@
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 5, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/134c142ebc4c7804ac10ac2a833b2eced77fa13c">Initial commit (134c142)</a>
+<p>Last revision: January 9, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/0da38c3ec4c046ff5aab05e1a00acf1d3982cc23">Fix wiki references, ugly .// URLs, replace WebHooks with WebService, hacked how-it-works and CoC (0da38c3)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>
