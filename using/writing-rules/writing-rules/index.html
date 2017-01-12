@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://tfsaggregator.github.io/images/favicon.png" type="image/x-icon" />
 
     
-    <title>Objects Reference</title>
+    <title>Writing Rules and Policies</title>
     <link href="https://tfsaggregator.github.io//css/nucleus.css" rel="stylesheet">
     <link href="https://tfsaggregator.github.io//css/font-awesome.min.css" rel="stylesheet">
     <link href="https://tfsaggregator.github.io//css/hybrid.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     
 
   </head>
-  <body class="" data-url="/using/object-model/">
+  <body class="" data-url="/using/writing-rules/writing-rules/">
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
@@ -164,7 +164,7 @@
           
           
           
-            <li class="dd-item " data-nav-id="/using/writing-rules/writing-rules/">
+            <li class="dd-item active" data-nav-id="/using/writing-rules/writing-rules/">
               <a href="https://tfsaggregator.github.io/using/writing-rules/writing-rules/">
                 <span>
                   
@@ -194,7 +194,7 @@
           
           
           
-            <li class="dd-item active" data-nav-id="/using/object-model/">
+            <li class="dd-item " data-nav-id="/using/object-model/">
               <a href="https://tfsaggregator.github.io/using/object-model/">
                 <span>
                   
@@ -517,7 +517,7 @@
                 
                 
               <div id="top-github-link">
-                  <a class="github-link" href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/edit/master/content/using/object-model.md" target="blank">
+                  <a class="github-link" href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/edit/master/content/using/writing-rules/writing-rules.md" target="blank">
                     <i class="fa fa-code-fork"></i>
                     Edit this page
                   </a>
@@ -551,12 +551,19 @@
                     
                   
                 
-                <span itemprop="title"> Objects Reference</span>
+                <span itemprop="title"> Writing Rules and Policies</span>
               </div>
               
                   <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#editing-a-policy">Editing a policy</a></li>
+</ul></li>
+</ul>
+</nav>
     </div>
 </div>
 
@@ -566,19 +573,20 @@
             
     	        <div id="body-inner">
                 
-                <h1>Objects Reference</h1>
+                <h1>Writing Rules and Policies</h1>
                 
 
-<p>Aggregator exposes some predefined objects or variables to your rules:</p>
 
-<ul>
-<li><a href="https://tfsaggregator.github.io/using/objects-reference/self-object"><code>self</code></a> as the pivot for all computation.</li>
-<li><a href="https://tfsaggregator.github.io/using/objects-reference/store-object"><code>store</code></a> to access the entire set of work items.</li>
-<li><a href="https://tfsaggregator.github.io/using/objects-reference/logger-object"><code>logger</code></a> to add a trace message to the log output.</li>
-<li><a href="https://tfsaggregator.github.io/using/objects-reference/library-objects"><code>Library</code></a> access to a library of pre-canned functions.</li>
-</ul>
 
-<p>We will refer the TeamCollection containing the <code>self</code> work item as the <em>current</em> Collection.</p>
+<p>The <code>samples\TFSAggregator2.ServerPlugin.policies</code> should be your <strong>starting point</strong>. This file contains a no-harm policy: it simply logs an &ldquo;<em>Hello, World</em>&rdquo; message when invoked. The comments remind the syntax.</p>
+
+<h2 id="editing-a-policy">Editing a policy</h2>
+
+<p>The XML Schema definition is in file <code>Aggregator.Core\Configuration\AggregatorConfiguration.xsd</code>. This is the ultimate truth: policy file is checked against XSD before being used.</p>
+
+<p>It can also help you editing the policy file in Visual Studio.
+Open TfsAggregator2 solution in Visual Studio, open a policy file using built-in Xml editor, Select <strong>XML</strong> from the main menu, then <strong>Schemas</strong>. In the dialog windows select <strong>Use this Schema</strong> for <code>AggregatorConfiguration.xsd</code> from the drop-down list.
+<img src="./VisualStudio-Xml-Schema.png" alt="Select AggregatorConfiguration.xsd" /></p>
 
 
       
@@ -595,7 +603,7 @@
     <div id="navigation">
         
         <a class="nav nav-prev" href="https://tfsaggregator.github.io//using/scripting"> <i class="fa fa-chevron-left"></i></a>
-        <a class="nav nav-next" href="https://tfsaggregator.github.io//using/objects-reference/self-object/" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+        <a class="nav nav-next" href="https://tfsaggregator.github.io//using/policy-syntax/" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 
     </section>

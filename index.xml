@@ -192,10 +192,10 @@ Think before writing.&lt;/p&gt;
     
     <item>
       <title>Writing Rules and Policies</title>
-      <link>https://tfsaggregator.github.io/using/writing-rules/</link>
+      <link>https://tfsaggregator.github.io/using/writing-rules/writing-rules/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tfsaggregator.github.io/using/writing-rules/</guid>
+      <guid>https://tfsaggregator.github.io/using/writing-rules/writing-rules/</guid>
       <description>
 
 &lt;p&gt;The &lt;code&gt;samples\TFSAggregator2.ServerPlugin.policies&lt;/code&gt; should be your &lt;strong&gt;starting point&lt;/strong&gt;. This file contains a no-harm policy: it simply logs an &amp;ldquo;&lt;em&gt;Hello, World&lt;/em&gt;&amp;rdquo; message when invoked. The comments remind the syntax.&lt;/p&gt;
@@ -706,18 +706,24 @@ If you do not specify the importance, the message will be logged at &lt;code&gt;
 logger.Log(LogLevel.Warning, &amp;quot;Unexpected work item state!&amp;quot;);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Possible values are:
- * Critical
- * Error
- * Warning
- * Information
- * Verbose
- * Diagnostic&lt;/p&gt;
+&lt;p&gt;Possible values are:&lt;/p&gt;
 
-&lt;p&gt;Each message goes to
-* Debug output (visible using DebugView)
-* Windows &lt;em&gt;Application&lt;/em&gt; EventLog using &lt;code&gt;TFS Aggregator&lt;/code&gt; source, when level is at &lt;strong&gt;Warning&lt;/strong&gt; or &lt;strong&gt;Critical&lt;/strong&gt; level
-* .Net Trace listeners&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Critical&lt;/li&gt;
+&lt;li&gt;Error&lt;/li&gt;
+&lt;li&gt;Warning&lt;/li&gt;
+&lt;li&gt;Information&lt;/li&gt;
+&lt;li&gt;Verbose&lt;/li&gt;
+&lt;li&gt;Diagnostic&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Each message goes to&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Debug output (visible using DebugView)&lt;/li&gt;
+&lt;li&gt;Windows &lt;em&gt;Application&lt;/em&gt; EventLog using &lt;code&gt;TFS Aggregator&lt;/code&gt; source, when level is at &lt;strong&gt;Warning&lt;/strong&gt; or &lt;strong&gt;Critical&lt;/strong&gt; level&lt;/li&gt;
+&lt;li&gt;.Net Trace listeners&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;The .Net Trace Source for user messages is &lt;code&gt;TfsAggregator.User&lt;/code&gt;; TFS Aggregator own messages have &lt;code&gt;TfsAggregator.ServerPlugin&lt;/code&gt; Trace Source.&lt;/p&gt;
 </description>
