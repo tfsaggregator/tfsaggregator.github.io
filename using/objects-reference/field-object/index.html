@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://tfsaggregator.github.io/images/favicon.png" type="image/x-icon" />
 
     
-    <title>Library Objects</title>
+    <title>Field Object</title>
     <link href="https://tfsaggregator.github.io//css/nucleus.css" rel="stylesheet">
     <link href="https://tfsaggregator.github.io//css/font-awesome.min.css" rel="stylesheet">
     <link href="https://tfsaggregator.github.io//css/hybrid.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     
 
   </head>
-  <body class="" data-url="/using/objects-reference/library-objects/">
+  <body class="" data-url="/using/objects-reference/field-object/">
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
@@ -216,7 +216,7 @@
           
           
           
-            <li class="dd-item " data-nav-id="/using/objects-reference/field-object/">
+            <li class="dd-item active" data-nav-id="/using/objects-reference/field-object/">
               <a href="https://tfsaggregator.github.io/using/objects-reference/field-object/">
                 <span>
                   
@@ -252,7 +252,7 @@
           
           
           
-            <li class="dd-item active" data-nav-id="/using/objects-reference/library-objects/">
+            <li class="dd-item " data-nav-id="/using/objects-reference/library-objects/">
               <a href="https://tfsaggregator.github.io/using/objects-reference/library-objects/">
                 <span>
                   
@@ -529,7 +529,7 @@
                 
                 
               <div id="top-github-link">
-                  <a class="github-link" href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/edit/master/content/using/objects-reference/library-objects.md" target="blank">
+                  <a class="github-link" href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/edit/master/content/using/objects-reference/field-object.md" target="blank">
                     <i class="fa fa-code-fork"></i>
                     Edit this page
                   </a>
@@ -563,7 +563,7 @@
                     
                   
                 
-                <span itemprop="title"> Library Objects</span>
+                <span itemprop="title"> Field Object</span>
               </div>
               
                   <div class="progress">
@@ -572,8 +572,8 @@
 <ul>
 <li>
 <ul>
-<li><a href="#getemailaddress">GetEmailAddress</a></li>
-<li><a href="#sendmail">SendMail</a></li>
+<li><a href="#fields-collection">Fields collection</a></li>
+<li><a href="#field-object">Field Object</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -586,39 +586,40 @@
             
     	        <div id="body-inner">
                 
-                <h1>Library Objects</h1>
+                <h1>Field Object</h1>
                 
 
 
 
-<p>Library of utility functions. (<strong>v2.2</strong>)
-It exposes two static methods <code>SendMail</code> and <code>GetEmailAddress</code>.</p>
+<h2 id="fields-collection">Fields collection</h2>
 
-<h2 id="getemailaddress">GetEmailAddress</h2>
+<p>You can iterate over the Field collection of a work item.</p>
 
-<p>Retrieve the email address for a user.</p>
-
-<p>You can use the DOMAIN\user form,</p>
-
-<pre><code>string email = Library.GetEmailAddress(&quot;WIN-3H7CMUV7KDM\\User1&quot;, &quot;does-not-exists@example.com&quot;);
+<pre><code>foreach (var f in self.Fields) {
+    logger.Log(&quot;{0} #{1} has {2} field&quot;, self.TypeName, self.Id, f.Name);
+}
 </code></pre>
 
-<p>or the User Display name.</p>
+<p>You can directly access a Field using its name:</p>
 
-<pre><code>string email = Library.GetEmailAddress(&quot;User One&quot;, &quot;does-not-exists@example.com&quot;);
+<pre><code>self.Fields[&quot;Title&quot;]
 </code></pre>
 
-<h2 id="sendmail">SendMail</h2>
+<p>Prefer using Reference names, e.g. <code>System.Title</code>, as they do not depend on localization and are more resilient to Process template changes.</p>
 
-<p>Send an email using TFS current configuration.</p>
+<h2 id="field-object">Field Object</h2>
 
-<pre><code>string to = &quot;test@example.com&quot;;
-string subject = &quot;Sent from a Rule&quot;;
-string body = &quot;It worked!&quot;;
-Library.SendMail(to, subject, body);
-</code></pre>
+<p>The Field object exposes the following properties:</p>
 
-<p>The <code>From</code> address is configured in TFS and cannot be changed.</p>
+<ul>
+<li><a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.name.aspx"><code>Name</code></a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.referencename.aspx"><code>ReferenceName</code></a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.value.aspx"><code>Value</code></a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.status.aspx"><code>Status</code></a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.originalvalue.aspx"><code>OriginalValue</code></a></li>
+<li><a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.fielddefinition.systemtype.aspx"><code>DataType</code></a></li>
+<li><code>TfsField</code> returns the native TFS <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.aspx">Field</a> object</li>
+</ul>
 
 
       
@@ -634,8 +635,8 @@ Library.SendMail(to, subject, body);
 
     <div id="navigation">
         
-        <a class="nav nav-prev" href="https://tfsaggregator.github.io//using/objects-reference/logger-object"> <i class="fa fa-chevron-left"></i></a>
-        <a class="nav nav-next" href="https://tfsaggregator.github.io//using/policy-examples" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+        <a class="nav nav-prev" href="https://tfsaggregator.github.io//using/objects-reference/self-object"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-next" href="https://tfsaggregator.github.io//using/objects-reference/store-object" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 
     </section>

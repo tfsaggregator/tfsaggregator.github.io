@@ -216,6 +216,18 @@
           
           
           
+            <li class="dd-item " data-nav-id="/using/objects-reference/field-object/">
+              <a href="https://tfsaggregator.github.io/using/objects-reference/field-object/">
+                <span>
+                  
+                    -&nbsp;
+                  
+                  Field Object     </i></span>
+              </a>
+            </li>
+          
+          
+          
             <li class="dd-item " data-nav-id="/using/objects-reference/store-object/">
               <a href="https://tfsaggregator.github.io/using/objects-reference/store-object/">
                 <span>
@@ -560,10 +572,11 @@
 <ul>
 <li>
 <ul>
-<li>
+<li><a href="#log-method">Log method</a>
 <ul>
 <li><a href="#examples">Examples</a></li>
 </ul></li>
+<li><a href="#rulename-property-v2-1">RuleName property (<strong>v2.1</strong>)</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -581,8 +594,11 @@
 
 
 
-<p>Allows to add a trace message to the log output via the <code>Log</code> method.
-It works like <code>Console.WriteLine</code>, accepting a format string followed by optional arguments.
+<p>Allows to add a trace message to the log output via the <code>Log</code> method.</p>
+
+<h2 id="log-method">Log method</h2>
+
+<p>It works like <code>Console.WriteLine</code>, accepting a format string followed by optional arguments.
 If you do not specify the importance, the message will be logged at <code>Verbose</code> level.</p>
 
 <h3 id="examples">Examples</h3>
@@ -592,7 +608,7 @@ If you do not specify the importance, the message will be logged at <code>Verbos
 logger.Log(LogLevel.Warning, &quot;Unexpected work item state!&quot;);
 </code></pre>
 
-<p>Possible values are:</p>
+<p>Possible <code>LogLevel</code> values are:</p>
 
 <ul>
 <li>Critical</li>
@@ -606,19 +622,26 @@ logger.Log(LogLevel.Warning, &quot;Unexpected work item state!&quot;);
 <p>Each message goes to</p>
 
 <ul>
-<li>Debug output (visible using DebugView)</li>
-<li>Windows <em>Application</em> EventLog using <code>TFS Aggregator</code> source, when level is at <strong>Warning</strong> or <strong>Critical</strong> level</li>
-<li>.Net Trace listeners</li>
+<li>Debug output (visible using DebugView).</li>
+<li>Windows <em>Application</em> EventLog using <code>TFS Aggregator</code> source, when level is <strong>Warning</strong> or <strong>Critical</strong>.</li>
+<li>.Net Trace listeners.</li>
 </ul>
 
 <p>The .Net Trace Source for user messages is <code>TfsAggregator.User</code>; TFS Aggregator own messages have <code>TfsAggregator.ServerPlugin</code> Trace Source.</p>
+
+<h2 id="rulename-property-v2-1">RuleName property (<strong>v2.1</strong>)</h2>
+
+<p>Returns the name of current executing Rule.</p>
+
+<pre><code>logger.Log(&quot;Hello from Rule {0} processing {1} #{2}.&quot;, logger.RuleName, self.TypeName, self.Id);
+</code></pre>
 
 
       
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 12, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/ae66422bd201a4d28b20bc78dc7e0b584181dceb">Fixed a number of errors in links to pictures and pages (ae66422)</a>
+<p>Last revision: January 13, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/d301f8bb6de81e7b6cd181999eb3d716a3e32d64">No more undocumented Rule methods or Properties (d301f8b)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>

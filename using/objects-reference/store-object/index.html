@@ -216,6 +216,18 @@
           
           
           
+            <li class="dd-item " data-nav-id="/using/objects-reference/field-object/">
+              <a href="https://tfsaggregator.github.io/using/objects-reference/field-object/">
+                <span>
+                  
+                    -&nbsp;
+                  
+                  Field Object     </i></span>
+              </a>
+            </li>
+          
+          
+          
             <li class="dd-item active" data-nav-id="/using/objects-reference/store-object/">
               <a href="https://tfsaggregator.github.io/using/objects-reference/store-object/">
                 <span>
@@ -562,6 +574,7 @@
 <ul>
 <li><a href="#getworkitem-method">GetWorkItem method</a></li>
 <li><a href="#makenewworkitem-methods">MakeNewWorkItem methods</a></li>
+<li><a href="#getgloballist-method">GetGlobalList method</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -580,7 +593,13 @@
 
 
 <p>Represents the current Collection&rsquo;s Work Items and corresponds to the <code>IWorkItemRepositoryExposed</code> interface.
-It exposes only two methods <code>GetWorkItem</code> and <code>MakeNewWorkItem</code>.</p>
+It exposes these methods:</p>
+
+<ul>
+<li><code>GetWorkItem</code></li>
+<li><code>MakeNewWorkItem</code></li>
+<li><code>GetGlobalList</code></li>
+</ul>
 
 <h2 id="getworkitem-method">GetWorkItem method</h2>
 
@@ -607,23 +626,23 @@ It exposes only two methods <code>GetWorkItem</code> and <code>MakeNewWorkItem</
 
 <p>The new work item Fields have default values; it is not committed to the database until all the rules have fired and Aggregator returns control to TFS.</p>
 
-<!--
-## GetGlobalList method
-Retrieves the collection of items for the named Global List.
+<h2 id="getgloballist-method">GetGlobalList method</h2>
 
-```
-var items = store.GetGlobalList("Aggregator - UserParameters");
-```
+<p>Retrieves the collection of items for the named Global List.</p>
 
-> The global list name must be unique per-collection.
--->
+<pre><code>var items = store.GetGlobalList(&quot;Aggregator - UserParameters&quot;);
+</code></pre>
+
+<blockquote>
+<p>The global list name must be unique per-collection.</p>
+</blockquote>
 
 
       
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 12, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/ae66422bd201a4d28b20bc78dc7e0b584181dceb">Fixed a number of errors in links to pictures and pages (ae66422)</a>
+<p>Last revision: January 13, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/d301f8bb6de81e7b6cd181999eb3d716a3e32d64">No more undocumented Rule methods or Properties (d301f8b)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>
@@ -632,7 +651,7 @@ var items = store.GetGlobalList("Aggregator - UserParameters");
 
     <div id="navigation">
         
-        <a class="nav nav-prev" href="https://tfsaggregator.github.io//using/objects-reference/self-object"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-prev" href="https://tfsaggregator.github.io//using/objects-reference/field-object"> <i class="fa fa-chevron-left"></i></a>
         <a class="nav nav-next" href="https://tfsaggregator.github.io//using/objects-reference/logger-object" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 

@@ -481,7 +481,7 @@ Any other reference will result in compile errors.&lt;/p&gt;
 
 &lt;h2 id=&#34;fields-collection&#34;&gt;Fields collection&lt;/h2&gt;
 
-&lt;p&gt;You can access the &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.aspx&#34;&gt;Fields&lt;/a&gt; collection using either syntax:&lt;/p&gt;
+&lt;p&gt;You can directly access a Field using its name:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;self.Fields[&amp;quot;field_name&amp;quot;]
 &lt;/code&gt;&lt;/pre&gt;
@@ -500,13 +500,7 @@ Any other reference will result in compile errors.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;var str = self[&amp;quot;field_name&amp;quot;]?.ToString();
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;The Aggregator &lt;code&gt;Field&lt;/code&gt; exposes the following properties:
- * &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.name.aspx&#34;&gt;&lt;code&gt;Name&lt;/code&gt;&lt;/a&gt;
- * &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.referencename.aspx&#34;&gt;&lt;code&gt;ReferenceName&lt;/code&gt;&lt;/a&gt;
- * &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.value.aspx&#34;&gt;&lt;code&gt;Value&lt;/code&gt;&lt;/a&gt;
- * &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.status.aspx&#34;&gt;&lt;code&gt;Status&lt;/code&gt;&lt;/a&gt;
- * &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.originalvalue.aspx&#34;&gt;&lt;code&gt;OriginalValue&lt;/code&gt;&lt;/a&gt;
- * &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.fielddefinition.systemtype.aspx&#34;&gt;&lt;code&gt;DataType&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;See &lt;a href=&#34;https://tfsaggregator.github.io/using/objects-reference/field-object&#34;&gt;&lt;code&gt;Field&lt;/code&gt;&lt;/a&gt; for more information.&lt;/p&gt;
 
 &lt;h2 id=&#34;parent-property&#34;&gt;Parent property&lt;/h2&gt;
 
@@ -569,7 +563,9 @@ if (!self.HasChildren())
 
 &lt;h2 id=&#34;history-and-related-properties&#34;&gt;History and related properties&lt;/h2&gt;
 
-&lt;p&gt;&lt;code&gt;self&lt;/code&gt; offers the &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.history.aspx&#34;&gt;&lt;code&gt;History&lt;/code&gt;&lt;/a&gt; &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.reviseddate.aspx&#34;&gt;RevisedDate&lt;/a&gt; and &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.revision.aspx&#34;&gt;Revision&lt;/a&gt; properties.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;self&lt;/code&gt; offers the &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.history.aspx&#34;&gt;&lt;code&gt;History&lt;/code&gt;&lt;/a&gt;,
+&lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.reviseddate.aspx&#34;&gt;&lt;code&gt;RevisedDate&lt;/code&gt;&lt;/a&gt;
+and &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.revision.aspx&#34;&gt;&lt;code&gt;Revision&lt;/code&gt;&lt;/a&gt; properties.&lt;/p&gt;
 
 &lt;p&gt;In addition, the &lt;code&gt;LastRevision&lt;/code&gt; property offers access to latest Fields values. While &lt;code&gt;PreviousRevision&lt;/code&gt; and &lt;code&gt;NextRevision&lt;/code&gt; can be used to traverse the history of the workitem.&lt;/p&gt;
 
@@ -577,12 +573,22 @@ if (!self.HasChildren())
 
 &lt;p&gt;The &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.isvalid.aspx&#34;&gt;&lt;code&gt;IsValid&lt;/code&gt;&lt;/a&gt; method is important to check is you set some invalid field value on a work item.&lt;/p&gt;
 
-&lt;p&gt;You can get the &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.id.aspx&#34;&gt;&lt;code&gt;Id&lt;/code&gt;&lt;/a&gt; and &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitemtype.name.aspx&#34;&gt;&lt;code&gt;TypeName&lt;/code&gt;&lt;/a&gt; of a work item&lt;/p&gt;
+&lt;p&gt;You can get the &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.id.aspx&#34;&gt;&lt;code&gt;Id&lt;/code&gt;&lt;/a&gt;
+and &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitemtype.name.aspx&#34;&gt;&lt;code&gt;TypeName&lt;/code&gt;&lt;/a&gt; of a work item.
+The &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.uri.aspx&#34;&gt;&lt;code&gt;Uri&lt;/code&gt;&lt;/a&gt;
+property returns the uniform resource identifier (Uri) of this work item.&lt;/p&gt;
 
-&lt;!--
-    // state helpers; must be on interface to work on WorkItemLazyReference
-    void TransitionToState(string state, string comment);
---&gt;
+&lt;h2 id=&#34;transitiontostate-method&#34;&gt;TransitionToState method&lt;/h2&gt;
+
+&lt;p&gt;Set the state of &lt;code&gt;self&lt;/code&gt; Work Item.&lt;/p&gt;
+
+&lt;p&gt;A Process Templates can limt the possibile transition states, for example
+many templates do not allow you to go directly from a &lt;code&gt;New&lt;/code&gt; state to a &lt;code&gt;Done&lt;/code&gt; state.
+With this method TFS Aggregator will cycle the work item through what ever states it needs to to find the &lt;strong&gt;shortest route&lt;/strong&gt; to the target state.
+(For most templates that is also the route that makes the most sense from a business perspective too.)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;self.TransitionToState(&amp;quot;Closed&amp;quot;, &amp;quot;Closed by TFS Aggregator&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h2 id=&#34;fluent-queries&#34;&gt;Fluent Queries&lt;/h2&gt;
 
@@ -639,6 +645,46 @@ foreach (var test in tests)
     </item>
     
     <item>
+      <title>Field Object</title>
+      <link>https://tfsaggregator.github.io/using/objects-reference/field-object/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/using/objects-reference/field-object/</guid>
+      <description>
+
+&lt;h2 id=&#34;fields-collection&#34;&gt;Fields collection&lt;/h2&gt;
+
+&lt;p&gt;You can iterate over the Field collection of a work item.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;foreach (var f in self.Fields) {
+    logger.Log(&amp;quot;{0} #{1} has {2} field&amp;quot;, self.TypeName, self.Id, f.Name);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can directly access a Field using its name:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;self.Fields[&amp;quot;Title&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Prefer using Reference names, e.g. &lt;code&gt;System.Title&lt;/code&gt;, as they do not depend on localization and are more resilient to Process template changes.&lt;/p&gt;
+
+&lt;h2 id=&#34;field-object&#34;&gt;Field Object&lt;/h2&gt;
+
+&lt;p&gt;The Field object exposes the following properties:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.name.aspx&#34;&gt;&lt;code&gt;Name&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.referencename.aspx&#34;&gt;&lt;code&gt;ReferenceName&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.value.aspx&#34;&gt;&lt;code&gt;Value&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.status.aspx&#34;&gt;&lt;code&gt;Status&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.originalvalue.aspx&#34;&gt;&lt;code&gt;OriginalValue&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.fielddefinition.systemtype.aspx&#34;&gt;&lt;code&gt;DataType&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;TfsField&lt;/code&gt; returns the native TFS &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.aspx&#34;&gt;Field&lt;/a&gt; object&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>store Object</title>
       <link>https://tfsaggregator.github.io/using/objects-reference/store-object/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -647,7 +693,13 @@ foreach (var test in tests)
       <description>
 
 &lt;p&gt;Represents the current Collection&amp;rsquo;s Work Items and corresponds to the &lt;code&gt;IWorkItemRepositoryExposed&lt;/code&gt; interface.
-It exposes only two methods &lt;code&gt;GetWorkItem&lt;/code&gt; and &lt;code&gt;MakeNewWorkItem&lt;/code&gt;.&lt;/p&gt;
+It exposes these methods:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;GetWorkItem&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MakeNewWorkItem&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;GetGlobalList&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&#34;getworkitem-method&#34;&gt;GetWorkItem method&lt;/h2&gt;
 
@@ -674,16 +726,16 @@ It exposes only two methods &lt;code&gt;GetWorkItem&lt;/code&gt; and &lt;code&gt
 
 &lt;p&gt;The new work item Fields have default values; it is not committed to the database until all the rules have fired and Aggregator returns control to TFS.&lt;/p&gt;
 
-&lt;!--
-## GetGlobalList method
-Retrieves the collection of items for the named Global List.
+&lt;h2 id=&#34;getgloballist-method&#34;&gt;GetGlobalList method&lt;/h2&gt;
 
-```
-var items = store.GetGlobalList(&#34;Aggregator - UserParameters&#34;);
-```
+&lt;p&gt;Retrieves the collection of items for the named Global List.&lt;/p&gt;
 
-&gt; The global list name must be unique per-collection.
---&gt;
+&lt;pre&gt;&lt;code&gt;var items = store.GetGlobalList(&amp;quot;Aggregator - UserParameters&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The global list name must be unique per-collection.&lt;/p&gt;
+&lt;/blockquote&gt;
 </description>
     </item>
     
@@ -695,8 +747,11 @@ var items = store.GetGlobalList(&#34;Aggregator - UserParameters&#34;);
       <guid>https://tfsaggregator.github.io/using/objects-reference/logger-object/</guid>
       <description>
 
-&lt;p&gt;Allows to add a trace message to the log output via the &lt;code&gt;Log&lt;/code&gt; method.
-It works like &lt;code&gt;Console.WriteLine&lt;/code&gt;, accepting a format string followed by optional arguments.
+&lt;p&gt;Allows to add a trace message to the log output via the &lt;code&gt;Log&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;h2 id=&#34;log-method&#34;&gt;Log method&lt;/h2&gt;
+
+&lt;p&gt;It works like &lt;code&gt;Console.WriteLine&lt;/code&gt;, accepting a format string followed by optional arguments.
 If you do not specify the importance, the message will be logged at &lt;code&gt;Verbose&lt;/code&gt; level.&lt;/p&gt;
 
 &lt;h3 id=&#34;examples&#34;&gt;Examples&lt;/h3&gt;
@@ -706,7 +761,7 @@ If you do not specify the importance, the message will be logged at &lt;code&gt;
 logger.Log(LogLevel.Warning, &amp;quot;Unexpected work item state!&amp;quot;);
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Possible values are:&lt;/p&gt;
+&lt;p&gt;Possible &lt;code&gt;LogLevel&lt;/code&gt; values are:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Critical&lt;/li&gt;
@@ -720,12 +775,19 @@ logger.Log(LogLevel.Warning, &amp;quot;Unexpected work item state!&amp;quot;);
 &lt;p&gt;Each message goes to&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Debug output (visible using DebugView)&lt;/li&gt;
-&lt;li&gt;Windows &lt;em&gt;Application&lt;/em&gt; EventLog using &lt;code&gt;TFS Aggregator&lt;/code&gt; source, when level is at &lt;strong&gt;Warning&lt;/strong&gt; or &lt;strong&gt;Critical&lt;/strong&gt; level&lt;/li&gt;
-&lt;li&gt;.Net Trace listeners&lt;/li&gt;
+&lt;li&gt;Debug output (visible using DebugView).&lt;/li&gt;
+&lt;li&gt;Windows &lt;em&gt;Application&lt;/em&gt; EventLog using &lt;code&gt;TFS Aggregator&lt;/code&gt; source, when level is &lt;strong&gt;Warning&lt;/strong&gt; or &lt;strong&gt;Critical&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;.Net Trace listeners.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;The .Net Trace Source for user messages is &lt;code&gt;TfsAggregator.User&lt;/code&gt;; TFS Aggregator own messages have &lt;code&gt;TfsAggregator.ServerPlugin&lt;/code&gt; Trace Source.&lt;/p&gt;
+
+&lt;h2 id=&#34;rulename-property-v2-1&#34;&gt;RuleName property (&lt;strong&gt;v2.1&lt;/strong&gt;)&lt;/h2&gt;
+
+&lt;p&gt;Returns the name of current executing Rule.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;logger.Log(&amp;quot;Hello from Rule {0} processing {1} #{2}.&amp;quot;, logger.RuleName, self.TypeName, self.Id);
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
@@ -880,48 +942,6 @@ Note that children Bug or Test Case do not update the parent.&lt;/p&gt;
     ]]&amp;gt;
 &amp;lt;/rule&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Auto-Create Children</title>
-      <link>https://tfsaggregator.github.io/using/examples/auto-create-children/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tfsaggregator.github.io/using/examples/auto-create-children/</guid>
-      <description>
-
-&lt;h1 id=&#34;example-auto-create-children&#34;&gt;Example: Auto-Create Children&lt;/h1&gt;
-
-&lt;p&gt;&lt;em&gt;Process template:&lt;/em&gt; Any&lt;/p&gt;
-
-&lt;p&gt;This example can serve to create a set of standard tasks for work items of a certain type. Say:
- * Analyze issue
- * Fix issue
- * Test issue&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;!-- WorkItems --&amp;gt;
-&amp;lt;rule name=&amp;quot;NewTask&amp;quot;
-      appliesTo=&amp;quot;Bug&amp;quot;&amp;gt;
-    &amp;lt;![CDATA[
-    var parent = self;
-    if (!self.HasChildren())
-    {
-        // use self to pass in the Team Project Context
-        var child = store.MakeNewWorkItem(self, &amp;quot;Task&amp;quot;);
-        child[&amp;quot;Title&amp;quot;] = &amp;quot;Task auto-generated for &amp;quot; + parent[&amp;quot;Title&amp;quot;];
-  
-        // use the name of the relationship or one of the pre-defined static values
-        // by adding the link to the child, you don&#39;t change the parent in this script.
-        child.AddWorkItemLink(parent, &amp;quot;parent&amp;quot;);
-        // child.AddWorkItemLink(parent, WorkItemImplementationBase.ParentRelationship); //should also work
-    }
-    ]]&amp;gt;
-&amp;lt;/rule&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;See also:
- * &lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator/blob/master/UnitTests.Core/ConfigurationsForTests/NewObjects.policies&#34;&gt;https://github.com/tfsaggregator/tfsaggregator/blob/master/UnitTests.Core/ConfigurationsForTests/NewObjects.policies&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

@@ -216,6 +216,18 @@
           
           
           
+            <li class="dd-item " data-nav-id="/using/objects-reference/field-object/">
+              <a href="https://tfsaggregator.github.io/using/objects-reference/field-object/">
+                <span>
+                  
+                    -&nbsp;
+                  
+                  Field Object     </i></span>
+              </a>
+            </li>
+          
+          
+          
             <li class="dd-item " data-nav-id="/using/objects-reference/store-object/">
               <a href="https://tfsaggregator.github.io/using/objects-reference/store-object/">
                 <span>
@@ -568,6 +580,7 @@
 <li><a href="#addhyperlink-method">AddHyperlink method</a></li>
 <li><a href="#history-and-related-properties">History and related properties</a></li>
 <li><a href="#miscellaneous-properties">Miscellaneous properties</a></li>
+<li><a href="#transitiontostate-method">TransitionToState method</a></li>
 <li><a href="#fluent-queries">Fluent Queries</a>
 <ul>
 <li><a href="#example">Example</a></li>
@@ -597,7 +610,7 @@
 
 <h2 id="fields-collection">Fields collection</h2>
 
-<p>You can access the <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.aspx">Fields</a> collection using either syntax:</p>
+<p>You can directly access a Field using its name:</p>
 
 <pre><code>self.Fields[&quot;field_name&quot;]
 </code></pre>
@@ -616,13 +629,7 @@
 <pre><code>var str = self[&quot;field_name&quot;]?.ToString();
 </code></pre>
 
-<p>The Aggregator <code>Field</code> exposes the following properties:
- * <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.name.aspx"><code>Name</code></a>
- * <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.referencename.aspx"><code>ReferenceName</code></a>
- * <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.value.aspx"><code>Value</code></a>
- * <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.status.aspx"><code>Status</code></a>
- * <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.field.originalvalue.aspx"><code>OriginalValue</code></a>
- * <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.fielddefinition.systemtype.aspx"><code>DataType</code></a></p>
+<p>See <a href="https://tfsaggregator.github.io/using/objects-reference/field-object"><code>Field</code></a> for more information.</p>
 
 <h2 id="parent-property">Parent property</h2>
 
@@ -685,7 +692,9 @@ if (!self.HasChildren())
 
 <h2 id="history-and-related-properties">History and related properties</h2>
 
-<p><code>self</code> offers the <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.history.aspx"><code>History</code></a> <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.reviseddate.aspx">RevisedDate</a> and <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.revision.aspx">Revision</a> properties.</p>
+<p><code>self</code> offers the <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.history.aspx"><code>History</code></a>,
+<a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.reviseddate.aspx"><code>RevisedDate</code></a>
+and <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.revision.aspx"><code>Revision</code></a> properties.</p>
 
 <p>In addition, the <code>LastRevision</code> property offers access to latest Fields values. While <code>PreviousRevision</code> and <code>NextRevision</code> can be used to traverse the history of the workitem.</p>
 
@@ -693,12 +702,22 @@ if (!self.HasChildren())
 
 <p>The <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.isvalid.aspx"><code>IsValid</code></a> method is important to check is you set some invalid field value on a work item.</p>
 
-<p>You can get the <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.id.aspx"><code>Id</code></a> and <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitemtype.name.aspx"><code>TypeName</code></a> of a work item</p>
+<p>You can get the <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.id.aspx"><code>Id</code></a>
+and <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitemtype.name.aspx"><code>TypeName</code></a> of a work item.
+The <a href="https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.uri.aspx"><code>Uri</code></a>
+property returns the uniform resource identifier (Uri) of this work item.</p>
 
-<!--
-    // state helpers; must be on interface to work on WorkItemLazyReference
-    void TransitionToState(string state, string comment);
--->
+<h2 id="transitiontostate-method">TransitionToState method</h2>
+
+<p>Set the state of <code>self</code> Work Item.</p>
+
+<p>A Process Templates can limt the possibile transition states, for example
+many templates do not allow you to go directly from a <code>New</code> state to a <code>Done</code> state.
+With this method TFS Aggregator will cycle the work item through what ever states it needs to to find the <strong>shortest route</strong> to the target state.
+(For most templates that is also the route that makes the most sense from a business perspective too.)</p>
+
+<pre><code>self.TransitionToState(&quot;Closed&quot;, &quot;Closed by TFS Aggregator&quot;);
+</code></pre>
 
 <h2 id="fluent-queries">Fluent Queries</h2>
 
@@ -757,7 +776,7 @@ foreach (var test in tests)
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 12, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/ae66422bd201a4d28b20bc78dc7e0b584181dceb">Fixed a number of errors in links to pictures and pages (ae66422)</a>
+<p>Last revision: January 13, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/d301f8bb6de81e7b6cd181999eb3d716a3e32d64">No more undocumented Rule methods or Properties (d301f8b)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>
@@ -767,7 +786,7 @@ foreach (var test in tests)
     <div id="navigation">
         
         <a class="nav nav-prev" href="https://tfsaggregator.github.io//using/object-model"> <i class="fa fa-chevron-left"></i></a>
-        <a class="nav nav-next" href="https://tfsaggregator.github.io//using/objects-reference/store-object" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+        <a class="nav nav-next" href="https://tfsaggregator.github.io//using/objects-reference/field-object" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 
     </section>
