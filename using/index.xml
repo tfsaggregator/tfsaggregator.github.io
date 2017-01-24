@@ -990,7 +990,7 @@ See &lt;a href=&#34;https://tfsaggregator.github.io/using/scripting-tricks-n-tip
  6. Aggregator notices the edit and save the workitem to the database
  7. TFS triggers Aggregator again (maybe on a different machine), this time &lt;code&gt;Revision&lt;/code&gt; property is &lt;code&gt;9&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;See &lt;a href=&#34;https://tfsaggregator.github.io/using/history-field&#34;&gt;History field&lt;/a&gt; for full presentation.&lt;/p&gt;
+&lt;p&gt;See &lt;a href=&#34;https://tfsaggregator.github.io/using/field-history&#34;&gt;History field&lt;/a&gt; for full presentation.&lt;/p&gt;
 </description>
     </item>
     

@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://tfsaggregator.github.io/images/favicon.png" type="image/x-icon" />
 
     
-    <title>Introduction</title>
+    <title>History field</title>
     <link href="https://tfsaggregator.github.io//css/nucleus.css" rel="stylesheet">
     <link href="https://tfsaggregator.github.io//css/font-awesome.min.css" rel="stylesheet">
     <link href="https://tfsaggregator.github.io//css/hybrid.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     
 
   </head>
-  <body class="" data-url="/intro/">
+  <body class="" data-url="/using/field-history/">
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
@@ -100,7 +100,7 @@
       
       
 
-      <li class="dd-item active parent" data-nav-id="/intro/">
+      <li class="dd-item  " data-nav-id="/intro/">
         <a href="https://tfsaggregator.github.io/intro/">
           <span>
             
@@ -148,7 +148,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/using/">
+      <li class="dd-item  parent" data-nav-id="/using/">
         <a href="https://tfsaggregator.github.io/using/">
           <span>
             
@@ -314,7 +314,7 @@
           
           
           
-            <li class="dd-item " data-nav-id="/using/field-history/">
+            <li class="dd-item active" data-nav-id="/using/field-history/">
               <a href="https://tfsaggregator.github.io/using/field-history/">
                 <span>
                   
@@ -529,7 +529,7 @@
                 
                 
               <div id="top-github-link">
-                  <a class="github-link" href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/edit/master/content/intro/index.md" target="blank">
+                  <a class="github-link" href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/edit/master/content/using/field-history.md" target="blank">
                     <i class="fa fa-code-fork"></i>
                     Edit this page
                   </a>
@@ -543,8 +543,12 @@
                       </a>
                   </span>
                 
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
                 
                 
+                
+                
+                  
                 
                   
                 
@@ -555,123 +559,96 @@
                   
                     
                     
+                <a href="https://tfsaggregator.github.io/using/" itemprop="url"><span itemprop="title">Users&#39; Guide</span></a> <i class="fa fa-angle-right"></i>
+                    
                   
                 
-                  
-                
-                <span itemprop="title"> Introduction</span>
+                <span itemprop="title"> History field</span>
               </div>
+              
+                  <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#history-field">History field</a>
+<ul>
+<li><a href="#some-background-information">Some background information</a></li>
+<li><a href="#marker-technique">Marker Technique</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    </div>
+</div>
+
               
 
             </div>
             
-              <div id="chapter">
-            
     	        <div id="body-inner">
+                
+                <h1>History field</h1>
                 
 
 
 
-<p>TFS Aggregator is a extension for Team Foundation Server (TFS) and Visual Studio Team Services (VSTS)
-that enables running custom script when Work Items change,
-allowing dynamic calculation of field values in TFS and more.
-(For example: Dev work + Test Work = Total Work).</p>
+<h2 id="history-field">History field</h2>
 
-<p>You can use the <a href="https://github.com/tfsaggregator/tfsaggregator"><strong>Server Plugin</strong></a>, for TFS 2013 update 2 up to TFS 2017 RTM, or the <a href="https://github.com/tfsaggregator/tfsaggregator-webhooks"><strong>Web Service</strong></a> version, for VSTS or TFS 2015 and later.</p>
+<p>The History field always appends a new message, the property allows to edit the message until work item is saved.</p>
 
-<blockquote>
-<p>The Web Service version is still in beta.</p>
+<p>For example, this code causes an infinite loop (eventually stopped by <strong>rateLimiting</strong> feature).</p>
 
-<p>TFS Server API changed frequently in the past: the Server Plugin contains specific checks for the TFS version.
-TFS Aggregator Server Plugin binaries will work only with a specific TFS version.</p>
-</blockquote>
+<pre><code>self.History = &quot;Hello&quot;;
+</code></pre>
 
-<p>See the <a href="https://tfsaggregator.github.io/CHANGELOG/">Changelog</a> for an history of releases.</p>
+<p>Aggregator is triggered again and again for the same work item.</p>
 
-<h2 id="example-uses">Example Uses</h2>
+<h3 id="some-background-information">Some background information</h3>
 
-<ul>
-<li>Update the state of a Bug, PBI (or any parent) to &ldquo;In Progress&rdquo; when a child gets moved to &ldquo;In Progress&rdquo;</li>
-<li>Update the state of a Bug, PBI (or any parent) to &ldquo;Done&rdquo; when all children get moved to &ldquo;Done&rdquo; or &ldquo;Removed&rdquo;</li>
-<li>Update the &ldquo;Work Remaining&rdquo; on a Bug, PBI, etc with the sum of all the Task&rsquo;s &ldquo;Work Remaining&rdquo;.</li>
-<li>Update the &ldquo;Work Remaining&rdquo; on a Sprint with the sum of all the &ldquo;Work Remaining&rdquo; of its grandchildren (i.e. tasks of the PBIs and Bugs in the Sprint).</li>
-<li>Sum up totals on a single work item (i.e. Dev Estimate + Test Estimate = Total Estimate)</li>
-<li>Create new work items</li>
-<li>Create new work item links</li>
-</ul>
+<p>The TFS aggregator only updates a work item if any field has changed by its calculations. If the calculations yield the same value as last time, the work item is considered clean and no new revision is created.</p>
 
-<h2 id="setup-install">Setup &amp; install</h2>
+<p>The History field is a strange kind of field, it always being empty, unless you&rsquo;ve added a new value to it while processing. Therefore, setting the history field to anything other than <code>string.Empty</code> or <code>null</code> will cause a workitem to be saved.</p>
 
-<p>The easiest way to deploy the <a href="https://github.com/tfsaggregator/tfsaggregator-webhooks"><strong>Web Service</strong></a> version is to use the <em>Deploy to Azure</em> button on the <a href="https://github.com/tfsaggregator/tfsaggregator-webhooks">repository page</a>.</p>
+<p>Whenever a workitem is saved, the TFS Aggregator triggers again. This is by design and allows for cascading rules. It&rsquo;s also why we&rsquo;ve recently added a rate limiter. Normally the same set of rules triggers again, all calculations yield the same value and that breaks the loop that would otherwise be created.</p>
 
-<p>The latest <a href="https://github.com/tfsaggregator/tfsaggregator/releases">Install</a> package contains A fully automated setup for the <a href="https://github.com/tfsaggregator/tfsaggregator"><strong>Server Plugin</strong></a>.</p>
+<p><em>Except</em> when a rule always sets the value of the history field. As it was <strong>empty</strong> when we started calculating and is now <strong>not empty</strong> it will cause the work item to be saved.</p>
 
-<p>A manual installation after building from source follows the following process:</p>
+<p>To prevent this from happening there are a few things you can do:</p>
 
 <ol>
-<li>Download and extract the binaries from the latest release</li>
-<li>Create a file named <code>TFSAggregator2.ServerPlugin.policies</code> (or rename one of the existing samples to get started) and change the example settings to your actual settings. <a href="https://tfsaggregator.github.io/using/policy-syntax">Syntax Example</a>.</li>
-<li>Test your policy using the command line tool.</li>
-<li>Copy <code>TFSAggregator2.ServerPlugin.dll</code>, <code>TFSAggregator2.Core.dll</code> and <code>TFSAggregator2.ServerPlugin.policies</code> to the plugin location on the Application Tier of your TFS Servers</li>
+<li>Before setting the History field, check the <code>.IsDirty</code> property of the work item. If it&rsquo;s not dirty, don&rsquo;t add anything to the history.</li>
+<li>Iterate through the revisions of the work item to ensure that you&rsquo;re not adding the same comment you added last time. This causes additional database and network traffic, and is therefore less desirable.</li>
+<li>Don&rsquo;t store your data in the History Field, instead stick it in a custom field or use any of the pre-existing fields to store your data in. (Don&rsquo;t append to an existing field as that would cause the same behavior)</li>
+<li>If you&rsquo;re not using Impersonation, check whether the &ldquo;<em>Changed By</em>&rdquo; field is set to the service account and assume that the changes are not made by a human, therefore skipping the changes to the history field.</li>
 </ol>
 
-<p>That is all. TFS will detect that a file was copied in and will load it in.</p>
+<h3 id="marker-technique">Marker Technique</h3>
 
-<p>We ship with an MSI installer which will automatically detect your TFS server folder.</p>
+<p>This technique corresponds to suggestion #2, i.e. using a Marker to distinguish between user and rule changes.</p>
 
-<blockquote>
-<p>WARNING When upgrading your TFS server you should uninstall the TFS Aggregator Server Plugin prior to the upgrade and then run the new installer when your server upgrade has completed.</p>
-</blockquote>
+<pre><code>const string HistoryMarker = &quot;===&quot;;
 
-<h2 id="betas">Betas</h2>
+var lastRevision = self.LastRevision;
+var history = lastRevision.Fields[&quot;History&quot;];
+string lastValue = (string) history.Value;
 
-<p>You can pick development binaries directly from VSTS, asking access to the team, see <a href="https://tfsaggregator.github.io/contrib/continuous-integration">CI build</a> for details.</p>
+logger.Log(&quot;At revision {0} History value is '{1}'&quot;, lastRevision.Index, lastValue);
 
-<h2 id="troubleshooting">Troubleshooting</h2>
-
-<p>Is it not working? Here is the troubleshooting and how to get help page: <a href="https://tfsaggregator.github.io/admin/troubleshooting">TFS Aggregator Troubleshooting</a></p>
-
-<h2 id="migrating-from-v2-x">Migrating from v2.x</h2>
-
-<p>No action required.</p>
-
-<h2 id="migrating-from-v1">Migrating from v1</h2>
-
-<p>If you used TFS Aggregator in the past, <a href="https://tfsaggregator.github.io/using/upgrade-from-v1">here</a> are the instructions on switching from older versions.</p>
-
-<p>If you&rsquo;re looking for the latest version of V1 (including a large number of fixes and security updates), you can still find it <a href="https://github.com/tfsaggregator/tfsaggregator/tree/8ae990810f580c161247a6f6f4720d9b72d98288">here</a>.</p>
-
-<p><strong>Note</strong>: we won&rsquo;t provide any further support on this old version. But if you have a large investment in the old-style rules, it may provide you a better, stabler version until you&rsquo;re ready to move to V2.</p>
-
-<p><strong>Note</strong>: You can run both V1 and V2 side-by-side on the same TFS system, you will have to be extra careful not to create infinite loops though.</p>
-
-<h2 id="build-and-customize">Build and customize</h2>
-
-<p>We used Visual Studio Community Edition 2015 Update 2 to develop this version.
-Compiling requires a number of TFS assemblies that cannot be redistributed.</p>
-
-<p>You can find the complete list in these files:</p>
-
-<ul>
-<li>2013 Update 2 and later: <code>References/2013/PLACEHOLDER.txt</code></li>
-<li>2015 RTM: <code>References/2015/PLACEHOLDER.txt</code></li>
-<li>2015 Update 1: <code>References/2015.1/PLACEHOLDER.txt</code></li>
-<li>2015 Update 2 or 3: <code>References/2015.2/PLACEHOLDER.txt</code></li>
-<li>2017 RTM: <code>References/2017/PLACEHOLDER.txt</code></li>
-</ul>
-
-<p>If you have TFS installed on your development machine, the assemblies for that version will be loaded automatically from the installation folder.</p>
-
-<p>More information on customizing and the internal design of TFS Aggregator is <a href="https://tfsaggregator.github.io/contrib/developer-intro">here</a>.</p>
+if (!lastValue.StartsWith(HistoryMarker))
+{
+  self.History = HistoryMarker + &quot;Hello&quot;;
+  logger.Log(&quot;Marker added&quot;);
+}
+</code></pre>
 
 
-      
-        </div> 
       
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 9, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/0da38c3ec4c046ff5aab05e1a00acf1d3982cc23">Fix wiki references, ugly .// URLs, replace WebHooks with WebService, hacked how-it-works and CoC (0da38c3)</a>
+<p>Last revision: January 24, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/e73240a56ddd4db21ec403a4b8e790f24fba07f3">renamed history-field to fix filename casing issue (e73240a)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>
@@ -680,8 +657,8 @@ Compiling requires a number of TFS assemblies that cannot be redistributed.</p>
 
     <div id="navigation">
         
-        <a class="nav nav-prev" href="https://tfsaggregator.github.io//"> <i class="fa fa-chevron-left"></i></a>
-        <a class="nav nav-next" href="https://tfsaggregator.github.io//intro/how-it-works/" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+        <a class="nav nav-prev" href="https://tfsaggregator.github.io//using/scripting-pitfalls"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-next" href="https://tfsaggregator.github.io//using/upgrade-from-v1" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 
     </section>
