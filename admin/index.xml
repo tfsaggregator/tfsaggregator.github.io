@@ -644,10 +644,13 @@ Download DebugView at &lt;a href=&#34;http://technet.microsoft.com/en-us/sysinte
 
 &lt;h2 id=&#34;production-logging-2-1&#34;&gt;Production Logging (2.1)&lt;/h2&gt;
 
-&lt;p&gt;TFS Aggregator log messages go to:
-- Debug output (appers in the Output window of a debugger)
-- Application EventLog (&lt;em&gt;TFS Aggregator&lt;/em&gt; source) when message level is &lt;code&gt;Warning&lt;/code&gt; or &lt;code&gt;Critical&lt;/code&gt;
-- Trace listeners&lt;/p&gt;
+&lt;p&gt;TFS Aggregator log messages go to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Debug output (appers in the Output window of a debugger)&lt;/li&gt;
+&lt;li&gt;Application EventLog (&lt;em&gt;TFS Aggregator&lt;/em&gt; source) when message level is &lt;code&gt;Warning&lt;/code&gt; or &lt;code&gt;Critical&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Trace listeners&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;User messages &amp;ndash; i.e. &lt;code&gt;logger.Log&lt;/code&gt; calls in Rules &amp;ndash; use a specific Trace source: &lt;code&gt;TfsAggregator.User&lt;/code&gt;.&lt;/p&gt;
 

@@ -663,10 +663,13 @@ Download DebugView at <a href="http://technet.microsoft.com/en-us/sysinternals/b
 
 <h2 id="production-logging-2-1">Production Logging (2.1)</h2>
 
-<p>TFS Aggregator log messages go to:
-- Debug output (appers in the Output window of a debugger)
-- Application EventLog (<em>TFS Aggregator</em> source) when message level is <code>Warning</code> or <code>Critical</code>
-- Trace listeners</p>
+<p>TFS Aggregator log messages go to:</p>
+
+<ul>
+<li>Debug output (appers in the Output window of a debugger)</li>
+<li>Application EventLog (<em>TFS Aggregator</em> source) when message level is <code>Warning</code> or <code>Critical</code></li>
+<li>Trace listeners</li>
+</ul>
 
 <p>User messages &ndash; i.e. <code>logger.Log</code> calls in Rules &ndash; use a specific Trace source: <code>TfsAggregator.User</code>.</p>
 
@@ -730,7 +733,7 @@ Timezone differences may also impact on response times.</p>
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 5, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/134c142ebc4c7804ac10ac2a833b2eced77fa13c">Initial commit (134c142)</a>
+<p>Last revision: March 3, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/d0675255bfd29fdef16a0890a65be99044c06667">fix formatting (d067525)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>
