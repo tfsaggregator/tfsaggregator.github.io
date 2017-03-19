@@ -393,6 +393,21 @@ if (!self.HasChildren())
 &lt;pre&gt;&lt;code&gt;self.AddHyperlink(&amp;quot;https://github.com/tfsaggregator/tfsaggregator&amp;quot;, &amp;quot;Automatically added&amp;quot;);
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;h2 id=&#34;removeworkitemlink-method-v2-3&#34;&gt;RemoveWorkItemLink method (&lt;strong&gt;v2.3&lt;/strong&gt;)&lt;/h2&gt;
+
+&lt;p&gt;Remove a link to another work item.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;foreach (var link in self.WorkItemLinks) {
+   if (link.Target.Id == 1) {
+       logger.Log(
+           &amp;quot;RemoveLinkRule removing {0} to #{1}&amp;quot;
+           , link.LinkTypeEndImmutableName, link.Target.Id);
+       self.RemoveWorkItemLink(link);
+       break;
+   }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h2 id=&#34;history-and-related-properties&#34;&gt;History and related properties&lt;/h2&gt;
 
 &lt;p&gt;&lt;code&gt;self&lt;/code&gt; offers the &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.history.aspx&#34;&gt;&lt;code&gt;History&lt;/code&gt;&lt;/a&gt;,
