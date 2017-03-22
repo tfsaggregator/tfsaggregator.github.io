@@ -119,17 +119,6 @@ Valid values are:
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;pre&gt;&lt;code&gt;        &amp;lt;server baseUrl=&amp;quot;http://localhost:8080/tfs&amp;quot; /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;server&lt;/strong&gt;: Define server configuration. (2.1, Once, Optional)&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;baseUrl&lt;/strong&gt;: Forces the URL that Aggregator use to access TFS. (Optional)
-Can be useful is TFS is misconfigured, or you have some special requirements.
-Avoid to use if possibile.&lt;/li&gt;
-&lt;/ul&gt;
-
 &lt;pre&gt;&lt;code&gt;        &amp;lt;authentication autoImpersonate=&amp;quot;true&amp;quot; /&amp;gt;
         &amp;lt;authentication personalToken=&amp;quot;abcd1234654sdfsfsdfs45645654645&amp;quot; /&amp;gt;
         &amp;lt;authentication username=&amp;quot;user1&amp;quot; password=&amp;quot;password1&amp;quot; /&amp;gt;
@@ -142,6 +131,17 @@ Avoid to use if possibile.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;personalToken&lt;/strong&gt;: A Personal Access Token. (WebService, Optional)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;username&lt;/strong&gt;: A Username. (WebService, Optional)&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;password&lt;/strong&gt;: A Password in clear text. (WebService, Optional)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;        &amp;lt;server baseUrl=&amp;quot;http://localhost:8080/tfs&amp;quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;server&lt;/strong&gt;: Define server configuration. (2.1, Once, Optional)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;baseUrl&lt;/strong&gt;: Forces the URL that Aggregator use to access TFS. (Optional)
+Can be useful is TFS is misconfigured, or you have some special requirements.
+Avoid to use if possibile.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;    &amp;lt;snippet name=&amp;quot;MySnippet&amp;quot;&amp;gt;

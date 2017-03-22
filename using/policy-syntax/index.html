@@ -659,17 +659,6 @@ Valid values are:
 </ul></li>
 </ul>
 
-<pre><code>        &lt;server baseUrl=&quot;http://localhost:8080/tfs&quot; /&gt;
-</code></pre>
-
-<p><strong>server</strong>: Define server configuration. (2.1, Once, Optional)</p>
-
-<ul>
-<li><strong>baseUrl</strong>: Forces the URL that Aggregator use to access TFS. (Optional)
-Can be useful is TFS is misconfigured, or you have some special requirements.
-Avoid to use if possibile.</li>
-</ul>
-
 <pre><code>        &lt;authentication autoImpersonate=&quot;true&quot; /&gt;
         &lt;authentication personalToken=&quot;abcd1234654sdfsfsdfs45645654645&quot; /&gt;
         &lt;authentication username=&quot;user1&quot; password=&quot;password1&quot; /&gt;
@@ -682,6 +671,17 @@ Avoid to use if possibile.</li>
 <li><strong>personalToken</strong>: A Personal Access Token. (WebService, Optional)</li>
 <li><strong>username</strong>: A Username. (WebService, Optional)</li>
 <li><strong>password</strong>: A Password in clear text. (WebService, Optional)</li>
+</ul>
+
+<pre><code>        &lt;server baseUrl=&quot;http://localhost:8080/tfs&quot; /&gt;
+</code></pre>
+
+<p><strong>server</strong>: Define server configuration. (2.1, Once, Optional)</p>
+
+<ul>
+<li><strong>baseUrl</strong>: Forces the URL that Aggregator use to access TFS. (Optional)
+Can be useful is TFS is misconfigured, or you have some special requirements.
+Avoid to use if possibile.</li>
 </ul>
 
 <pre><code>    &lt;snippet name=&quot;MySnippet&quot;&gt;
@@ -775,7 +775,7 @@ See <a href="Scripting">Scripting</a> for additional details on Rules&rsquo; cod
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 9, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/0da38c3ec4c046ff5aab05e1a00acf1d3982cc23">Fix wiki references, ugly .// URLs, replace WebHooks with WebService, hacked how-it-works and CoC (0da38c3)</a>
+<p>Last revision: March 22, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/a1c22269092880bc0f3a82a15ecf655fb7b60f9a">swapped server and authentication elements (a1c2226)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>
