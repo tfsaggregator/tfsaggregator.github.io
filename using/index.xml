@@ -653,6 +653,10 @@ It exposes two static methods &lt;code&gt;SendMail&lt;/code&gt; and &lt;code&gt;
 
 &lt;p&gt;Retrieve the email address for a user.&lt;/p&gt;
 
+&lt;blockquote&gt;
+&lt;p&gt;Caveat: &lt;strong&gt;This method works only in the Server Plugin&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
 &lt;p&gt;You can use the DOMAIN\user form,&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;string email = Library.GetEmailAddress(&amp;quot;WIN-3H7CMUV7KDM\\User1&amp;quot;, &amp;quot;does-not-exists@example.com&amp;quot;);
@@ -666,6 +670,10 @@ It exposes two static methods &lt;code&gt;SendMail&lt;/code&gt; and &lt;code&gt;
 &lt;h2 id=&#34;sendmail&#34;&gt;SendMail&lt;/h2&gt;
 
 &lt;p&gt;Send an email using TFS current configuration.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Caveat: &lt;strong&gt;This method works only in the Server Plugin&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;pre&gt;&lt;code&gt;string to = &amp;quot;test@example.com&amp;quot;;
 string subject = &amp;quot;Sent from a Rule&amp;quot;;

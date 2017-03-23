@@ -598,6 +598,10 @@ It exposes two static methods <code>SendMail</code> and <code>GetEmailAddress</c
 
 <p>Retrieve the email address for a user.</p>
 
+<blockquote>
+<p>Caveat: <strong>This method works only in the Server Plugin</strong></p>
+</blockquote>
+
 <p>You can use the DOMAIN\user form,</p>
 
 <pre><code>string email = Library.GetEmailAddress(&quot;WIN-3H7CMUV7KDM\\User1&quot;, &quot;does-not-exists@example.com&quot;);
@@ -612,6 +616,10 @@ It exposes two static methods <code>SendMail</code> and <code>GetEmailAddress</c
 
 <p>Send an email using TFS current configuration.</p>
 
+<blockquote>
+<p>Caveat: <strong>This method works only in the Server Plugin</strong></p>
+</blockquote>
+
 <pre><code>string to = &quot;test@example.com&quot;;
 string subject = &quot;Sent from a Rule&quot;;
 string body = &quot;It worked!&quot;;
@@ -625,7 +633,7 @@ Library.SendMail(to, subject, body);
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 13, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/d301f8bb6de81e7b6cd181999eb3d716a3e32d64">No more undocumented Rule methods or Properties (d301f8b)</a>
+<p>Last revision: March 23, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/ad4c30029384e4fd9617c08a10e81950c83a737f">Noted which methods work in which tfsa flavor (ad4c300)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>
