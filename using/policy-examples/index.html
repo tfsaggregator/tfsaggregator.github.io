@@ -274,11 +274,13 @@
           
           
           
-            <li class="dd-item " data-nav-id="/using/examples/auto-open-auto-close/">
-              <a href="https://tfsaggregator.github.io/using/examples/auto-open-auto-close/">
+            <li class="dd-item " data-nav-id="/using/examples/accumulate-to-grand-parent/">
+              <a href="https://tfsaggregator.github.io/using/examples/accumulate-to-grand-parent/">
                 <span>
                   
-                  Auto-Open and Auto-Close     </i></span>
+                    -&nbsp;
+                  
+                  Accumulate to grand-parent example     </i></span>
               </a>
             </li>
           
@@ -288,7 +290,33 @@
               <a href="https://tfsaggregator.github.io/using/examples/auto-create-children/">
                 <span>
                   
-                  Auto-Create Children     </i></span>
+                    -&nbsp;
+                  
+                  Auto-Create Children example     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/using/examples/auto-open-auto-close/">
+              <a href="https://tfsaggregator.github.io/using/examples/auto-open-auto-close/">
+                <span>
+                  
+                    -&nbsp;
+                  
+                  Auto-Open and Auto-Close example     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/using/examples/rollup/">
+              <a href="https://tfsaggregator.github.io/using/examples/rollup/">
+                <span>
+                  
+                    -&nbsp;
+                  
+                  Rollup examples     </i></span>
               </a>
             </li>
           
@@ -573,13 +601,12 @@
 <li>
 <ul>
 <li><a href="#sample-polices">Sample polices</a></li>
-<li><a href="#example-aggregations">Example Aggregations</a>
+<li><a href="#simple-rules">Simple rules</a>
 <ul>
 <li><a href="#calculated-field">Calculated field</a></li>
 <li><a href="#rollup-field-on-parent">Rollup field on parent</a></li>
 </ul></li>
 <li><a href="#pick-children-satisfying-condition">Pick children satisfying condition</a></li>
-<li><a href="#using-linq-to-aggregate">Using Linq to Aggregate</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -605,7 +632,7 @@
 
 <p>From time to time, we test the policies contained in the <code>ManualTests</code> folder. They are good to learn but should not be trusted 100%, at least until we are able to setup automated integration testing.</p>
 
-<h2 id="example-aggregations">Example Aggregations</h2>
+<h2 id="simple-rules">Simple rules</h2>
 
 <h3 id="calculated-field">Calculated field</h3>
 
@@ -617,7 +644,7 @@
 <p>This aggregation will total the values found in the Estimated Dev Work and Estimated Test Work fields for any Task work item.
 The total will be placed in the Estimated Work field on the same work item as the source values were found.</p>
 
-<p><img src="./calculated-field.png" alt="Calculated field in form" /></p>
+<p><img src="../calculated-field.png" alt="Calculated field in form" /></p>
 
 <h3 id="rollup-field-on-parent">Rollup field on parent</h3>
 
@@ -645,28 +672,12 @@ Most templates do not allow you to go directly from a New state to a Done state.
 );
 </code></pre>
 
-<h2 id="using-linq-to-aggregate">Using Linq to Aggregate</h2>
-
-<pre><code>&lt;rule name=&quot;RollupTask&quot; appliesTo=&quot;Task&quot;&gt;&lt;![CDATA[
-if (self.HasParent())
-{
-    var parent = self.Parent;
-    parent[&quot;Microsoft.VSTS.Scheduling.CompletedWork&quot;] = parent.Children.Sum(task =&gt; task.GetField&lt;double&gt;(&quot;Microsoft.VSTS.Scheduling.CompletedWork&quot;, 0d));
-    parent[&quot;Microsoft.VSTS.Scheduling.RemainingWork&quot;] = parent.Children.Sum(task =&gt; task.GetField&lt;double&gt;(&quot;Microsoft.VSTS.Scheduling.RemainingWork&quot;, 0d));
-    parent[&quot;Microsoft.VSTS.Scheduling.OriginalEstimate&quot;] = parent.Children.Sum(task =&gt; task.GetField&lt;double&gt;(&quot;Microsoft.VSTS.Scheduling.OriginalEstimate&quot;, 0d));
-}
-]]&gt;&lt;/rule&gt;
-</code></pre>
-
-<p>This rule updates a Product Backlog Item or Bug whenever any child Task is added or changes. The <em>Completed Work</em>, <em>Remaining Work</em> and <em>Original Estimate</em> on the parent become the sum of the corresponding fields of children Tasks.
-Note that children Bug or Test Case do not update the parent.</p>
-
 
       
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 12, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/ae66422bd201a4d28b20bc78dc7e0b584181dceb">Fixed a number of errors in links to pictures and pages (ae66422)</a>
+<p>Last revision: April 5, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/f3d610048a2e657076369ede6ee16e432dbf03ef">added accumulate-to-grand-parent example (f3d6100)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>

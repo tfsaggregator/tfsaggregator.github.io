@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://tfsaggregator.github.io/images/favicon.png" type="image/x-icon" />
 
     
-    <title>Administrator Guide</title>
+    <title>Accumulate to grand-parent example</title>
     <link href="https://tfsaggregator.github.io//css/nucleus.css" rel="stylesheet">
     <link href="https://tfsaggregator.github.io//css/font-awesome.min.css" rel="stylesheet">
     <link href="https://tfsaggregator.github.io//css/hybrid.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     
 
   </head>
-  <body class="" data-url="/admin/">
+  <body class="" data-url="/using/examples/accumulate-to-grand-parent/">
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
@@ -148,7 +148,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/using/">
+      <li class="dd-item  parent" data-nav-id="/using/">
         <a href="https://tfsaggregator.github.io/using/">
           <span>
             
@@ -274,7 +274,7 @@
           
           
           
-            <li class="dd-item " data-nav-id="/using/examples/accumulate-to-grand-parent/">
+            <li class="dd-item active" data-nav-id="/using/examples/accumulate-to-grand-parent/">
               <a href="https://tfsaggregator.github.io/using/examples/accumulate-to-grand-parent/">
                 <span>
                   
@@ -376,7 +376,7 @@
       
       
 
-      <li class="dd-item active parent" data-nav-id="/admin/">
+      <li class="dd-item  " data-nav-id="/admin/">
         <a href="https://tfsaggregator.github.io/admin/">
           <span>
             
@@ -557,7 +557,7 @@
                 
                 
               <div id="top-github-link">
-                  <a class="github-link" href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/edit/master/content/admin/index.md" target="blank">
+                  <a class="github-link" href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/edit/master/content/using/examples/accumulate-to-grand-parent.md" target="blank">
                     <i class="fa fa-code-fork"></i>
                     Edit this page
                   </a>
@@ -571,35 +571,32 @@
                       </a>
                   </span>
                 
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
                 
                 
+                
+                
+                  
+                
+                  
+                
+                  
                 
                   
                 
                   
                     
                     
+                <a href="https://tfsaggregator.github.io/using/" itemprop="url"><span itemprop="title">Users&#39; Guide</span></a> <i class="fa fa-angle-right"></i>
+                    
                   
                 
-                  
-                
-                  
-                
-                  
-                
-                <span itemprop="title"> Administrator Guide</span>
+                <span itemprop="title"> Accumulate to grand-parent example</span>
               </div>
               
                   <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#administrator-guide-to-tfs-aggregator">Administrator Guide to TFS Aggregator</a></li>
-</ul></li>
-</ul>
-</nav>
+
     </div>
 </div>
 
@@ -607,25 +604,39 @@
 
             </div>
             
-              <div id="chapter">
-            
     	        <div id="body-inner">
                 
+                <h1>Accumulate to grand-parent example</h1>
+                
+
+<p><em>Process template:</em> Any</p>
+
+<p>Add the AccumulatedWork from Tasks up to grand-parent, i.e. Feature.</p>
+
+<pre><code>&lt;rule name=&quot;updateFeatureScrumAccrued&quot; appliesTo=&quot;Task&quot; hasFields=&quot;CustomField.AccumulatedWork&quot;&gt;&lt;![CDATA[
+    IWorkItemExposed topFeature = self.FollowingLinks(&quot;System.LinkTypes.Hierarchy-Reverse&quot;).WhereTypeIs(&quot;Feature&quot;).AtMost(5).FirstOrDefault();    
+    if (topFeature != null)
+    {
+        logger.Log(&quot;Feature {0}&quot;, topFeature.Id);
+        
+        var taskChildren = topFeature.FollowingLinks(&quot;System.LinkTypes.Hierarchy-Forward&quot;).WhereTypeIs(&quot;Task&quot;).AtMost(5);
+        
+        var sum = 0.0;                
+        foreach (var task in taskChildren)
+        {
+            sum +=  task.GetField&lt;double&gt;(&quot;CustomField.AccumulatedWork&quot;, 0.0);                    
+        }
+        topFeature[&quot;CustomField.ScrumAccrued&quot;] = sum;                    
+    }            
+]]&gt;&lt;/rule&gt;
+</code></pre>
 
 
-
-<h2 id="administrator-guide-to-tfs-aggregator">Administrator Guide to TFS Aggregator</h2>
-
-<p>This Guide explains how install TFS Aggregator on premise and in the cloud for both the Web Service and Server Plugin flavors.</p>
-
-
-      
-        </div> 
       
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 9, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/0da38c3ec4c046ff5aab05e1a00acf1d3982cc23">Fix wiki references, ugly .// URLs, replace WebHooks with WebService, hacked how-it-works and CoC (0da38c3)</a>
+<p>Last revision: April 5, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/f3d610048a2e657076369ede6ee16e432dbf03ef">added accumulate-to-grand-parent example (f3d6100)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>
@@ -634,8 +645,8 @@
 
     <div id="navigation">
         
-        <a class="nav nav-prev" href="https://tfsaggregator.github.io//using/"> <i class="fa fa-chevron-left"></i></a>
-        <a class="nav nav-next" href="https://tfsaggregator.github.io//admin/install" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+        <a class="nav nav-prev" href="https://tfsaggregator.github.io//using/policy-examples"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-next" href="https://tfsaggregator.github.io//using/examples/auto-create-children" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 
     </section>

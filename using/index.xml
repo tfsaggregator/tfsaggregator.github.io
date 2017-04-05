@@ -701,7 +701,7 @@ Library.SendMail(to, subject, body);
 
 &lt;p&gt;From time to time, we test the policies contained in the &lt;code&gt;ManualTests&lt;/code&gt; folder. They are good to learn but should not be trusted 100%, at least until we are able to setup automated integration testing.&lt;/p&gt;
 
-&lt;h2 id=&#34;example-aggregations&#34;&gt;Example Aggregations&lt;/h2&gt;
+&lt;h2 id=&#34;simple-rules&#34;&gt;Simple rules&lt;/h2&gt;
 
 &lt;h3 id=&#34;calculated-field&#34;&gt;Calculated field&lt;/h3&gt;
 
@@ -713,7 +713,7 @@ Library.SendMail(to, subject, body);
 &lt;p&gt;This aggregation will total the values found in the Estimated Dev Work and Estimated Test Work fields for any Task work item.
 The total will be placed in the Estimated Work field on the same work item as the source values were found.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;./calculated-field.png&#34; alt=&#34;Calculated field in form&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../calculated-field.png&#34; alt=&#34;Calculated field in form&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;rollup-field-on-parent&#34;&gt;Rollup field on parent&lt;/h3&gt;
 
@@ -740,68 +740,41 @@ Most templates do not allow you to go directly from a New state to a Done state.
       field =&amp;gt; field.ReferenceName == &amp;quot;Custom.Product&amp;quot;)
 );
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;using-linq-to-aggregate&#34;&gt;Using Linq to Aggregate&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;rule name=&amp;quot;RollupTask&amp;quot; appliesTo=&amp;quot;Task&amp;quot;&amp;gt;&amp;lt;![CDATA[
-if (self.HasParent())
-{
-    var parent = self.Parent;
-    parent[&amp;quot;Microsoft.VSTS.Scheduling.CompletedWork&amp;quot;] = parent.Children.Sum(task =&amp;gt; task.GetField&amp;lt;double&amp;gt;(&amp;quot;Microsoft.VSTS.Scheduling.CompletedWork&amp;quot;, 0d));
-    parent[&amp;quot;Microsoft.VSTS.Scheduling.RemainingWork&amp;quot;] = parent.Children.Sum(task =&amp;gt; task.GetField&amp;lt;double&amp;gt;(&amp;quot;Microsoft.VSTS.Scheduling.RemainingWork&amp;quot;, 0d));
-    parent[&amp;quot;Microsoft.VSTS.Scheduling.OriginalEstimate&amp;quot;] = parent.Children.Sum(task =&amp;gt; task.GetField&amp;lt;double&amp;gt;(&amp;quot;Microsoft.VSTS.Scheduling.OriginalEstimate&amp;quot;, 0d));
-}
-]]&amp;gt;&amp;lt;/rule&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This rule updates a Product Backlog Item or Bug whenever any child Task is added or changes. The &lt;em&gt;Completed Work&lt;/em&gt;, &lt;em&gt;Remaining Work&lt;/em&gt; and &lt;em&gt;Original Estimate&lt;/em&gt; on the parent become the sum of the corresponding fields of children Tasks.
-Note that children Bug or Test Case do not update the parent.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>Auto-Open and Auto-Close</title>
-      <link>https://tfsaggregator.github.io/using/examples/auto-open-auto-close/</link>
+      <title>Accumulate to grand-parent example</title>
+      <link>https://tfsaggregator.github.io/using/examples/accumulate-to-grand-parent/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tfsaggregator.github.io/using/examples/auto-open-auto-close/</guid>
-      <description>
+      <guid>https://tfsaggregator.github.io/using/examples/accumulate-to-grand-parent/</guid>
+      <description>&lt;p&gt;&lt;em&gt;Process template:&lt;/em&gt; Any&lt;/p&gt;
 
-&lt;h1 id=&#34;example-auto-open-auto-close&#34;&gt;Example: Auto-open, Auto Close&lt;/h1&gt;
+&lt;p&gt;Add the AccumulatedWork from Tasks up to grand-parent, i.e. Feature.&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;Process template:&lt;/em&gt; Scrum&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;rule name=&amp;quot;AutoOpen&amp;quot; appliesTo=&amp;quot;Task&amp;quot;&amp;gt;
-    &amp;lt;!-- Update Work Item to Committed if a task became &amp;quot;active&amp;quot; --&amp;gt;
-    &amp;lt;![CDATA[
-    if (new[] {&amp;quot;In Progress&amp;quot;, &amp;quot;To Do&amp;quot;}.Contains((string)self[&amp;quot;System.State&amp;quot;]))
+&lt;pre&gt;&lt;code&gt;&amp;lt;rule name=&amp;quot;updateFeatureScrumAccrued&amp;quot; appliesTo=&amp;quot;Task&amp;quot; hasFields=&amp;quot;CustomField.AccumulatedWork&amp;quot;&amp;gt;&amp;lt;![CDATA[
+    IWorkItemExposed topFeature = self.FollowingLinks(&amp;quot;System.LinkTypes.Hierarchy-Reverse&amp;quot;).WhereTypeIs(&amp;quot;Feature&amp;quot;).AtMost(5).FirstOrDefault();    
+    if (topFeature != null)
     {
-        if(self.HasParent() &amp;amp;&amp;amp; ((string)self.Parent[&amp;quot;System.State&amp;quot;]) != &amp;quot;Committed&amp;quot;)
+        logger.Log(&amp;quot;Feature {0}&amp;quot;, topFeature.Id);
+        
+        var taskChildren = topFeature.FollowingLinks(&amp;quot;System.LinkTypes.Hierarchy-Forward&amp;quot;).WhereTypeIs(&amp;quot;Task&amp;quot;).AtMost(5);
+        
+        var sum = 0.0;                
+        foreach (var task in taskChildren)
         {
-            self.Parent.TransitionToState(&amp;quot;Committed&amp;quot;, &amp;quot;Auto Activated&amp;quot;);
+            sum +=  task.GetField&amp;lt;double&amp;gt;(&amp;quot;CustomField.AccumulatedWork&amp;quot;, 0.0);                    
         }
-    }
-    ]]&amp;gt;
-&amp;lt;/rule&amp;gt;
-
-&amp;lt;rule name=&amp;quot;AutoClose&amp;quot; appliesTo=&amp;quot;Task&amp;quot;&amp;gt;
-    &amp;lt;!-- Update Work Item to Done if a all child tasks are Done or Removed --&amp;gt;
-    &amp;lt;![CDATA[
-    if ((string)self[&amp;quot;System.State&amp;quot;] == &amp;quot;Done&amp;quot; &amp;amp;&amp;amp; self.HasParent() &amp;amp;&amp;amp; ((string)self.Parent[&amp;quot;System.State&amp;quot;]) != &amp;quot;Done&amp;quot;)
-    {
-        if (self.Parent.Children.All(child =&amp;gt; new[] {&amp;quot;Removed&amp;quot;, &amp;quot;Done&amp;quot;}.Contains((string)child[&amp;quot;System.State&amp;quot;])))
-        {
-            self.Parent.TransitionToState(&amp;quot;Done&amp;quot;, &amp;quot;Auto done&amp;quot;);
-        }
-    }
-    ]]&amp;gt;
-&amp;lt;/rule&amp;gt;
+        topFeature[&amp;quot;CustomField.ScrumAccrued&amp;quot;] = sum;                    
+    }            
+]]&amp;gt;&amp;lt;/rule&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
     <item>
-      <title>Auto-Create Children</title>
+      <title>Auto-Create Children example</title>
       <link>https://tfsaggregator.github.io/using/examples/auto-create-children/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -843,177 +816,67 @@ Note that children Bug or Test Case do not update the parent.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Tricks &amp; Tips</title>
-      <link>https://tfsaggregator.github.io/using/scripting-tricks-n-tips/scripting-tricks-n-tips/</link>
+      <title>Auto-Open and Auto-Close example</title>
+      <link>https://tfsaggregator.github.io/using/examples/auto-open-auto-close/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tfsaggregator.github.io/using/scripting-tricks-n-tips/scripting-tricks-n-tips/</guid>
-      <description>
+      <guid>https://tfsaggregator.github.io/using/examples/auto-open-auto-close/</guid>
+      <description>&lt;p&gt;Applies to &lt;em&gt;Scrum Process template&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;The examples are in C#&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;rule name=&amp;quot;AutoOpen&amp;quot; appliesTo=&amp;quot;Task&amp;quot;&amp;gt;
+    &amp;lt;!-- Update Work Item to Committed if a task became &amp;quot;active&amp;quot; --&amp;gt;
+    &amp;lt;![CDATA[
+    if (new[] {&amp;quot;In Progress&amp;quot;, &amp;quot;To Do&amp;quot;}.Contains((string)self[&amp;quot;System.State&amp;quot;]))
+    {
+        if(self.HasParent() &amp;amp;&amp;amp; ((string)self.Parent[&amp;quot;System.State&amp;quot;]) != &amp;quot;Committed&amp;quot;)
+        {
+            self.Parent.TransitionToState(&amp;quot;Committed&amp;quot;, &amp;quot;Auto Activated&amp;quot;);
+        }
+    }
+    ]]&amp;gt;
+&amp;lt;/rule&amp;gt;
 
-&lt;h2 id=&#34;use-fields-reference-names&#34;&gt;Use Fields&amp;rsquo; Reference Names&lt;/h2&gt;
-
-&lt;p&gt;Write your rules using the Reference name for fields, e.g. &lt;code&gt;Microsoft.VSTS.Common.Priority&lt;/code&gt;.
-That way your rules will work on process templates in different languages: &lt;strong&gt;Priority&lt;/strong&gt; becomes &lt;strong&gt;Priorität&lt;/strong&gt; in a German template.&lt;/p&gt;
-
-&lt;p&gt;Also the name may change in different template or newer version of the same template. Your rules are more likely to survive TFS upgrades unharmed.&lt;/p&gt;
-
-&lt;h2 id=&#34;use-link-types-reference-names&#34;&gt;Use Link Types&amp;rsquo; Reference Names&lt;/h2&gt;
-
-&lt;p&gt;Write your rules using the Reference name for link types, e.g. &lt;code&gt;Microsoft.VSTS.Common.TestedBy-Forward&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;field-can-be-null&#34;&gt;Field can be null&lt;/h2&gt;
-
-&lt;p&gt;Remember that a work item field value is of type &lt;code&gt;object&lt;/code&gt; and can be null.&lt;/p&gt;
-
-&lt;p&gt;Style #1: use the &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/ms173224.aspx&#34;&gt;null-coalescing operator&lt;/a&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(double)(self.Parent[&amp;quot;Microsoft.VSTS.Scheduling.OriginalEstimate&amp;quot;] ?? 0d)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;notice the parentheses and the cast.&lt;/p&gt;
-
-&lt;p&gt;Style #2: use the &lt;code&gt;GetField&lt;/code&gt; helper function&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;self.Parent.GetField&amp;lt;double&amp;gt;(&amp;quot;Microsoft.VSTS.Scheduling.OriginalEstimate&amp;quot;, 0d)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;internally uses a &lt;code&gt;try..catch&lt;/code&gt; block.&lt;/p&gt;
-
-&lt;p&gt;Style #3: check the Valid property&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var parentField = self.Parent[&amp;quot;Microsoft.VSTS.Scheduling.OriginalEstimate&amp;quot;];
-if (parentField.Status == FieldStatus.Valid) {
-  parentField.Value += (double)self[&amp;quot;Microsoft.VSTS.Scheduling.OriginalEstimate&amp;quot;];
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;notice that parent field is left untouched is it has no value.&lt;/p&gt;
-
-&lt;h2 id=&#34;trace-your-steps&#34;&gt;Trace your steps&lt;/h2&gt;
-
-&lt;p&gt;Consider using the logger object in non-trivial rules or when you are uncertain of the values in use.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;if (self.HasParent())
-{
-    var parent = self.Parent;
-    logger.Log(&amp;quot;Task #{0} updates {1} #{2}&amp;quot;, self.Id, parent.TypeName, parent.Id);
-    
-    parent[&amp;quot;Microsoft.VSTS.Scheduling.CompletedWork&amp;quot;] = parent.Children.Sum(task =&amp;gt; task.GetField&amp;lt;double&amp;gt;(&amp;quot;Microsoft.VSTS.Scheduling.CompletedWork&amp;quot;, 0d));
-    parent[&amp;quot;Microsoft.VSTS.Scheduling.RemainingWork&amp;quot;] = parent.Children.Sum(task =&amp;gt; task.GetField&amp;lt;double&amp;gt;(&amp;quot;Microsoft.VSTS.Scheduling.RemainingWork&amp;quot;, 0d));
-    
-    logger.Log(&amp;quot;CompletedWork is {0}, RemainingWork is {1}&amp;quot;, parent[&amp;quot;Microsoft.VSTS.Scheduling.CompletedWork&amp;quot;], parent[&amp;quot;Microsoft.VSTS.Scheduling.RemainingWork&amp;quot;]);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The output is sent to debugger output and .Net Trace.&lt;/p&gt;
-
-&lt;p&gt;You can use &lt;strong&gt;DebugView&lt;/strong&gt; from Microsoft&amp;rsquo;s SysInternals site at &lt;a href=&#34;http://technet.microsoft.com/en-us/sysinternals/bb896647&#34;&gt;http://technet.microsoft.com/en-us/sysinternals/bb896647&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;DebugView is a lightweight Trace Listener and will capture the trace messages from TFSAggregator.
-&lt;img src=&#34;./messages-in-dbgview.png&#34; alt=&#34;TFSAggregator messages in DebugView&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We would recommend adding the &lt;code&gt;*TFSAggregator:*&lt;/code&gt; filter to DebugView so that you only see the TFSAggregator traces.
-&lt;img src=&#34;./dbg-view-filter.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Make sure to enable the &lt;strong&gt;Capture Global Win32&lt;/strong&gt; option.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;You have to run DebugView on &lt;em&gt;all&lt;/em&gt; TFS Application Tier machines&lt;/strong&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&#34;infinite-cycle&#34;&gt;Infinite cycle&lt;/h2&gt;
-
-&lt;p&gt;Always set a Rate Limit feature to limit the damage of infinite loops.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;AggregatorConfiguration&amp;gt;
-    &amp;lt;runtime&amp;gt;
-        &amp;lt;rateLimiting interval=&amp;quot;00:00:01.00&amp;quot; changes=&amp;quot;5&amp;quot; /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;use-template-scope&#34;&gt;Use Template Scope&lt;/h2&gt;
-
-&lt;p&gt;Instead of scoping Rules to a Collection or a set of Projects, you can define to apply the Rules to any Project using a specific template. E.g.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;templateScope name=&amp;quot;Scrum&amp;quot; /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Remember that name must match exactly.
-Verify before each TFS upgrade if any Process Template has changed name and update your policies eventually.&lt;/p&gt;
-
-&lt;h2 id=&#34;use-hasfields-instead-of-appliesto&#34;&gt;Use &lt;em&gt;hasFields&lt;/em&gt; instead of &lt;em&gt;appliesTo&lt;/em&gt;&lt;/h2&gt;
-
-&lt;p&gt;The &lt;code&gt;appliesTo&lt;/code&gt; filter restrict a Rule to a specific set of work item types.
-You can define a more generic rule using the &lt;code&gt;hasFields&lt;/code&gt; filter. Using it the code does not depends on specific work item type and the way they are named.&lt;/p&gt;
-
-&lt;p&gt;This has the advantage that the rule will also work when people customize the template by copying an existing Work Item Type, like &lt;code&gt;Task&lt;/code&gt; -&amp;gt; &lt;code&gt;In Sprint Bug&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;numeric-deltas&#34;&gt;Numeric Deltas&lt;/h2&gt;
-
-&lt;h3 id=&#34;the-problem&#34;&gt;The Problem&lt;/h3&gt;
-
-&lt;p&gt;Consider the following rule&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;self.Parent[&amp;quot;Custom.RemainingWork&amp;quot;] = (double)self.Parent[&amp;quot;Custom.RemainingWork&amp;quot;] + (double)self[&amp;quot;Microsoft.VSTS.Scheduling.RemainingWork&amp;quot;];
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The problem is that the parent value will be increased with every change.&lt;/p&gt;
-
-&lt;p&gt;If the child has a value of 5, the parent value will be increased by 5. When I change the child value from 5 to 2, the parent value will be increased be 2, but it should be decreased with 3.&lt;/p&gt;
-
-&lt;p&gt;The requirement is to aggregate the difference from the new value to the old value and not the raw new value only.&lt;/p&gt;
-
-&lt;h3 id=&#34;a-solution&#34;&gt;A Solution&lt;/h3&gt;
-
-&lt;p&gt;A simple way is adding an hidden field, say &lt;code&gt;Custom.PreviousRemainingWork&lt;/code&gt;. The rule will become something like&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;double delta = (double)(self[&amp;quot;Custom.PreviousRemainingWork&amp;quot;]??0d) - (double)(self[&amp;quot;Microsoft.VSTS.Scheduling.RemainingWork&amp;quot;]??0d);
-self.Parent[&amp;quot;Custom.RemainingWork&amp;quot;] = (double)(self.Parent[&amp;quot;Custom.RemainingWork&amp;quot;]??0d) + delta;
-self[&amp;quot;Custom.PreviousRemainingWork&amp;quot;] = (double)(self[&amp;quot;Microsoft.VSTS.Scheduling.RemainingWork&amp;quot;]??0d);
+&amp;lt;rule name=&amp;quot;AutoClose&amp;quot; appliesTo=&amp;quot;Task&amp;quot;&amp;gt;
+    &amp;lt;!-- Update Work Item to Done if a all child tasks are Done or Removed --&amp;gt;
+    &amp;lt;![CDATA[
+    if ((string)self[&amp;quot;System.State&amp;quot;] == &amp;quot;Done&amp;quot; &amp;amp;&amp;amp; self.HasParent() &amp;amp;&amp;amp; ((string)self.Parent[&amp;quot;System.State&amp;quot;]) != &amp;quot;Done&amp;quot;)
+    {
+        if (self.Parent.Children.All(child =&amp;gt; new[] {&amp;quot;Removed&amp;quot;, &amp;quot;Done&amp;quot;}.Contains((string)child[&amp;quot;System.State&amp;quot;])))
+        {
+            self.Parent.TransitionToState(&amp;quot;Done&amp;quot;, &amp;quot;Auto done&amp;quot;);
+        }
+    }
+    ]]&amp;gt;
+&amp;lt;/rule&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
     <item>
-      <title>Common Pitfalls</title>
-      <link>https://tfsaggregator.github.io/using/scripting-pitfalls/</link>
+      <title>Rollup examples</title>
+      <link>https://tfsaggregator.github.io/using/examples/rollup/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tfsaggregator.github.io/using/scripting-pitfalls/</guid>
+      <guid>https://tfsaggregator.github.io/using/examples/rollup/</guid>
       <description>
 
-&lt;h2 id=&#34;null&#34;&gt;Null&lt;/h2&gt;
+&lt;h2 id=&#34;using-linq-to-aggregate&#34;&gt;Using Linq to Aggregate&lt;/h2&gt;
 
-&lt;p&gt;Any field can return &lt;code&gt;null&lt;/code&gt;. Casting null to a numeric value or a date throws a &lt;code&gt;NullReferenceException&lt;/code&gt;.
-The following C# code&lt;/p&gt;
+&lt;p&gt;Applies to &lt;em&gt;Scrum&lt;/em&gt; or &lt;em&gt;CMMI&lt;/em&gt; Process templates.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;(double)self.Parent[&amp;quot;Microsoft.VSTS.Scheduling.OriginalEstimate&amp;quot;]
+&lt;pre&gt;&lt;code&gt;&amp;lt;rule name=&amp;quot;RollupTask&amp;quot; appliesTo=&amp;quot;Task&amp;quot;&amp;gt;&amp;lt;![CDATA[
+if (self.HasParent())
+{
+    var parent = self.Parent;
+    parent[&amp;quot;Microsoft.VSTS.Scheduling.CompletedWork&amp;quot;] = parent.Children.Sum(task =&amp;gt; task.GetField&amp;lt;double&amp;gt;(&amp;quot;Microsoft.VSTS.Scheduling.CompletedWork&amp;quot;, 0d));
+    parent[&amp;quot;Microsoft.VSTS.Scheduling.RemainingWork&amp;quot;] = parent.Children.Sum(task =&amp;gt; task.GetField&amp;lt;double&amp;gt;(&amp;quot;Microsoft.VSTS.Scheduling.RemainingWork&amp;quot;, 0d));
+    parent[&amp;quot;Microsoft.VSTS.Scheduling.OriginalEstimate&amp;quot;] = parent.Children.Sum(task =&amp;gt; task.GetField&amp;lt;double&amp;gt;(&amp;quot;Microsoft.VSTS.Scheduling.OriginalEstimate&amp;quot;, 0d));
+}
+]]&amp;gt;&amp;lt;/rule&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;may succeed or throw.&lt;/p&gt;
-
-&lt;p&gt;There are many ways to overcame this issue: the &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/ms173224.aspx&#34;&gt;null-coalescing operator&lt;/a&gt;, use the &lt;code&gt;GetField&lt;/code&gt; helper function or check the Valid property.
-See &lt;a href=&#34;https://tfsaggregator.github.io/using/scripting-tricks-n-tips&#34;&gt;Tricks&amp;amp;Tips&lt;/a&gt; for examples.&lt;/p&gt;
-
-&lt;h2 id=&#34;history&#34;&gt;History&lt;/h2&gt;
-
-&lt;p&gt;The &lt;code&gt;History&lt;/code&gt; and &lt;code&gt;Revision&lt;/code&gt; properties are tricky.&lt;/p&gt;
-
-&lt;p&gt;Imagine this sequence:
- 1. A user opens a work item, whose &lt;code&gt;Revision&lt;/code&gt; property values &lt;code&gt;7&lt;/code&gt;
- 2. She edits the &lt;code&gt;Description&lt;/code&gt; field and saves
- 3. TFS save the changes to the database and increments &lt;code&gt;Revision&lt;/code&gt; to &lt;code&gt;8&lt;/code&gt;
- 4. Aggregator is notified of the change&lt;/p&gt;
-
-&lt;p&gt;At this point &lt;code&gt;self.Revision&lt;/code&gt; is &lt;code&gt;8&lt;/code&gt; and &lt;code&gt;LastRevision.Index&lt;/code&gt; is &lt;code&gt;7&lt;/code&gt;. Throught &lt;code&gt;LastRevision&lt;/code&gt; one can see that &lt;code&gt;self.LastRevision.Fields[&amp;quot;Description&amp;quot;].Value&lt;/code&gt; equals what is saved in the database, while &lt;code&gt;OriginalValue&lt;/code&gt; is the value before user edit.&lt;/p&gt;
-
-&lt;p&gt;If the Rule changes any field, you have this:
- 5. Aggregator run a rule that changes a field
- 6. Aggregator notices the edit and save the workitem to the database
- 7. TFS triggers Aggregator again (maybe on a different machine), this time &lt;code&gt;Revision&lt;/code&gt; property is &lt;code&gt;9&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;See &lt;a href=&#34;https://tfsaggregator.github.io/using/field-history&#34;&gt;History field&lt;/a&gt; for full presentation.&lt;/p&gt;
+&lt;p&gt;This rule updates a Product Backlog Item or Bug whenever any child Task is added or changes. The &lt;em&gt;Completed Work&lt;/em&gt;, &lt;em&gt;Remaining Work&lt;/em&gt; and &lt;em&gt;Original Estimate&lt;/em&gt; on the parent become the sum of the corresponding fields of children Tasks.
+Note that children Bug or Test Case do not update the parent for the &lt;code&gt;appliesTo&lt;/code&gt; clause.&lt;/p&gt;
 </description>
     </item>
     

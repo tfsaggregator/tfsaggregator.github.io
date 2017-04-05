@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://tfsaggregator.github.io/images/favicon.png" type="image/x-icon" />
 
     
-    <title>Administrator Guide</title>
+    <title>Rollup examples</title>
     <link href="https://tfsaggregator.github.io//css/nucleus.css" rel="stylesheet">
     <link href="https://tfsaggregator.github.io//css/font-awesome.min.css" rel="stylesheet">
     <link href="https://tfsaggregator.github.io//css/hybrid.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     
 
   </head>
-  <body class="" data-url="/admin/">
+  <body class="" data-url="/using/examples/rollup/">
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
@@ -148,7 +148,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/using/">
+      <li class="dd-item  parent" data-nav-id="/using/">
         <a href="https://tfsaggregator.github.io/using/">
           <span>
             
@@ -310,7 +310,7 @@
           
           
           
-            <li class="dd-item " data-nav-id="/using/examples/rollup/">
+            <li class="dd-item active" data-nav-id="/using/examples/rollup/">
               <a href="https://tfsaggregator.github.io/using/examples/rollup/">
                 <span>
                   
@@ -376,7 +376,7 @@
       
       
 
-      <li class="dd-item active parent" data-nav-id="/admin/">
+      <li class="dd-item  " data-nav-id="/admin/">
         <a href="https://tfsaggregator.github.io/admin/">
           <span>
             
@@ -557,7 +557,7 @@
                 
                 
               <div id="top-github-link">
-                  <a class="github-link" href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/edit/master/content/admin/index.md" target="blank">
+                  <a class="github-link" href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/edit/master/content/using/examples/rollup.md" target="blank">
                     <i class="fa fa-code-fork"></i>
                     Edit this page
                   </a>
@@ -571,23 +571,27 @@
                       </a>
                   </span>
                 
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
                 
                 
+                
+                
+                  
+                
+                  
+                
+                  
                 
                   
                 
                   
                     
                     
+                <a href="https://tfsaggregator.github.io/using/" itemprop="url"><span itemprop="title">Users&#39; Guide</span></a> <i class="fa fa-angle-right"></i>
+                    
                   
                 
-                  
-                
-                  
-                
-                  
-                
-                <span itemprop="title"> Administrator Guide</span>
+                <span itemprop="title"> Rollup examples</span>
               </div>
               
                   <div class="progress">
@@ -596,7 +600,7 @@
 <ul>
 <li>
 <ul>
-<li><a href="#administrator-guide-to-tfs-aggregator">Administrator Guide to TFS Aggregator</a></li>
+<li><a href="#using-linq-to-aggregate">Using Linq to Aggregate</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -607,25 +611,37 @@
 
             </div>
             
-              <div id="chapter">
-            
     	        <div id="body-inner">
+                
+                <h1>Rollup examples</h1>
                 
 
 
 
-<h2 id="administrator-guide-to-tfs-aggregator">Administrator Guide to TFS Aggregator</h2>
+<h2 id="using-linq-to-aggregate">Using Linq to Aggregate</h2>
 
-<p>This Guide explains how install TFS Aggregator on premise and in the cloud for both the Web Service and Server Plugin flavors.</p>
+<p>Applies to <em>Scrum</em> or <em>CMMI</em> Process templates.</p>
+
+<pre><code>&lt;rule name=&quot;RollupTask&quot; appliesTo=&quot;Task&quot;&gt;&lt;![CDATA[
+if (self.HasParent())
+{
+    var parent = self.Parent;
+    parent[&quot;Microsoft.VSTS.Scheduling.CompletedWork&quot;] = parent.Children.Sum(task =&gt; task.GetField&lt;double&gt;(&quot;Microsoft.VSTS.Scheduling.CompletedWork&quot;, 0d));
+    parent[&quot;Microsoft.VSTS.Scheduling.RemainingWork&quot;] = parent.Children.Sum(task =&gt; task.GetField&lt;double&gt;(&quot;Microsoft.VSTS.Scheduling.RemainingWork&quot;, 0d));
+    parent[&quot;Microsoft.VSTS.Scheduling.OriginalEstimate&quot;] = parent.Children.Sum(task =&gt; task.GetField&lt;double&gt;(&quot;Microsoft.VSTS.Scheduling.OriginalEstimate&quot;, 0d));
+}
+]]&gt;&lt;/rule&gt;
+</code></pre>
+
+<p>This rule updates a Product Backlog Item or Bug whenever any child Task is added or changes. The <em>Completed Work</em>, <em>Remaining Work</em> and <em>Original Estimate</em> on the parent become the sum of the corresponding fields of children Tasks.
+Note that children Bug or Test Case do not update the parent for the <code>appliesTo</code> clause.</p>
 
 
-      
-        </div> 
       
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 9, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/0da38c3ec4c046ff5aab05e1a00acf1d3982cc23">Fix wiki references, ugly .// URLs, replace WebHooks with WebService, hacked how-it-works and CoC (0da38c3)</a>
+<p>Last revision: April 5, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/f3d610048a2e657076369ede6ee16e432dbf03ef">added accumulate-to-grand-parent example (f3d6100)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>
@@ -634,8 +650,8 @@
 
     <div id="navigation">
         
-        <a class="nav nav-prev" href="https://tfsaggregator.github.io//using/"> <i class="fa fa-chevron-left"></i></a>
-        <a class="nav nav-next" href="https://tfsaggregator.github.io//admin/install" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+        <a class="nav nav-prev" href="https://tfsaggregator.github.io//using/examples/auto-open-auto-close"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-next" href="https://tfsaggregator.github.io//using/scripting-tricks-n-tips" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 
     </section>

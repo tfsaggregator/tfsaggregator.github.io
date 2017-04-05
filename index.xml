@@ -869,7 +869,7 @@ Library.SendMail(to, subject, body);
 
 &lt;p&gt;From time to time, we test the policies contained in the &lt;code&gt;ManualTests&lt;/code&gt; folder. They are good to learn but should not be trusted 100%, at least until we are able to setup automated integration testing.&lt;/p&gt;
 
-&lt;h2 id=&#34;example-aggregations&#34;&gt;Example Aggregations&lt;/h2&gt;
+&lt;h2 id=&#34;simple-rules&#34;&gt;Simple rules&lt;/h2&gt;
 
 &lt;h3 id=&#34;calculated-field&#34;&gt;Calculated field&lt;/h3&gt;
 
@@ -881,7 +881,7 @@ Library.SendMail(to, subject, body);
 &lt;p&gt;This aggregation will total the values found in the Estimated Dev Work and Estimated Test Work fields for any Task work item.
 The total will be placed in the Estimated Work field on the same work item as the source values were found.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;./calculated-field.png&#34; alt=&#34;Calculated field in form&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../calculated-field.png&#34; alt=&#34;Calculated field in form&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;rollup-field-on-parent&#34;&gt;Rollup field on parent&lt;/h3&gt;
 
@@ -908,62 +908,35 @@ Most templates do not allow you to go directly from a New state to a Done state.
       field =&amp;gt; field.ReferenceName == &amp;quot;Custom.Product&amp;quot;)
 );
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;using-linq-to-aggregate&#34;&gt;Using Linq to Aggregate&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;rule name=&amp;quot;RollupTask&amp;quot; appliesTo=&amp;quot;Task&amp;quot;&amp;gt;&amp;lt;![CDATA[
-if (self.HasParent())
-{
-    var parent = self.Parent;
-    parent[&amp;quot;Microsoft.VSTS.Scheduling.CompletedWork&amp;quot;] = parent.Children.Sum(task =&amp;gt; task.GetField&amp;lt;double&amp;gt;(&amp;quot;Microsoft.VSTS.Scheduling.CompletedWork&amp;quot;, 0d));
-    parent[&amp;quot;Microsoft.VSTS.Scheduling.RemainingWork&amp;quot;] = parent.Children.Sum(task =&amp;gt; task.GetField&amp;lt;double&amp;gt;(&amp;quot;Microsoft.VSTS.Scheduling.RemainingWork&amp;quot;, 0d));
-    parent[&amp;quot;Microsoft.VSTS.Scheduling.OriginalEstimate&amp;quot;] = parent.Children.Sum(task =&amp;gt; task.GetField&amp;lt;double&amp;gt;(&amp;quot;Microsoft.VSTS.Scheduling.OriginalEstimate&amp;quot;, 0d));
-}
-]]&amp;gt;&amp;lt;/rule&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This rule updates a Product Backlog Item or Bug whenever any child Task is added or changes. The &lt;em&gt;Completed Work&lt;/em&gt;, &lt;em&gt;Remaining Work&lt;/em&gt; and &lt;em&gt;Original Estimate&lt;/em&gt; on the parent become the sum of the corresponding fields of children Tasks.
-Note that children Bug or Test Case do not update the parent.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>Auto-Open and Auto-Close</title>
-      <link>https://tfsaggregator.github.io/using/examples/auto-open-auto-close/</link>
+      <title>Accumulate to grand-parent example</title>
+      <link>https://tfsaggregator.github.io/using/examples/accumulate-to-grand-parent/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://tfsaggregator.github.io/using/examples/auto-open-auto-close/</guid>
-      <description>
+      <guid>https://tfsaggregator.github.io/using/examples/accumulate-to-grand-parent/</guid>
+      <description>&lt;p&gt;&lt;em&gt;Process template:&lt;/em&gt; Any&lt;/p&gt;
 
-&lt;h1 id=&#34;example-auto-open-auto-close&#34;&gt;Example: Auto-open, Auto Close&lt;/h1&gt;
+&lt;p&gt;Add the AccumulatedWork from Tasks up to grand-parent, i.e. Feature.&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;Process template:&lt;/em&gt; Scrum&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;rule name=&amp;quot;AutoOpen&amp;quot; appliesTo=&amp;quot;Task&amp;quot;&amp;gt;
-    &amp;lt;!-- Update Work Item to Committed if a task became &amp;quot;active&amp;quot; --&amp;gt;
-    &amp;lt;![CDATA[
-    if (new[] {&amp;quot;In Progress&amp;quot;, &amp;quot;To Do&amp;quot;}.Contains((string)self[&amp;quot;System.State&amp;quot;]))
+&lt;pre&gt;&lt;code&gt;&amp;lt;rule name=&amp;quot;updateFeatureScrumAccrued&amp;quot; appliesTo=&amp;quot;Task&amp;quot; hasFields=&amp;quot;CustomField.AccumulatedWork&amp;quot;&amp;gt;&amp;lt;![CDATA[
+    IWorkItemExposed topFeature = self.FollowingLinks(&amp;quot;System.LinkTypes.Hierarchy-Reverse&amp;quot;).WhereTypeIs(&amp;quot;Feature&amp;quot;).AtMost(5).FirstOrDefault();    
+    if (topFeature != null)
     {
-        if(self.HasParent() &amp;amp;&amp;amp; ((string)self.Parent[&amp;quot;System.State&amp;quot;]) != &amp;quot;Committed&amp;quot;)
+        logger.Log(&amp;quot;Feature {0}&amp;quot;, topFeature.Id);
+        
+        var taskChildren = topFeature.FollowingLinks(&amp;quot;System.LinkTypes.Hierarchy-Forward&amp;quot;).WhereTypeIs(&amp;quot;Task&amp;quot;).AtMost(5);
+        
+        var sum = 0.0;                
+        foreach (var task in taskChildren)
         {
-            self.Parent.TransitionToState(&amp;quot;Committed&amp;quot;, &amp;quot;Auto Activated&amp;quot;);
+            sum +=  task.GetField&amp;lt;double&amp;gt;(&amp;quot;CustomField.AccumulatedWork&amp;quot;, 0.0);                    
         }
-    }
-    ]]&amp;gt;
-&amp;lt;/rule&amp;gt;
-
-&amp;lt;rule name=&amp;quot;AutoClose&amp;quot; appliesTo=&amp;quot;Task&amp;quot;&amp;gt;
-    &amp;lt;!-- Update Work Item to Done if a all child tasks are Done or Removed --&amp;gt;
-    &amp;lt;![CDATA[
-    if ((string)self[&amp;quot;System.State&amp;quot;] == &amp;quot;Done&amp;quot; &amp;amp;&amp;amp; self.HasParent() &amp;amp;&amp;amp; ((string)self.Parent[&amp;quot;System.State&amp;quot;]) != &amp;quot;Done&amp;quot;)
-    {
-        if (self.Parent.Children.All(child =&amp;gt; new[] {&amp;quot;Removed&amp;quot;, &amp;quot;Done&amp;quot;}.Contains((string)child[&amp;quot;System.State&amp;quot;])))
-        {
-            self.Parent.TransitionToState(&amp;quot;Done&amp;quot;, &amp;quot;Auto done&amp;quot;);
-        }
-    }
-    ]]&amp;gt;
-&amp;lt;/rule&amp;gt;
+        topFeature[&amp;quot;CustomField.ScrumAccrued&amp;quot;] = sum;                    
+    }            
+]]&amp;gt;&amp;lt;/rule&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
