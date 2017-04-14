@@ -136,6 +136,8 @@ to receive notifications of work items changes in VSTS/TFS.&lt;/p&gt;
 
 &lt;p&gt;Note that steps 3 and 5 requires authentication.&lt;/p&gt;
 
+&lt;p&gt;&lt;img src=&#34;./webservice-authentication.jpg&#34; alt=&#34;Web Service Authentication&#34; /&gt;&lt;/p&gt;
+
 &lt;h2 id=&#34;server-plugin&#34;&gt;Server Plugin&lt;/h2&gt;
 
 &lt;p&gt;The following diagram may help understand the control flow.&lt;/p&gt;

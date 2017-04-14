@@ -432,6 +432,16 @@
           
           
           
+            <li class="dd-item " data-nav-id="/admin/support/">
+              <a href="https://tfsaggregator.github.io/admin/support/">
+                <span>
+                  
+                  Support     </i></span>
+              </a>
+            </li>
+          
+          
+          
             <li class="dd-item " data-nav-id="/admin/security/">
               <a href="https://tfsaggregator.github.io/admin/security/">
                 <span>
@@ -649,6 +659,7 @@
 <li>TFS 2015 RTM</li>
 <li>TFS 2015 update 1,2,3</li>
 <li>TFS 2017 RTM</li>
+<li>TFS 2017 update 1</li>
 </ul>
 
 <p>The installer will detect the correct TFS version and will install the appropriate binary. If you&rsquo;re upgrading, please uninstall your current TFS Aggregator version, upgrade TFS, then run the installer to automatically install the matching version.</p>
@@ -685,7 +696,7 @@ The installer detects the TFS version installed and deploy the correct assemblie
 <p>It will install under <code>%ProgramFiles%</code>, typically <code>C:\Program Files\TFS Aggregator</code>, three folders: <code>bin</code>, <code>docs</code> and <code>samples</code>.
 <img src="./program-files.png" alt="" /></p>
 
-<p>Furthermore it installs the plugin in the proper directory &mdash; for TFS 2015 can be <code>C:\Program Files\Microsoft Team Foundation Server 14.0\Application Tier\Web Services\bin\Plugins</code> &mdash; the plugin assemblies and the default no-op Policy file <code>samples\TFSAggregator2.ServerPlugin.policies</code>.
+<p>Furthermore it installs the plugin in the proper directory &mdash; for TFS 2017 can be <code>C:\Program Files\Microsoft Team Foundation Server 15.0\Application Tier\Web Services\bin\Plugins</code> &mdash; the plugin assemblies and the default no-op Policy file <code>samples\TFSAggregator2.ServerPlugin.policies</code>.
 &gt; <strong>An existing Policy file is not overwritten.</strong></p>
 
 <h3 id="sample-install-scripts">Sample Install scripts</h3>
@@ -700,8 +711,8 @@ The scripts require an elevated Powershell prompt.</p>
 <ol>
 <li>Edit a copy of the sample <code>TFSAggregator2.ServerPlugin.policies</code> file.</li>
 <li>Test your new policy using <code>TFSAggregator2.ConsoleApp.exe</code> command line tool</li>
-<li>Copy the new file to the plugin folder; usually at this path for TFS 2015:
-<code>C:\Program Files\Microsoft Team Foundation Server 14.0\Application Tier\Web Services\bin\Plugins</code></li>
+<li>Copy the new file to the plugin folder; usually at this path for TFS 2017:
+<code>C:\Program Files\Microsoft Team Foundation Server 15.0\Application Tier\Web Services\bin\Plugins</code></li>
 <li>Verify that your new policy works; see <a href="https://tfsaggregator.github.io/admin/troubleshooting">TFS Aggregator Troubleshooting</a> in case of problems.</li>
 </ol>
 
@@ -725,11 +736,13 @@ The scripts require an elevated Powershell prompt.</p>
 <ul>
 <li>to TFS 2015 update 3</li>
 <li>to TFS 2017 RTM</li>
+<li>to TFS 2017 update 1</li>
 </ul></li>
 <li>TFS 2015 Update 3
 
 <ul>
-<li>to TFS 2017</li>
+<li>to TFS 2017 RTM</li>
+<li>to TFS 2017 update 1</li>
 </ul></li>
 </ul>
 
@@ -754,7 +767,7 @@ New-EventLog -LogName &quot;Application&quot; -Source &quot;TFSAggregator&quot;
 <li>Copy <code>TFSAggregator2.ServerPlugin.dll</code>, <code>TFSAggregator2.Core.dll</code> and <code>TFSAggregator2.ServerPlugin.policies</code> to the plugin location on the Application Tier of your TFS Servers:
 
 <ul>
-<li>The plugin folder is usually at this path for TFS 2015: <code>C:\Program Files\Microsoft Team Foundation Server 14.0\Application Tier\Web Services\bin\Plugins</code>;</li>
+<li>The plugin folder is usually at this path for TFS 2017: <code>C:\Program Files\Microsoft Team Foundation Server 15.0\Application Tier\Web Services\bin\Plugins</code>;</li>
 <li>You must copy the exact same files on all TFS Application Tier servers.</li>
 </ul></li>
 </ol>
@@ -763,7 +776,7 @@ New-EventLog -LogName &quot;Application&quot; -Source &quot;TFSAggregator&quot;
 
 <p>You can verify if assembly version matches TFS version using this Powershell code</p>
 
-<pre><code>$pathToAssemblyFile = &quot;C:\Program Files\Microsoft Team Foundation Server 14.0\Application Tier\Web Services\bin\Plugins\TFSAggregator2.ServerPlugin.dll&quot;
+<pre><code>$pathToAssemblyFile = &quot;C:\Program Files\Microsoft Team Foundation Server 15.0\Application Tier\Web Services\bin\Plugins\TFSAggregator2.ServerPlugin.dll&quot;
 [System.Reflection.Assembly]::LoadFile($pathToAssemblyFile).GetCustomAttributesData() | ?{ $_.AttributeType -eq [System.Reflection.AssemblyConfigurationAttribute] } | select ConstructorArguments
 </code></pre>
 
@@ -783,7 +796,7 @@ New-EventLog -LogName &quot;Application&quot; -Source &quot;TFSAggregator&quot;
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 12, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/ae66422bd201a4d28b20bc78dc7e0b584181dceb">Fixed a number of errors in links to pictures and pages (ae66422)</a>
+<p>Last revision: April 14, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/eafd60410124837f4e84a8bafae6e17ac17aebe6">Troubleshooting page: moved out Support info, added WS section (eafd604)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>

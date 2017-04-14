@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://tfsaggregator.github.io/images/favicon.png" type="image/x-icon" />
 
     
-    <title>Tricks &amp; Tips</title>
+    <title>Support</title>
     <link href="https://tfsaggregator.github.io//css/nucleus.css" rel="stylesheet">
     <link href="https://tfsaggregator.github.io//css/font-awesome.min.css" rel="stylesheet">
     <link href="https://tfsaggregator.github.io//css/hybrid.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     
 
   </head>
-  <body class="" data-url="/using/scripting-tricks-n-tips/scripting-tricks-n-tips/">
+  <body class="" data-url="/admin/support/">
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
@@ -148,7 +148,7 @@
       
       
 
-      <li class="dd-item  parent" data-nav-id="/using/">
+      <li class="dd-item  " data-nav-id="/using/">
         <a href="https://tfsaggregator.github.io/using/">
           <span>
             
@@ -322,7 +322,7 @@
           
           
           
-            <li class="dd-item active" data-nav-id="/using/scripting-tricks-n-tips/scripting-tricks-n-tips/">
+            <li class="dd-item " data-nav-id="/using/scripting-tricks-n-tips/scripting-tricks-n-tips/">
               <a href="https://tfsaggregator.github.io/using/scripting-tricks-n-tips/scripting-tricks-n-tips/">
                 <span>
                   
@@ -376,7 +376,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/admin/">
+      <li class="dd-item  parent" data-nav-id="/admin/">
         <a href="https://tfsaggregator.github.io/admin/">
           <span>
             
@@ -432,7 +432,7 @@
           
           
           
-            <li class="dd-item " data-nav-id="/admin/support/">
+            <li class="dd-item active" data-nav-id="/admin/support/">
               <a href="https://tfsaggregator.github.io/admin/support/">
                 <span>
                   
@@ -567,7 +567,7 @@
                 
                 
               <div id="top-github-link">
-                  <a class="github-link" href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/edit/master/content/using/scripting-tricks-n-tips/scripting-tricks-n-tips.md" target="blank">
+                  <a class="github-link" href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/edit/master/content/admin/support/index.md" target="blank">
                     <i class="fa fa-code-fork"></i>
                     Edit this page
                   </a>
@@ -589,42 +589,24 @@
                   
                 
                   
-                
-                  
-                
-                  
-                
-                  
                     
                     
-                <a href="https://tfsaggregator.github.io/using/" itemprop="url"><span itemprop="title">Users&#39; Guide</span></a> <i class="fa fa-angle-right"></i>
+                <a href="https://tfsaggregator.github.io/admin/" itemprop="url"><span itemprop="title">Administrator Guide</span></a> <i class="fa fa-angle-right"></i>
                     
                   
                 
-                <span itemprop="title"> Tricks &amp; Tips</span>
+                  
+                
+                  
+                
+                  
+                
+                <span itemprop="title"> Support</span>
               </div>
               
                   <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#use-fields-reference-names">Use Fields&rsquo; Reference Names</a></li>
-<li><a href="#use-link-types-reference-names">Use Link Types&rsquo; Reference Names</a></li>
-<li><a href="#field-can-be-null">Field can be null</a></li>
-<li><a href="#trace-your-steps">Trace your steps</a></li>
-<li><a href="#infinite-cycle">Infinite cycle</a></li>
-<li><a href="#use-template-scope">Use Template Scope</a></li>
-<li><a href="#use-hasfields-instead-of-appliesto">Use <em>hasFields</em> instead of <em>appliesTo</em></a></li>
-<li><a href="#numeric-deltas">Numeric Deltas</a>
-<ul>
-<li><a href="#the-problem">The Problem</a></li>
-<li><a href="#a-solution">A Solution</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</nav>
+
     </div>
 </div>
 
@@ -634,140 +616,36 @@
             
     	        <div id="body-inner">
                 
-                <h1>Tricks &amp; Tips</h1>
+                <h1>Support</h1>
                 
 
+<p>If you checked everything in <a href="https://tfsaggregator.github.io/admin/troubleshooting">Troubleshooting</a> and it still does not work, create a new Issue on GitHub or send an email to <a href="mailto:tfsaggregator@outlook.com?subject=Support Request">tfsaggregator@outlook.com</a>. Please add any useful information like:</p>
 
+<ul>
+<li>Aggregator version</li>
+<li>TFS version or VSTS</li>
+<li>Content of your <code>TFSAggregator2.ServerPlugin.policies</code> file (e.g. save it on <a href="https://gist.github.com/">https://gist.github.com/</a> and copy the link in the Issue)</li>
+<li>Content of your <code>web.config</code> file (<em>Web Service only</em>)</li>
+<li>Definition of your work item types (use <a href="https://msdn.microsoft.com/en-us/library/dd312129.aspx">witadmin exportwitd</a>)</li>
+</ul>
 
-<p>The examples are in C#</p>
-
-<h2 id="use-fields-reference-names">Use Fields&rsquo; Reference Names</h2>
-
-<p>Write your rules using the Reference name for fields, e.g. <code>Microsoft.VSTS.Common.Priority</code>.
-That way your rules will work on process templates in different languages: <strong>Priority</strong> becomes <strong>Priorität</strong> in a German template.</p>
-
-<p>Also the name may change in different template or newer version of the same template. Your rules are more likely to survive TFS upgrades unharmed.</p>
-
-<h2 id="use-link-types-reference-names">Use Link Types&rsquo; Reference Names</h2>
-
-<p>Write your rules using the Reference name for link types, e.g. <code>Microsoft.VSTS.Common.TestedBy-Forward</code>.</p>
-
-<h2 id="field-can-be-null">Field can be null</h2>
-
-<p>Remember that a work item field value is of type <code>object</code> and can be null.</p>
-
-<p>Style #1: use the <a href="https://msdn.microsoft.com/en-us/library/ms173224.aspx">null-coalescing operator</a></p>
-
-<pre><code>(double)(self.Parent[&quot;Microsoft.VSTS.Scheduling.OriginalEstimate&quot;] ?? 0d)
-</code></pre>
-
-<p>notice the parentheses and the cast.</p>
-
-<p>Style #2: use the <code>GetField</code> helper function</p>
-
-<pre><code>self.Parent.GetField&lt;double&gt;(&quot;Microsoft.VSTS.Scheduling.OriginalEstimate&quot;, 0d)
-</code></pre>
-
-<p>internally uses a <code>try..catch</code> block.</p>
-
-<p>Style #3: check the Valid property</p>
-
-<pre><code>var parentField = self.Parent[&quot;Microsoft.VSTS.Scheduling.OriginalEstimate&quot;];
-if (parentField.Status == FieldStatus.Valid) {
-  parentField.Value += (double)self[&quot;Microsoft.VSTS.Scheduling.OriginalEstimate&quot;];
-}
-</code></pre>
-
-<p>notice that parent field is left untouched is it has no value.</p>
-
-<h2 id="trace-your-steps">Trace your steps</h2>
-
-<p>Consider using the logger object in non-trivial rules or when you are uncertain of the values in use.</p>
-
-<pre><code>if (self.HasParent())
-{
-    var parent = self.Parent;
-    logger.Log(&quot;Task #{0} updates {1} #{2}&quot;, self.Id, parent.TypeName, parent.Id);
-    
-    parent[&quot;Microsoft.VSTS.Scheduling.CompletedWork&quot;] = parent.Children.Sum(task =&gt; task.GetField&lt;double&gt;(&quot;Microsoft.VSTS.Scheduling.CompletedWork&quot;, 0d));
-    parent[&quot;Microsoft.VSTS.Scheduling.RemainingWork&quot;] = parent.Children.Sum(task =&gt; task.GetField&lt;double&gt;(&quot;Microsoft.VSTS.Scheduling.RemainingWork&quot;, 0d));
-    
-    logger.Log(&quot;CompletedWork is {0}, RemainingWork is {1}&quot;, parent[&quot;Microsoft.VSTS.Scheduling.CompletedWork&quot;], parent[&quot;Microsoft.VSTS.Scheduling.RemainingWork&quot;]);
-}
-</code></pre>
-
-<p>The output is sent to debugger output and .Net Trace.</p>
-
-<p>You can use <strong>DebugView</strong> from Microsoft&rsquo;s SysInternals site at <a href="http://technet.microsoft.com/en-us/sysinternals/bb896647">http://technet.microsoft.com/en-us/sysinternals/bb896647</a>.</p>
-
-<p>DebugView is a lightweight Trace Listener and will capture the trace messages from TFSAggregator.
-<img src="./messages-in-dbgview.png" alt="TFSAggregator messages in DebugView" /></p>
-
-<p>We would recommend adding the <code>*TFSAggregator:*</code> filter to DebugView so that you only see the TFSAggregator traces.
-<img src="./dbg-view-filter.png" alt="" /></p>
-
-<p>Make sure to enable the <strong>Capture Global Win32</strong> option.</p>
+<p>If you built the assemblies yourselves, they take a fixed <code>2.0.0.0</code> version. Please report, the source code version (Tag or commit SHA) used to build your binaries.</p>
 
 <blockquote>
-<p><strong>You have to run DebugView on <em>all</em> TFS Application Tier machines</strong>.</p>
+<p><strong>Mask or remove any sensitive information before posting!</strong></p>
 </blockquote>
 
-<h2 id="infinite-cycle">Infinite cycle</h2>
+<p>Namely PAT, users and passwords, machine names, URLs.</p>
 
-<p>Always set a Rate Limit feature to limit the damage of infinite loops.</p>
-
-<pre><code>&lt;AggregatorConfiguration&gt;
-    &lt;runtime&gt;
-        &lt;rateLimiting interval=&quot;00:00:01.00&quot; changes=&quot;5&quot; /&gt;
-</code></pre>
-
-<h2 id="use-template-scope">Use Template Scope</h2>
-
-<p>Instead of scoping Rules to a Collection or a set of Projects, you can define to apply the Rules to any Project using a specific template. E.g.</p>
-
-<pre><code>&lt;templateScope name=&quot;Scrum&quot; /&gt;
-</code></pre>
-
-<p>Remember that name must match exactly.
-Verify before each TFS upgrade if any Process Template has changed name and update your policies eventually.</p>
-
-<h2 id="use-hasfields-instead-of-appliesto">Use <em>hasFields</em> instead of <em>appliesTo</em></h2>
-
-<p>The <code>appliesTo</code> filter restrict a Rule to a specific set of work item types.
-You can define a more generic rule using the <code>hasFields</code> filter. Using it the code does not depends on specific work item type and the way they are named.</p>
-
-<p>This has the advantage that the rule will also work when people customize the template by copying an existing Work Item Type, like <code>Task</code> -&gt; <code>In Sprint Bug</code>.</p>
-
-<h2 id="numeric-deltas">Numeric Deltas</h2>
-
-<h3 id="the-problem">The Problem</h3>
-
-<p>Consider the following rule</p>
-
-<pre><code>self.Parent[&quot;Custom.RemainingWork&quot;] = (double)self.Parent[&quot;Custom.RemainingWork&quot;] + (double)self[&quot;Microsoft.VSTS.Scheduling.RemainingWork&quot;];
-</code></pre>
-
-<p>The problem is that the parent value will be increased with every change.</p>
-
-<p>If the child has a value of 5, the parent value will be increased by 5. When I change the child value from 5 to 2, the parent value will be increased be 2, but it should be decreased with 3.</p>
-
-<p>The requirement is to aggregate the difference from the new value to the old value and not the raw new value only.</p>
-
-<h3 id="a-solution">A Solution</h3>
-
-<p>A simple way is adding an hidden field, say <code>Custom.PreviousRemainingWork</code>. The rule will become something like</p>
-
-<pre><code>double delta = (double)(self[&quot;Custom.PreviousRemainingWork&quot;]??0d) - (double)(self[&quot;Microsoft.VSTS.Scheduling.RemainingWork&quot;]??0d);
-self.Parent[&quot;Custom.RemainingWork&quot;] = (double)(self.Parent[&quot;Custom.RemainingWork&quot;]??0d) + delta;
-self[&quot;Custom.PreviousRemainingWork&quot;] = (double)(self[&quot;Microsoft.VSTS.Scheduling.RemainingWork&quot;]??0d);
-</code></pre>
+<p>Consider that this is a voluntary work and we have families and daily jobs, which means: no guarantee of fast response.
+Timezone differences may also impact on response times.</p>
 
 
       
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 12, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/ae66422bd201a4d28b20bc78dc7e0b584181dceb">Fixed a number of errors in links to pictures and pages (ae66422)</a>
+<p>Last revision: April 14, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/eafd60410124837f4e84a8bafae6e17ac17aebe6">Troubleshooting page: moved out Support info, added WS section (eafd604)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>
@@ -776,8 +654,8 @@ self[&quot;Custom.PreviousRemainingWork&quot;] = (double)(self[&quot;Microsoft.V
 
     <div id="navigation">
         
-        <a class="nav nav-prev" href="https://tfsaggregator.github.io//using/policy-examples"> <i class="fa fa-chevron-left"></i></a>
-        <a class="nav nav-next" href="https://tfsaggregator.github.io//using/scripting-pitfalls" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+        <a class="nav nav-prev" href="https://tfsaggregator.github.io//admin/troubleshooting"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-next" href="https://tfsaggregator.github.io//admin/security" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 
     </section>
