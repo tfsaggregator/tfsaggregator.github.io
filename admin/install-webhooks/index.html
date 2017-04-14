@@ -422,6 +422,16 @@
           
           
           
+            <li class="dd-item " data-nav-id="/admin/logging/">
+              <a href="https://tfsaggregator.github.io/admin/logging/">
+                <span>
+                  
+                  Logging     </i></span>
+              </a>
+            </li>
+          
+          
+          
             <li class="dd-item " data-nav-id="/admin/troubleshooting/">
               <a href="https://tfsaggregator.github.io/admin/troubleshooting/">
                 <span>
@@ -654,6 +664,10 @@
 
 
 
+<blockquote>
+<p>This information does <strong>not</strong> apply to theServer Plugin version.</p>
+</blockquote>
+
 <p>Installing TFS Aggregator Web Service is a six step process:</p>
 
 <ol>
@@ -662,7 +676,7 @@
 <li><a href="#configure-tfs-aggregator">Configure TFS Aggregator</a></li>
 <li><a href="#define-the-policy">Define the policy</a></li>
 <li><a href="#setup-logging-optional">Setup logging (optional)</a></li>
-<li><a href="#setup-the-web-hooks-in-tfsvsts">Setup the Web Hooks in TFS/VSTS</a></li>
+<li><a href="#setup-the-web-hooks-in-tfs-vsts">Setup the Web Hooks in TFS/VSTS</a></li>
 </ol>
 
 <h2 id="grant-access-to-vsts-tfs">Grant access to VSTS/TFS</h2>
@@ -788,25 +802,8 @@ not much secure, but handy for testing and some edge scenario</li>
 
 <h2 id="setup-logging-optional">Setup logging (optional)</h2>
 
-<p>This step is not mandatory, but recommended in the initial phase.</p>
-
-<p>In the <a href="https://portal.azure.com/">Azure Portal</a> navigate to <strong>App Services</strong> and select the App Service hosting TFS Aggregator. Scroll down to <strong>Diagnostic logs</strong> and turn on <strong>Application Logging</strong>.</p>
-
-<p><img src="./3-log1.png" alt="" /></p>
-
-<p>Select the Verbosity level and save.</p>
-
-<blockquote>
-<p>You can store the logs in Azure storage for auditing.</p>
-</blockquote>
-
-<p>In the Kudu console navigate to the <code>LogFiles\Application</code> folder to find the log files produced by TFS Aggregator.</p>
-
-<p><img src="./3-log2.png" alt="" /></p>
-
-<p>By opening the file you see a snapshot of log file&rsquo;s content.</p>
-
-<p><img src="./3-log3.png" alt="Content of a log file" /></p>
+<p>This step is not mandatory, but recommended in the initial phase.
+See <a href="https://tfsaggregator.github.io/admin/logging/#capturing-log-on-azure">Capturing Log On Azure</a>.</p>
 
 <h2 id="setup-the-web-hooks-in-tfs-vsts">Setup the Web Hooks in TFS/VSTS</h2>
 
@@ -930,7 +927,7 @@ Remember that you can see the TFS Aggregator log to help troubleshooting.
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 12, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/ae66422bd201a4d28b20bc78dc7e0b584181dceb">Fixed a number of errors in links to pictures and pages (ae66422)</a>
+<p>Last revision: April 14, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/7d4f61fac4d7c3d07d55670dd4c22a1217ff056c">Collected al logging info in a page, revised some pics (7d4f61f)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>

@@ -187,6 +187,10 @@ New-EventLog -LogName &amp;quot;Application&amp;quot; -Source &amp;quot;TFSAggre
       <guid>https://tfsaggregator.github.io/admin/install-webhooks/</guid>
       <description>
 
+&lt;blockquote&gt;
+&lt;p&gt;This information does &lt;strong&gt;not&lt;/strong&gt; apply to theServer Plugin version.&lt;/p&gt;
+&lt;/blockquote&gt;
+
 &lt;p&gt;Installing TFS Aggregator Web Service is a six step process:&lt;/p&gt;
 
 &lt;ol&gt;
@@ -195,7 +199,7 @@ New-EventLog -LogName &amp;quot;Application&amp;quot; -Source &amp;quot;TFSAggre
 &lt;li&gt;&lt;a href=&#34;#configure-tfs-aggregator&#34;&gt;Configure TFS Aggregator&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#define-the-policy&#34;&gt;Define the policy&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#setup-logging-optional&#34;&gt;Setup logging (optional)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#setup-the-web-hooks-in-tfsvsts&#34;&gt;Setup the Web Hooks in TFS/VSTS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#setup-the-web-hooks-in-tfs-vsts&#34;&gt;Setup the Web Hooks in TFS/VSTS&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&#34;grant-access-to-vsts-tfs&#34;&gt;Grant access to VSTS/TFS&lt;/h2&gt;
@@ -321,25 +325,8 @@ not much secure, but handy for testing and some edge scenario&lt;/li&gt;
 
 &lt;h2 id=&#34;setup-logging-optional&#34;&gt;Setup logging (optional)&lt;/h2&gt;
 
-&lt;p&gt;This step is not mandatory, but recommended in the initial phase.&lt;/p&gt;
-
-&lt;p&gt;In the &lt;a href=&#34;https://portal.azure.com/&#34;&gt;Azure Portal&lt;/a&gt; navigate to &lt;strong&gt;App Services&lt;/strong&gt; and select the App Service hosting TFS Aggregator. Scroll down to &lt;strong&gt;Diagnostic logs&lt;/strong&gt; and turn on &lt;strong&gt;Application Logging&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;./3-log1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Select the Verbosity level and save.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;You can store the logs in Azure storage for auditing.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;In the Kudu console navigate to the &lt;code&gt;LogFiles\Application&lt;/code&gt; folder to find the log files produced by TFS Aggregator.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;./3-log2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;By opening the file you see a snapshot of log file&amp;rsquo;s content.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;./3-log3.png&#34; alt=&#34;Content of a log file&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;This step is not mandatory, but recommended in the initial phase.
+See &lt;a href=&#34;https://tfsaggregator.github.io/admin/logging/#capturing-log-on-azure&#34;&gt;Capturing Log On Azure&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;setup-the-web-hooks-in-tfs-vsts&#34;&gt;Setup the Web Hooks in TFS/VSTS&lt;/h2&gt;
 
@@ -571,6 +558,119 @@ your policy files before applying to TFS.&lt;/p&gt;
     </item>
     
     <item>
+      <title>Logging</title>
+      <link>https://tfsaggregator.github.io/admin/logging/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://tfsaggregator.github.io/admin/logging/</guid>
+      <description>
+
+&lt;p&gt;TFS Aggregator logging is quite rich but the exact configuration depends on your environment.&lt;/p&gt;
+
+&lt;h2 id=&#34;enable-debug-logging&#34;&gt;Enable Debug Logging&lt;/h2&gt;
+
+&lt;p&gt;To control the verbosity in TFS Aggregator, you have to set a &lt;code&gt;level&lt;/code&gt; attribute to the &lt;code&gt;logging&lt;/code&gt; element in your &lt;code&gt;TFSAggregator2.ServerPlugin.policies&lt;/code&gt; file.
+Use a value like &lt;code&gt;Verbose&lt;/code&gt; or &lt;code&gt;Diagnostic&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
+&amp;lt;AggregatorConfiguration&amp;gt;
+    &amp;lt;runtime&amp;gt;
+        &amp;lt;logging level=&amp;quot;Diagnostic&amp;quot;/&amp;gt;
+    &amp;lt;/runtime&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that you can use the &lt;a href=&#34;https://tfsaggregator.github.io/using/objects-reference/logger-object/&#34;&gt;&lt;code&gt;logger&lt;/code&gt; object&lt;/a&gt; in your rules to trace execution and  values.&lt;/p&gt;
+
+&lt;h2 id=&#34;capturing-log-on-tfs&#34;&gt;Capturing log on TFS&lt;/h2&gt;
+
+&lt;p&gt;For TFS on premisses or hosted, you can download &lt;a href=&#34;https://technet.microsoft.com/en-us/sysinternals/debugview.aspx&#34;&gt;&lt;strong&gt;DebugView&lt;/strong&gt;&lt;/a&gt; from Microsoft&amp;rsquo;s SysInternals site.&lt;/p&gt;
+
+&lt;p&gt;DebugView is a Trace Listener and will capture the trace messages from TFSAggregator.
+&lt;img src=&#34;./messages-in-dbgview.png&#34; alt=&#34;TFSAggregator messages in DebugView&#34; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;You have to run DebugView on &lt;em&gt;all&lt;/em&gt; TFS Application Tier machines&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;We would recommend adding the &lt;code&gt;*TFSAggregator*&lt;/code&gt; filter to DebugView so that you only see the TFSAggregator traces.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;./dbg-view-filter.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Make sure to enable the &lt;strong&gt;Capture Global Win32&lt;/strong&gt; option.
+Download DebugView at &lt;a href=&#34;http://technet.microsoft.com/en-us/sysinternals/bb896647&#34;&gt;http://technet.microsoft.com/en-us/sysinternals/bb896647&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;capturing-log-on-azure&#34;&gt;Capturing log on Azure&lt;/h2&gt;
+
+&lt;p&gt;In this scenario you deployed the TFS Aggregator Web Service using the &lt;em&gt;Deploy to Azure&lt;/em&gt; button.&lt;/p&gt;
+
+&lt;p&gt;In the &lt;a href=&#34;https://portal.azure.com/&#34;&gt;Azure Portal&lt;/a&gt; navigate to &lt;strong&gt;App Services&lt;/strong&gt; and select the App Service hosting TFS Aggregator. Scroll down to &lt;strong&gt;Diagnostic logs&lt;/strong&gt; and turn on &lt;strong&gt;Application Logging&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;./3-log1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Select the Verbosity level and save.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;You can store the logs in Azure storage for auditing.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In the Kudu console navigate to the &lt;code&gt;LogFiles\Application&lt;/code&gt; folder to find the log files produced by TFS Aggregator.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;./3-log2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;By opening the file you see a snapshot of log file&amp;rsquo;s content.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;./3-log3.png&#34; alt=&#34;Content of a log file&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;tfs-production-logging-2-1&#34;&gt;TFS Production Logging (2.1)&lt;/h2&gt;
+
+&lt;p&gt;TFS Aggregator log messages go to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Debug output (appers in the Output window of a debugger)&lt;/li&gt;
+&lt;li&gt;Application EventLog (&lt;em&gt;TFS Aggregator&lt;/em&gt; source) when message level is &lt;code&gt;Warning&lt;/code&gt; or &lt;code&gt;Critical&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Trace listeners&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;User messages &amp;ndash; i.e. &lt;code&gt;logger.Log&lt;/code&gt; calls in Rules &amp;ndash; use a specific Trace source: &lt;code&gt;TfsAggregator.User&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now, you can send traces to a file by adding to TFS &lt;code&gt;web.config&lt;/code&gt; a &lt;code&gt;system.diagnostics&lt;/code&gt; section similar to the this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;system.diagnostics&amp;gt;
+  &amp;lt;sources&amp;gt;
+    &amp;lt;source name=&amp;quot;TfsAggregator.ServerPlugin&amp;quot; switchValue=&amp;quot;All&amp;quot;&amp;gt;
+      &amp;lt;listeners&amp;gt;
+        &amp;lt;remove name=&amp;quot;Default&amp;quot; /&amp;gt;
+        &amp;lt;add name=&amp;quot;filelog&amp;quot; /&amp;gt;
+      &amp;lt;/listeners&amp;gt;
+    &amp;lt;/source&amp;gt;
+    &amp;lt;source name=&amp;quot;TfsAggregator.User&amp;quot; switchValue=&amp;quot;All&amp;quot;&amp;gt;
+      &amp;lt;listeners&amp;gt;
+        &amp;lt;remove name=&amp;quot;Default&amp;quot; /&amp;gt;
+        &amp;lt;add name=&amp;quot;filelog&amp;quot; /&amp;gt;
+      &amp;lt;/listeners&amp;gt;
+    &amp;lt;/source&amp;gt;
+  &amp;lt;/sources&amp;gt;
+  &amp;lt;sharedListeners&amp;gt;
+    &amp;lt;add name=&amp;quot;filelog&amp;quot;
+         type=&amp;quot;Microsoft.VisualBasic.Logging.FileLogTraceListener, 
+                   Microsoft.VisualBasic, Version=10.0.0.0, 
+                   Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&amp;quot;
+         BaseFileName=&amp;quot;TfsAggregator.log&amp;quot;
+         DiskSpaceExhaustedBehavior=&amp;quot;ThrowException&amp;quot;
+         Location=&amp;quot;Custom&amp;quot;
+         CustomLocation = &amp;quot;C:\Temp&amp;quot;
+         MaxFileSize=&amp;quot;81920000&amp;quot;
+         LogFileCreationSchedule=&amp;quot;Daily&amp;quot;/&amp;gt;
+  &amp;lt;/sharedListeners&amp;gt;
+  &amp;lt;trace autoflush=&amp;quot;true&amp;quot;/&amp;gt;
+&amp;lt;/system.diagnostics&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;TFS web.config is usually located in &lt;code&gt;C:\Program Files\Microsoft Team Foundation Server 15.0\Application Tier\Web Services\web.config&lt;/code&gt; or similar.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Troubleshooting</title>
       <link>https://tfsaggregator.github.io/admin/troubleshooting/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -651,91 +751,6 @@ your policy files before applying to TFS.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;See &lt;a href=&#34;https://tfsaggregator.github.io/admin/console-app&#34;&gt;Console Application&lt;/a&gt; for more information on using the command line tool.&lt;/p&gt;
-
-&lt;h2 id=&#34;enable-debug-logging&#34;&gt;Enable Debug Logging&lt;/h2&gt;
-
-&lt;p&gt;You can also enable Logging. There are two parts to enable logging.&lt;/p&gt;
-
-&lt;p&gt;The first is that you have to set a &lt;code&gt;level&lt;/code&gt; attribute to the &lt;code&gt;logging&lt;/code&gt; element in your &lt;code&gt;TFSAggregator2.ServerPlugin.policies&lt;/code&gt; file.
-Use a value like &lt;code&gt;Verbose&lt;/code&gt; or &lt;code&gt;Diagnostic&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
-&amp;lt;AggregatorConfiguration&amp;gt;
-    &amp;lt;runtime&amp;gt;
-        &amp;lt;logging level=&amp;quot;Diagnostic&amp;quot;/&amp;gt;
-    &amp;lt;/runtime&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Note that you can use the &lt;a href=&#34;https://tfsaggregator.github.io/using/objects-reference/logger-object/&#34;&gt;&lt;code&gt;logger&lt;/code&gt; object&lt;/a&gt; in your rules to trace execution and  values.&lt;/p&gt;
-
-&lt;h3 id=&#34;capturing-log-on-tfs&#34;&gt;Capturing log on TFS&lt;/h3&gt;
-
-&lt;p&gt;Then you need to download &lt;a href=&#34;https://technet.microsoft.com/en-us/sysinternals/debugview.aspx&#34;&gt;&lt;strong&gt;DebugView&lt;/strong&gt;&lt;/a&gt; from Microsoft&amp;rsquo;s SysInternals site.&lt;/p&gt;
-
-&lt;p&gt;DebugView is a Trace Listener and will capture the trace messages from TFSAggregator.
-&lt;img src=&#34;./messages-in-dbgview.png&#34; alt=&#34;TFSAggregator messages in DebugView&#34; /&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;You have to run DebugView on &lt;em&gt;all&lt;/em&gt; TFS Application Tier machines&lt;/strong&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;We would recommend adding the &lt;code&gt;*TFSAggregator*&lt;/code&gt; filter to DebugView so that you only see the TFSAggregator traces.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;./dbg-view-filter.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Make sure to enable the &lt;strong&gt;Capture Global Win32&lt;/strong&gt; option.
-Download DebugView at &lt;a href=&#34;http://technet.microsoft.com/en-us/sysinternals/bb896647&#34;&gt;http://technet.microsoft.com/en-us/sysinternals/bb896647&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;capturing-log-on-azure&#34;&gt;Capturing log on Azure&lt;/h3&gt;
-
-&lt;p&gt;See &lt;a href=&#34;https://tfsaggregator.github.io/admin/install-webhooks/#setup-logging-optional&#34;&gt;Setup logging&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;on-premise-production-logging-2-1&#34;&gt;On-premise Production Logging (2.1)&lt;/h2&gt;
-
-&lt;p&gt;TFS Aggregator log messages go to:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Debug output (appers in the Output window of a debugger)&lt;/li&gt;
-&lt;li&gt;Application EventLog (&lt;em&gt;TFS Aggregator&lt;/em&gt; source) when message level is &lt;code&gt;Warning&lt;/code&gt; or &lt;code&gt;Critical&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Trace listeners&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;User messages &amp;ndash; i.e. &lt;code&gt;logger.Log&lt;/code&gt; calls in Rules &amp;ndash; use a specific Trace source: &lt;code&gt;TfsAggregator.User&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Now, you can send traces to a file by adding to TFS &lt;code&gt;web.config&lt;/code&gt; a &lt;code&gt;system.diagnostics&lt;/code&gt; section similar to the this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;system.diagnostics&amp;gt;
-  &amp;lt;sources&amp;gt;
-    &amp;lt;source name=&amp;quot;TfsAggregator.ServerPlugin&amp;quot; switchValue=&amp;quot;All&amp;quot;&amp;gt;
-      &amp;lt;listeners&amp;gt;
-        &amp;lt;remove name=&amp;quot;Default&amp;quot; /&amp;gt;
-        &amp;lt;add name=&amp;quot;filelog&amp;quot; /&amp;gt;
-      &amp;lt;/listeners&amp;gt;
-    &amp;lt;/source&amp;gt;
-    &amp;lt;source name=&amp;quot;TfsAggregator.User&amp;quot; switchValue=&amp;quot;All&amp;quot;&amp;gt;
-      &amp;lt;listeners&amp;gt;
-        &amp;lt;remove name=&amp;quot;Default&amp;quot; /&amp;gt;
-        &amp;lt;add name=&amp;quot;filelog&amp;quot; /&amp;gt;
-      &amp;lt;/listeners&amp;gt;
-    &amp;lt;/source&amp;gt;
-  &amp;lt;/sources&amp;gt;
-  &amp;lt;sharedListeners&amp;gt;
-    &amp;lt;add name=&amp;quot;filelog&amp;quot;
-         type=&amp;quot;Microsoft.VisualBasic.Logging.FileLogTraceListener, 
-                   Microsoft.VisualBasic, Version=10.0.0.0, 
-                   Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&amp;quot;
-         BaseFileName=&amp;quot;TfsAggregator.log&amp;quot;
-         DiskSpaceExhaustedBehavior=&amp;quot;ThrowException&amp;quot;
-         Location=&amp;quot;Custom&amp;quot;
-         CustomLocation = &amp;quot;C:\Temp&amp;quot;
-         MaxFileSize=&amp;quot;81920000&amp;quot;
-         LogFileCreationSchedule=&amp;quot;Daily&amp;quot;/&amp;gt;
-  &amp;lt;/sharedListeners&amp;gt;
-  &amp;lt;trace autoflush=&amp;quot;true&amp;quot;/&amp;gt;
-&amp;lt;/system.diagnostics&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;TFS web.config is usually located in &lt;code&gt;C:\Program Files\Microsoft Team Foundation Server 15.0\Application Tier\Web Services\web.config&lt;/code&gt; or similar.&lt;/p&gt;
 </description>
     </item>
     

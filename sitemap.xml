@@ -123,27 +123,32 @@
   
   <url>
     <loc>https://tfsaggregator.github.io/admin/install-webhooks/</loc>
-    <lastmod>2017-01-12T23:20:53+01:00</lastmod>
+    <lastmod>2017-04-14T11:17:53+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/admin/console-app/</loc>
-    <lastmod>2017-01-12T23:20:53+01:00</lastmod>
+    <lastmod>2017-04-14T11:17:53+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/admin/logging/</loc>
+    <lastmod>2017-04-14T11:17:53+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/admin/troubleshooting/</loc>
-    <lastmod>2017-04-14T10:47:27+02:00</lastmod>
+    <lastmod>2017-04-14T11:17:53+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/admin/support/</loc>
-    <lastmod>2017-04-14T10:47:27+02:00</lastmod>
+    <lastmod>2017-04-14T11:17:53+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/admin/security/</loc>
-    <lastmod>2017-04-14T10:47:27+02:00</lastmod>
+    <lastmod>2017-04-14T11:17:53+02:00</lastmod>
   </url>
   
   <url>
@@ -183,7 +188,7 @@
   
   <url>
     <loc>https://tfsaggregator.github.io/admin/</loc>
-    <lastmod>2017-04-14T10:47:27+02:00</lastmod>
+    <lastmod>2017-04-14T11:17:53+02:00</lastmod>
     <priority>0</priority>
   </url>
   

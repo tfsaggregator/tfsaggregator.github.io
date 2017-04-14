@@ -422,6 +422,16 @@
           
           
           
+            <li class="dd-item " data-nav-id="/admin/logging/">
+              <a href="https://tfsaggregator.github.io/admin/logging/">
+                <span>
+                  
+                  Logging     </i></span>
+              </a>
+            </li>
+          
+          
+          
             <li class="dd-item active" data-nav-id="/admin/troubleshooting/">
               <a href="https://tfsaggregator.github.io/admin/troubleshooting/">
                 <span>
@@ -614,12 +624,6 @@
 <li><a href="#web-service-checklist">Web Service Checklist</a></li>
 <li><a href="#policy-rules-checklist">Policy / Rules Checklist</a></li>
 <li><a href="#use-console-application">Use Console Application</a></li>
-<li><a href="#enable-debug-logging">Enable Debug Logging</a>
-<ul>
-<li><a href="#capturing-log-on-tfs">Capturing log on TFS</a></li>
-<li><a href="#capturing-log-on-azure">Capturing log on Azure</a></li>
-</ul></li>
-<li><a href="#on-premise-production-logging-2-1">On-premise Production Logging (2.1)</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -711,97 +715,12 @@
 
 <p>See <a href="https://tfsaggregator.github.io/admin/console-app">Console Application</a> for more information on using the command line tool.</p>
 
-<h2 id="enable-debug-logging">Enable Debug Logging</h2>
-
-<p>You can also enable Logging. There are two parts to enable logging.</p>
-
-<p>The first is that you have to set a <code>level</code> attribute to the <code>logging</code> element in your <code>TFSAggregator2.ServerPlugin.policies</code> file.
-Use a value like <code>Verbose</code> or <code>Diagnostic</code>.</p>
-
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;AggregatorConfiguration&gt;
-    &lt;runtime&gt;
-        &lt;logging level=&quot;Diagnostic&quot;/&gt;
-    &lt;/runtime&gt;
-</code></pre>
-
-<p>Note that you can use the <a href="https://tfsaggregator.github.io/using/objects-reference/logger-object/"><code>logger</code> object</a> in your rules to trace execution and  values.</p>
-
-<h3 id="capturing-log-on-tfs">Capturing log on TFS</h3>
-
-<p>Then you need to download <a href="https://technet.microsoft.com/en-us/sysinternals/debugview.aspx"><strong>DebugView</strong></a> from Microsoft&rsquo;s SysInternals site.</p>
-
-<p>DebugView is a Trace Listener and will capture the trace messages from TFSAggregator.
-<img src="./messages-in-dbgview.png" alt="TFSAggregator messages in DebugView" /></p>
-
-<blockquote>
-<p><strong>You have to run DebugView on <em>all</em> TFS Application Tier machines</strong>.</p>
-</blockquote>
-
-<p>We would recommend adding the <code>*TFSAggregator*</code> filter to DebugView so that you only see the TFSAggregator traces.</p>
-
-<p><img src="./dbg-view-filter.png" alt="" /></p>
-
-<p>Make sure to enable the <strong>Capture Global Win32</strong> option.
-Download DebugView at <a href="http://technet.microsoft.com/en-us/sysinternals/bb896647">http://technet.microsoft.com/en-us/sysinternals/bb896647</a>.</p>
-
-<h3 id="capturing-log-on-azure">Capturing log on Azure</h3>
-
-<p>See <a href="https://tfsaggregator.github.io/admin/install-webhooks/#setup-logging-optional">Setup logging</a>.</p>
-
-<h2 id="on-premise-production-logging-2-1">On-premise Production Logging (2.1)</h2>
-
-<p>TFS Aggregator log messages go to:</p>
-
-<ul>
-<li>Debug output (appers in the Output window of a debugger)</li>
-<li>Application EventLog (<em>TFS Aggregator</em> source) when message level is <code>Warning</code> or <code>Critical</code></li>
-<li>Trace listeners</li>
-</ul>
-
-<p>User messages &ndash; i.e. <code>logger.Log</code> calls in Rules &ndash; use a specific Trace source: <code>TfsAggregator.User</code>.</p>
-
-<p>Now, you can send traces to a file by adding to TFS <code>web.config</code> a <code>system.diagnostics</code> section similar to the this:</p>
-
-<pre><code>&lt;system.diagnostics&gt;
-  &lt;sources&gt;
-    &lt;source name=&quot;TfsAggregator.ServerPlugin&quot; switchValue=&quot;All&quot;&gt;
-      &lt;listeners&gt;
-        &lt;remove name=&quot;Default&quot; /&gt;
-        &lt;add name=&quot;filelog&quot; /&gt;
-      &lt;/listeners&gt;
-    &lt;/source&gt;
-    &lt;source name=&quot;TfsAggregator.User&quot; switchValue=&quot;All&quot;&gt;
-      &lt;listeners&gt;
-        &lt;remove name=&quot;Default&quot; /&gt;
-        &lt;add name=&quot;filelog&quot; /&gt;
-      &lt;/listeners&gt;
-    &lt;/source&gt;
-  &lt;/sources&gt;
-  &lt;sharedListeners&gt;
-    &lt;add name=&quot;filelog&quot;
-         type=&quot;Microsoft.VisualBasic.Logging.FileLogTraceListener, 
-                   Microsoft.VisualBasic, Version=10.0.0.0, 
-                   Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&quot;
-         BaseFileName=&quot;TfsAggregator.log&quot;
-         DiskSpaceExhaustedBehavior=&quot;ThrowException&quot;
-         Location=&quot;Custom&quot;
-         CustomLocation = &quot;C:\Temp&quot;
-         MaxFileSize=&quot;81920000&quot;
-         LogFileCreationSchedule=&quot;Daily&quot;/&gt;
-  &lt;/sharedListeners&gt;
-  &lt;trace autoflush=&quot;true&quot;/&gt;
-&lt;/system.diagnostics&gt;
-</code></pre>
-
-<p>TFS web.config is usually located in <code>C:\Program Files\Microsoft Team Foundation Server 15.0\Application Tier\Web Services\web.config</code> or similar.</p>
-
 
       
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: April 14, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/eafd60410124837f4e84a8bafae6e17ac17aebe6">Troubleshooting page: moved out Support info, added WS section (eafd604)</a>
+<p>Last revision: April 14, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/7d4f61fac4d7c3d07d55670dd4c22a1217ff056c">Collected al logging info in a page, revised some pics (7d4f61f)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>
@@ -810,7 +729,7 @@ Download DebugView at <a href="http://technet.microsoft.com/en-us/sysinternals/b
 
     <div id="navigation">
         
-        <a class="nav nav-prev" href="https://tfsaggregator.github.io//admin/console-app"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-prev" href="https://tfsaggregator.github.io//admin/logging"> <i class="fa fa-chevron-left"></i></a>
         <a class="nav nav-next" href="https://tfsaggregator.github.io//admin/support" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 
