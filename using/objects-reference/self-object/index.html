@@ -715,7 +715,7 @@ You can use the pre-defined <code>WorkItemImplementationBase.ChildRelationship</
 
 <h2 id="addworkitemlink-methods">AddWorkItemLink methods</h2>
 
-<p>Add a link to another work item.</p>
+<p>Add a link to another work item, the arguments are the linked workitem and the name of Link Type.</p>
 
 <pre><code>var parent = self;
 if (!self.HasChildren())
@@ -726,7 +726,7 @@ if (!self.HasChildren())
 }
 </code></pre>
 
-<p>You can use the pre-defined <code>WorkItemImplementationBase.ChildRelationship</code> and <code>WorkItemImplementationBase.ParentRelationship</code>.</p>
+<p>You can use the pre-defined <code>WorkItemImplementationBase.ChildRelationship</code> and <code>WorkItemImplementationBase.ParentRelationship</code> for the name.</p>
 
 <blockquote>
 <p>Be careful to use the Immutable name of a Link Type, e.g. <code>System.LinkTypes.Hierarchy-Reverse</code>.</p>
@@ -734,7 +734,7 @@ if (!self.HasChildren())
 
 <h2 id="addhyperlink-method">AddHyperlink method</h2>
 
-<p>Add an hyperlink to an URL.</p>
+<p>Add an hyperlink to an URL, with an optional comment.</p>
 
 <pre><code>self.AddHyperlink(&quot;https://github.com/tfsaggregator/tfsaggregator&quot;, &quot;Automatically added&quot;);
 </code></pre>
@@ -840,7 +840,7 @@ foreach (var test in tests)
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: March 19, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/e9e29282100419406d5cf81dcfb1357cd8c70a50">RemoveWorkItemLink method (e9e2928)</a>
+<p>Last revision: April 24, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/4be79574b1cde0280382221872651383c81b2cd4">clarified some parmeters (4be7957)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>

@@ -369,7 +369,7 @@ You can use the pre-defined &lt;code&gt;WorkItemImplementationBase.ChildRelation
 
 &lt;h2 id=&#34;addworkitemlink-methods&#34;&gt;AddWorkItemLink methods&lt;/h2&gt;
 
-&lt;p&gt;Add a link to another work item.&lt;/p&gt;
+&lt;p&gt;Add a link to another work item, the arguments are the linked workitem and the name of Link Type.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;var parent = self;
 if (!self.HasChildren())
@@ -380,7 +380,7 @@ if (!self.HasChildren())
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;You can use the pre-defined &lt;code&gt;WorkItemImplementationBase.ChildRelationship&lt;/code&gt; and &lt;code&gt;WorkItemImplementationBase.ParentRelationship&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;You can use the pre-defined &lt;code&gt;WorkItemImplementationBase.ChildRelationship&lt;/code&gt; and &lt;code&gt;WorkItemImplementationBase.ParentRelationship&lt;/code&gt; for the name.&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Be careful to use the Immutable name of a Link Type, e.g. &lt;code&gt;System.LinkTypes.Hierarchy-Reverse&lt;/code&gt;.&lt;/p&gt;
@@ -388,7 +388,7 @@ if (!self.HasChildren())
 
 &lt;h2 id=&#34;addhyperlink-method&#34;&gt;AddHyperlink method&lt;/h2&gt;
 
-&lt;p&gt;Add an hyperlink to an URL.&lt;/p&gt;
+&lt;p&gt;Add an hyperlink to an URL, with an optional comment.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;self.AddHyperlink(&amp;quot;https://github.com/tfsaggregator/tfsaggregator&amp;quot;, &amp;quot;Automatically added&amp;quot;);
 &lt;/code&gt;&lt;/pre&gt;
