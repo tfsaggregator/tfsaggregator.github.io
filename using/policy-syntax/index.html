@@ -620,7 +620,11 @@
 <ul>
 <li>
 <ul>
-<li><a href="#reference-to-xml-syntax-of-policies-file">Reference to XML syntax of Policies file.</a></li>
+<li><a href="#runtime-section">runtime section</a></li>
+<li><a href="#snippet-sections">snippet sections</a></li>
+<li><a href="#functions-sections">functions sections</a></li>
+<li><a href="#rule-sections">rule sections</a></li>
+<li><a href="#policy-sections">policy sections</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -638,7 +642,7 @@
 
 
 
-<h2 id="reference-to-xml-syntax-of-policies-file">Reference to XML syntax of Policies file.</h2>
+<p>This page describes the content of a policies file.</p>
 
 <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 </code></pre>
@@ -649,6 +653,10 @@
 </code></pre>
 
 <p><strong>AggregatorConfiguration</strong>: The main node for all the configuration options. (Single)</p>
+
+<h2 id="runtime-section">runtime section</h2>
+
+<p>This section controls general behaviour for TFS Aggregator, e.g. authentication credentials or logging level.</p>
 
 <pre><code>    &lt;runtime debug=&quot;False&quot;&gt;
 </code></pre>
@@ -736,6 +744,10 @@ Avoid to use if possibile.</li>
     &lt;/snippet&gt;
 </code></pre>
 
+<h2 id="snippet-sections">snippet sections</h2>
+
+<p>These sections can contains helper code to write the Rules (see below).</p>
+
 <p><strong>snippet</strong>: Represents a code macro rule. (2.2, Repeatable)</p>
 
 <ul>
@@ -746,11 +758,19 @@ Avoid to use if possibile.</li>
     &lt;/function&gt;
 </code></pre>
 
+<h2 id="functions-sections">functions sections</h2>
+
+<p>These sections can contains helper code to write the Rules (see below).</p>
+
 <p><strong>function</strong>: Contains methods callable from rules. (2.2, Repeatable)</p>
 
 <pre><code>    &lt;rule name=&quot;Noop&quot; appliesTo=&quot;Task,Bug&quot; hasFields=&quot;System.Title,System.Description&quot;&gt;
     &lt;/rule&gt;
 </code></pre>
+
+<h2 id="rule-sections">rule sections</h2>
+
+<p>This is the core of this file: these sections contains the Rules applied to work items.</p>
 
 <p><strong>rule</strong>: Represents a single rule. (Repeatable)</p>
 
@@ -769,6 +789,10 @@ See <a href="Scripting">Scripting</a> for additional details on Rules&rsquo; cod
 
 <pre><code>    &lt;policy name=&quot;DefaultPolicy&quot;&gt;
 </code></pre>
+
+<h2 id="policy-sections">policy sections</h2>
+
+<p>These sections maps rule to Collections and Projects.</p>
 
 <p><strong>policy</strong>: Represent a set of aggregation rules that apply to a particular scope. (Repeatable)</p>
 
@@ -823,7 +847,7 @@ See <a href="Scripting">Scripting</a> for additional details on Rules&rsquo; cod
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: March 22, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/a1c22269092880bc0f3a82a15ecf655fb7b60f9a">swapped server and authentication elements (a1c2226)</a>
+<p>Last revision: April 28, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/549c942abc30bad68a3e86890f7369a522af270b">added sub-headers (549c942)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>

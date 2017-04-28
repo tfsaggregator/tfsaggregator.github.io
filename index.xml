@@ -220,7 +220,7 @@ Open TfsAggregator2 solution in Visual Studio, open a policy file using built-in
       <guid>https://tfsaggregator.github.io/using/policy-syntax/</guid>
       <description>
 
-&lt;h2 id=&#34;reference-to-xml-syntax-of-policies-file&#34;&gt;Reference to XML syntax of Policies file.&lt;/h2&gt;
+&lt;p&gt;This page describes the content of a policies file.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -231,6 +231,10 @@ Open TfsAggregator2 solution in Visual Studio, open a policy file using built-in
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;strong&gt;AggregatorConfiguration&lt;/strong&gt;: The main node for all the configuration options. (Single)&lt;/p&gt;
+
+&lt;h2 id=&#34;runtime-section&#34;&gt;runtime section&lt;/h2&gt;
+
+&lt;p&gt;This section controls general behaviour for TFS Aggregator, e.g. authentication credentials or logging level.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;    &amp;lt;runtime debug=&amp;quot;False&amp;quot;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
@@ -318,6 +322,10 @@ Avoid to use if possibile.&lt;/li&gt;
     &amp;lt;/snippet&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;h2 id=&#34;snippet-sections&#34;&gt;snippet sections&lt;/h2&gt;
+
+&lt;p&gt;These sections can contains helper code to write the Rules (see below).&lt;/p&gt;
+
 &lt;p&gt;&lt;strong&gt;snippet&lt;/strong&gt;: Represents a code macro rule. (2.2, Repeatable)&lt;/p&gt;
 
 &lt;ul&gt;
@@ -328,11 +336,19 @@ Avoid to use if possibile.&lt;/li&gt;
     &amp;lt;/function&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;h2 id=&#34;functions-sections&#34;&gt;functions sections&lt;/h2&gt;
+
+&lt;p&gt;These sections can contains helper code to write the Rules (see below).&lt;/p&gt;
+
 &lt;p&gt;&lt;strong&gt;function&lt;/strong&gt;: Contains methods callable from rules. (2.2, Repeatable)&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;    &amp;lt;rule name=&amp;quot;Noop&amp;quot; appliesTo=&amp;quot;Task,Bug&amp;quot; hasFields=&amp;quot;System.Title,System.Description&amp;quot;&amp;gt;
     &amp;lt;/rule&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;rule-sections&#34;&gt;rule sections&lt;/h2&gt;
+
+&lt;p&gt;This is the core of this file: these sections contains the Rules applied to work items.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;rule&lt;/strong&gt;: Represents a single rule. (Repeatable)&lt;/p&gt;
 
@@ -351,6 +367,10 @@ See &lt;a href=&#34;Scripting&#34;&gt;Scripting&lt;/a&gt; for additional details
 
 &lt;pre&gt;&lt;code&gt;    &amp;lt;policy name=&amp;quot;DefaultPolicy&amp;quot;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;policy-sections&#34;&gt;policy sections&lt;/h2&gt;
+
+&lt;p&gt;These sections maps rule to Collections and Projects.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;policy&lt;/strong&gt;: Represent a set of aggregation rules that apply to a particular scope. (Repeatable)&lt;/p&gt;
 
