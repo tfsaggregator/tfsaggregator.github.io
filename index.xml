@@ -318,13 +318,13 @@ Can be useful is TFS is misconfigured, or you have some special requirements.
 Avoid to use if possibile.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;pre&gt;&lt;code&gt;    &amp;lt;snippet name=&amp;quot;MySnippet&amp;quot;&amp;gt;
-    &amp;lt;/snippet&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
 &lt;h2 id=&#34;snippet-sections&#34;&gt;snippet sections&lt;/h2&gt;
 
 &lt;p&gt;These sections can contains helper code to write the Rules (see below).&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    &amp;lt;snippet name=&amp;quot;MySnippet&amp;quot;&amp;gt;
+    &amp;lt;/snippet&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;strong&gt;snippet&lt;/strong&gt;: Represents a code macro rule. (2.2, Repeatable)&lt;/p&gt;
 
@@ -332,23 +332,23 @@ Avoid to use if possibile.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;name&lt;/strong&gt;: The name of this code macro. (Mandatory)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;pre&gt;&lt;code&gt;    &amp;lt;function&amp;gt;
-    &amp;lt;/function&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
 &lt;h2 id=&#34;functions-sections&#34;&gt;functions sections&lt;/h2&gt;
 
 &lt;p&gt;These sections can contains helper code to write the Rules (see below).&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;function&lt;/strong&gt;: Contains methods callable from rules. (2.2, Repeatable)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    &amp;lt;rule name=&amp;quot;Noop&amp;quot; appliesTo=&amp;quot;Task,Bug&amp;quot; hasFields=&amp;quot;System.Title,System.Description&amp;quot;&amp;gt;
-    &amp;lt;/rule&amp;gt;
+&lt;pre&gt;&lt;code&gt;    &amp;lt;function&amp;gt;
+    &amp;lt;/function&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;function&lt;/strong&gt;: Contains methods callable from rules. (2.2, Repeatable)&lt;/p&gt;
 
 &lt;h2 id=&#34;rule-sections&#34;&gt;rule sections&lt;/h2&gt;
 
 &lt;p&gt;This is the core of this file: these sections contains the Rules applied to work items.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    &amp;lt;rule name=&amp;quot;Noop&amp;quot; appliesTo=&amp;quot;Task,Bug&amp;quot; hasFields=&amp;quot;System.Title,System.Description&amp;quot;&amp;gt;
+    &amp;lt;/rule&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;strong&gt;rule&lt;/strong&gt;: Represents a single rule. (Repeatable)&lt;/p&gt;
 
@@ -365,12 +365,12 @@ The &lt;code&gt;self&lt;/code&gt; (&lt;code&gt;$self&lt;/code&gt; in PowerShell)
 &lt;p&gt;We recommended using &lt;a href=&#34;http://www.w3.org/TR/REC-xml/#sec-cdata-sect&#34;&gt;CDATA&lt;/a&gt; to wrap script code.
 See &lt;a href=&#34;Scripting&#34;&gt;Scripting&lt;/a&gt; for additional details on Rules&amp;rsquo; code.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;    &amp;lt;policy name=&amp;quot;DefaultPolicy&amp;quot;&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
 &lt;h2 id=&#34;policy-sections&#34;&gt;policy sections&lt;/h2&gt;
 
 &lt;p&gt;These sections maps rule to Collections and Projects.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    &amp;lt;policy name=&amp;quot;DefaultPolicy&amp;quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;strong&gt;policy&lt;/strong&gt;: Represent a set of aggregation rules that apply to a particular scope. (Repeatable)&lt;/p&gt;
 
