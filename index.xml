@@ -365,6 +365,8 @@ The &lt;code&gt;self&lt;/code&gt; (&lt;code&gt;$self&lt;/code&gt; in PowerShell)
 &lt;p&gt;We recommended using &lt;a href=&#34;http://www.w3.org/TR/REC-xml/#sec-cdata-sect&#34;&gt;CDATA&lt;/a&gt; to wrap script code.
 See &lt;a href=&#34;Scripting&#34;&gt;Scripting&lt;/a&gt; for additional details on Rules&amp;rsquo; code.&lt;/p&gt;
 
+&lt;p&gt;To invoke a &lt;a href=&#34;https://tfsaggregator.github.io/using/policy-syntax/#snippet-sections&#34;&gt;snippet&lt;/a&gt; the syntax is &lt;code&gt;${&lt;/code&gt;&lt;em&gt;nameOfSnippet&lt;/em&gt;&lt;code&gt;}&lt;/code&gt;.&lt;/p&gt;
+
 &lt;h2 id=&#34;policy-sections&#34;&gt;policy sections&lt;/h2&gt;
 
 &lt;p&gt;These sections maps rule to Collections and Projects.&lt;/p&gt;
