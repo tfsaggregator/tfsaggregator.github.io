@@ -520,8 +520,8 @@
           
           
           
-            <li class="dd-item " data-nav-id="/contrib/debugging/">
-              <a href="https://tfsaggregator.github.io/contrib/debugging/">
+            <li class="dd-item " data-nav-id="/contrib/debugging/debugging/">
+              <a href="https://tfsaggregator.github.io/contrib/debugging/debugging/">
                 <span>
                   
                   Debugging     </i></span>
@@ -535,6 +535,16 @@
                 <span>
                   
                   Continuous Integration     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/contrib/documentation/">
+              <a href="https://tfsaggregator.github.io/contrib/documentation/">
+                <span>
+                  
+                  Documentation     </i></span>
               </a>
             </li>
           
@@ -626,6 +636,7 @@
 <li><a href="#hasparent-haschildren-hasrelation-methods">HasParent / HasChildren / HasRelation methods</a></li>
 <li><a href="#addworkitemlink-methods">AddWorkItemLink methods</a></li>
 <li><a href="#addhyperlink-method">AddHyperlink method</a></li>
+<li><a href="#workitemlinks-property-v2-3">WorkItemLinks property (<strong>v2.3</strong>)</a></li>
 <li><a href="#removeworkitemlink-method-v2-3">RemoveWorkItemLink method (<strong>v2.3</strong>)</a></li>
 <li><a href="#history-and-related-properties">History and related properties</a></li>
 <li><a href="#miscellaneous-properties">Miscellaneous properties</a></li>
@@ -739,6 +750,20 @@ if (!self.HasChildren())
 <pre><code>self.AddHyperlink(&quot;https://github.com/tfsaggregator/tfsaggregator&quot;, &quot;Automatically added&quot;);
 </code></pre>
 
+<h2 id="workitemlinks-property-v2-3">WorkItemLinks property (<strong>v2.3</strong>)</h2>
+
+<p>Collection of existing work item links.</p>
+
+<pre><code>foreach (var link in self.WorkItemLinks) {
+   if (link.Target.Id == 1) {
+       logger.Log(
+           &quot;RemoveLinkRule removing {0} to #{1}&quot;
+           , link.LinkTypeEndImmutableName, link.Target.Id);
+       break;
+   }
+}
+</code></pre>
+
 <h2 id="removeworkitemlink-method-v2-3">RemoveWorkItemLink method (<strong>v2.3</strong>)</h2>
 
 <p>Remove a link to another work item.</p>
@@ -840,7 +865,7 @@ foreach (var test in tests)
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: April 24, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/4be79574b1cde0280382221872651383c81b2cd4">clarified some parmeters (4be7957)</a>
+<p>Last revision: July 31, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/36ce3279f542b683164657cf35c95b8ebc6beec3">Aligned docs for 2.3 RC (36ce327)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>

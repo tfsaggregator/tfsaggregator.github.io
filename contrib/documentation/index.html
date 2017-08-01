@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://tfsaggregator.github.io/images/favicon.png" type="image/x-icon" />
 
     
-    <title></title>
+    <title>Documentation</title>
     <link href="https://tfsaggregator.github.io//css/nucleus.css" rel="stylesheet">
     <link href="https://tfsaggregator.github.io//css/font-awesome.min.css" rel="stylesheet">
     <link href="https://tfsaggregator.github.io//css/hybrid.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     
 
   </head>
-  <body class="" data-url="/CHANGELOG/">
+  <body class="" data-url="/contrib/documentation/">
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
@@ -474,7 +474,7 @@
       
       
 
-      <li class="dd-item  " data-nav-id="/contrib/">
+      <li class="dd-item  parent" data-nav-id="/contrib/">
         <a href="https://tfsaggregator.github.io/contrib/">
           <span>
             
@@ -540,7 +540,7 @@
           
           
           
-            <li class="dd-item " data-nav-id="/contrib/documentation/">
+            <li class="dd-item active" data-nav-id="/contrib/documentation/">
               <a href="https://tfsaggregator.github.io/contrib/documentation/">
                 <span>
                   
@@ -587,7 +587,7 @@
                 
                 
               <div id="top-github-link">
-                  <a class="github-link" href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/edit/master/content/CHANGELOG.md" target="blank">
+                  <a class="github-link" href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/edit/master/content/contrib/documentation.md" target="blank">
                     <i class="fa fa-code-fork"></i>
                     Edit this page
                   </a>
@@ -601,105 +601,62 @@
                       </a>
                   </span>
                 
+                <span id="toc-menu"><a href=""><i class="fa fa-list-alt"></i></a></span>
                 
                 
                 
-                  
-                
-                  
                 
                   
                 
                   
                 
                   
+                    
+                    
+                <a href="https://tfsaggregator.github.io/contrib/" itemprop="url"><span itemprop="title">Contributing</span></a> <i class="fa fa-angle-right"></i>
+                    
+                  
                 
+                  
                 
+                  
+                
+                <span itemprop="title"> Documentation</span>
               </div>
+              
+                  <div class="progress">
+    <div class="wrapper">
+
+    </div>
+</div>
+
               
 
             </div>
             
     	        <div id="body-inner">
                 
-                <h1></h1>
+                <h1>Documentation</h1>
                 
 
+<p>The source for documentation is <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo">tfsaggregator-docs-hugo</a>.
+Note that you need to pull down also the theme submodule.</p>
 
+<p>The <code>master</code> branch content must match the latest release.
+To prepare documentation for a future release, use a branch as in the code repository.</p>
 
-<h1 id="history-of-changes">History of Changes</h1>
+<p>Get <a href="https://gohugo.io/getting-started/installing/">Hugo</a> Hugo v0.18.1.</p>
 
-<h2 id="what-s-new-in-v2-3-rc1">What’s new in v2.3 (RC1)</h2>
+<p>Run <code>hugo server</code> to test the changes locally.</p>
 
-<ul>
-<li>Support for TFS 2017 Update 2</li>
-<li>Reading and removal of Work item Links <a href="https://tfsaggregator.github.io/using/objects-reference/self-object/#workitemlinks-property-v2-3"><code>self.WorkItemLinks</code></a> <a href="https://tfsaggregator.github.io/using/objects-reference/self-object/#removeworkitemlink-method-v2-3"><code>self.RemoveWorkItemLink</code></a></li>
-<li>Global List editing with <a href="https://tfsaggregator.github.io/using/objects-reference/store-object/#additemtogloballist-method-v2-3"><code>AddItemToGlobalList</code></a> and <a href="https://tfsaggregator.github.io/using/objects-reference/store-object/#removeitemfromgloballist-method-v2-3"><code>RemoveItemFromGlobalList</code></a></li>
-<li>Startup logging controlled by configuration file</li>
-<li>Fix SendMail (see <a href="https://github.com/tfsaggregator/tfsaggregator/issues/206">#206</a>)</li>
-<li>Fix TF26027 error using <code>TransitionToState</code> with non-English templates (see <a href="https://github.com/tfsaggregator/tfsaggregator/issues/232">#232</a>)</li>
-<li>Fix <code>BasicAuthenticationToken</code> bug (see <a href="https://github.com/tfsaggregator/tfsaggregator-webhooks/pull/5">PR #5</a>)</li>
-<li>New code layout, contributors are urged to read <a href="https://tfsaggregator.github.io/contrib/source-code/">Source Code</a></li>
-</ul>
-
-<h2 id="what-s-new-in-v2-3-beta">What’s new in v2.3 (beta)</h2>
-
-<ul>
-<li>Support for VSTS &amp; TFS 2015 / 2017 Web Hooks via Web Service</li>
-<li>Additional authentication modes</li>
-<li>Rule filter on change event (<code>New</code>,<code>Change</code>,<code>Delete</code>,<code>Restore</code>)</li>
-<li><em>Deploy to Azure</em> button for an easy deployment</li>
-</ul>
-
-<h2 id="what-s-new-in-v2-2">What&rsquo;s new in v2.2</h2>
-
-<ul>
-<li>Support for TFS 2017</li>
-<li>Macro snippets and Functions for Rules and make code more modular</li>
-<li>Ability to specify server URL</li>
-<li>Support for multiple workitem Ids in Console application (issue <a href="https://github.com/tfsaggregator/tfsaggregator/issues/178">#178</a>)</li>
-<li>Ability to Send email from Rules</li>
-<li>Migrated CI build from AppVeyor to VSTS</li>
-<li>Use of GitVersion to manage <a href="http://semver.org/">Semantic Versioning</a></li>
-</ul>
-
-<h2 id="what-s-new-in-v2-1-1">What&rsquo;s new in v2.1.1</h2>
-
-<ul>
-<li>Fixes important bug causing very high CPU usage (see <a href="https://github.com/tfsaggregator/tfsaggregator/issues/160">#160</a>).</li>
-</ul>
-
-<h2 id="what-s-new-in-v2-1">What&rsquo;s new in v2.1</h2>
-
-<ul>
-<li>Support for TFS 2015.2, TFS 2015.2.1 and TFS 2015.3</li>
-<li>Extended logging in debug version</li>
-<li>Ability to override base Uri of the aggregator</li>
-<li>Improvements in the setup</li>
-<li>Adds <code>PreviousRevision</code>/<code>NextRevision</code> properties to Work Items to navigate history</li>
-<li>Adds <code>Uri</code> field to Work Items</li>
-<li>Removed policyscope on Workitem template GUID and revision (didn&rsquo;t work anyway)</li>
-</ul>
-
-<h2 id="what-s-new-in-v2">What&rsquo;s new in v2</h2>
-
-<ul>
-<li>A &lsquo;real&rsquo; Scripting language (C#, VB, Powershell)</li>
-<li>Scoping allows select which rules apply to which Team Project</li>
-<li>Enhanced filtering to trigger rules when conditions are met</li>
-<li>Console application to quickly test new rules</li>
-<li>Richer logging</li>
-<li>Test harness and modularity to ease adding new features</li>
-<li>Create new Work Items and Links using rules</li>
-<li>and more&hellip;</li>
-</ul>
+<p>Read the full details in this <a href="http://blog.casavian.eu/2017/03/07/automate-publishing-documentation-using-hugo-and-github-pages/">blog post</a>.</p>
 
 
       
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: July 31, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/34594f88c86aa4248cd953c8d9b58f1a1fa6fbde">Global default logging level &amp; debugging Web Service (34594f8)</a>
+<p>Last revision: July 31, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/36ce3279f542b683164657cf35c95b8ebc6beec3">Aligned docs for 2.3 RC (36ce327)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>
@@ -708,8 +665,8 @@
 
     <div id="navigation">
         
-        
-        
+        <a class="nav nav-prev" href="https://tfsaggregator.github.io//contrib/continuous-integration/"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-next" href="https://tfsaggregator.github.io//" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 
     </section>

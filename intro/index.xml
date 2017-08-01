@@ -16,18 +16,16 @@
       <guid>https://tfsaggregator.github.io/intro/</guid>
       <description>
 
-&lt;p&gt;TFS Aggregator is a extension for Team Foundation Server (TFS) and Visual Studio Team Services (VSTS)
+&lt;p&gt;TFS Aggregator is an extension for Team Foundation Server (TFS) and Visual Studio Team Services (VSTS)
 that enables running custom script when Work Items change,
 allowing dynamic calculation of field values in TFS and more.
 (For example: Dev work + Test Work = Total Work).&lt;/p&gt;
 
-&lt;p&gt;You can use the &lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator&#34;&gt;&lt;strong&gt;Server Plugin&lt;/strong&gt;&lt;/a&gt;, for TFS 2013 update 2 up to TFS 2017 RTM, or the &lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator-webhooks&#34;&gt;&lt;strong&gt;Web Service&lt;/strong&gt;&lt;/a&gt; version, for VSTS or TFS 2015 and later.&lt;/p&gt;
+&lt;p&gt;You can use the &lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator&#34;&gt;&lt;strong&gt;Server Plugin&lt;/strong&gt;&lt;/a&gt;, for TFS, or the &lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator-webhooks&#34;&gt;&lt;strong&gt;Web Service&lt;/strong&gt;&lt;/a&gt; version, for VSTS or TFS 2015 and later.&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;The Web Service version is still in beta.&lt;/p&gt;
-
-&lt;p&gt;TFS Server API changed frequently in the past: the Server Plugin contains specific checks for the TFS version.
-TFS Aggregator Server Plugin binaries will work only with a specific TFS version.&lt;/p&gt;
+&lt;p&gt;TFS Server API changed frequently in the past: the Server Plugin contains code specific for each TFS version,
+which means that TFS Aggregator Server Plugin binaries must be build for a specific TFS version.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;See the &lt;a href=&#34;https://tfsaggregator.github.io/CHANGELOG/&#34;&gt;Changelog&lt;/a&gt; for an history of releases.&lt;/p&gt;
@@ -75,38 +73,118 @@ TFS Aggregator Server Plugin binaries will work only with a specific TFS version
 
 &lt;p&gt;Is it not working? Here is the troubleshooting and how to get help page: &lt;a href=&#34;https://tfsaggregator.github.io/admin/troubleshooting&#34;&gt;TFS Aggregator Troubleshooting&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;migrating-from-v2-x&#34;&gt;Migrating from v2.x&lt;/h2&gt;
+&lt;h2 id=&#34;supported-tfs-versions&#34;&gt;Supported TFS versions&lt;/h2&gt;
 
-&lt;p&gt;No action required.&lt;/p&gt;
+&lt;p&gt;The following table lists the TFS version supported by the Server Plugin.&lt;/p&gt;
 
-&lt;h2 id=&#34;migrating-from-v1&#34;&gt;Migrating from v1&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&#34;right&#34;&gt;TFS version&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Breaking changes&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Supported&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;Build configuration&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
 
-&lt;p&gt;If you used TFS Aggregator in the past, &lt;a href=&#34;https://tfsaggregator.github.io/using/upgrade-from-v1&#34;&gt;here&lt;/a&gt; are the instructions on switching from older versions.&lt;/p&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;2013 RTM&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;strong&gt;No&lt;/strong&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;n/a&lt;/td&gt;
+&lt;/tr&gt;
 
-&lt;p&gt;If you&amp;rsquo;re looking for the latest version of V1 (including a large number of fixes and security updates), you can still find it &lt;a href=&#34;https://github.com/tfsaggregator/tfsaggregator/tree/8ae990810f580c161247a6f6f4720d9b72d98288&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;2013.5&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Yes&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Yes&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2013&lt;/td&gt;
+&lt;/tr&gt;
 
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: we won&amp;rsquo;t provide any further support on this old version. But if you have a large investment in the old-style rules, it may provide you a better, stabler version until you&amp;rsquo;re ready to move to V2.&lt;/p&gt;
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;2015 RTM&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Yes&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Yes&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015&lt;/td&gt;
+&lt;/tr&gt;
 
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: You can run both V1 and V2 side-by-side on the same TFS system, you will have to be extra careful not to create infinite loops though.&lt;/p&gt;
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;2015.1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Yes&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;strong&gt;No&lt;/strong&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015.1&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;2015.2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Yes&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;strong&gt;No&lt;/strong&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015.2&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;2015.2.1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;strong&gt;No&lt;/strong&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015.2&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;2015.3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;strong&gt;No&lt;/strong&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015.2&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;2015.4&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Yes&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2015.2&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;2017 RTM&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Yes&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Yes&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2017&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;2017.1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Yes&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2017&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;2017.2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Yes&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Yes&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;2017.2&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;2017.3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;em&gt;Not yet&lt;/em&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;n/a&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td align=&#34;right&#34;&gt;201x RTM&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;em&gt;Not yet&lt;/em&gt;&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;n/a&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;h2 id=&#34;build-and-customize&#34;&gt;Build and customize&lt;/h2&gt;
 
-&lt;p&gt;We used Visual Studio Community Edition 2015 Update 2 to develop this version.
-Compiling requires a number of TFS assemblies that cannot be redistributed.&lt;/p&gt;
-
-&lt;p&gt;You can find the complete list in these files:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;2013 Update 2 and later: &lt;code&gt;References/2013/PLACEHOLDER.txt&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;2015 RTM: &lt;code&gt;References/2015/PLACEHOLDER.txt&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;2015 Update 1: &lt;code&gt;References/2015.1/PLACEHOLDER.txt&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;2015 Update 2 or 3: &lt;code&gt;References/2015.2/PLACEHOLDER.txt&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;2017 RTM: &lt;code&gt;References/2017/PLACEHOLDER.txt&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;If you have TFS installed on your development machine, the assemblies for that version will be loaded automatically from the installation folder.&lt;/p&gt;
-
-&lt;p&gt;More information on customizing and the internal design of TFS Aggregator is &lt;a href=&#34;https://tfsaggregator.github.io/contrib/developer-intro&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We used Visual Studio Community Edition 2017 Update 2 to develop this version.
+In the &lt;a href=&#34;https://tfsaggregator.github.io/contrib&#34;&gt;Contributor&lt;/a&gt; section you will find all the details to rebuild and customize TFS Aggregator.&lt;/p&gt;
 </description>
     </item>
     

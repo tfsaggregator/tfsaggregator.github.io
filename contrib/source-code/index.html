@@ -520,8 +520,8 @@
           
           
           
-            <li class="dd-item " data-nav-id="/contrib/debugging/">
-              <a href="https://tfsaggregator.github.io/contrib/debugging/">
+            <li class="dd-item " data-nav-id="/contrib/debugging/debugging/">
+              <a href="https://tfsaggregator.github.io/contrib/debugging/debugging/">
                 <span>
                   
                   Debugging     </i></span>
@@ -535,6 +535,16 @@
                 <span>
                   
                   Continuous Integration     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/contrib/documentation/">
+              <a href="https://tfsaggregator.github.io/contrib/documentation/">
+                <span>
+                  
+                  Documentation     </i></span>
               </a>
             </li>
           
@@ -618,9 +628,11 @@
     <div class="wrapper">
 <nav id="TableOfContents">
 <ul>
-<li><a href="#major-components">Major Components</a></li>
-<li><a href="#source-code-organization">Source Code Organization</a>
+<li>
 <ul>
+<li><a href="#major-components">Major Components</a></li>
+<li><a href="#source-code-organization-up-to-v2-2-1">Source Code Organization (up to v2.2.1)</a></li>
+<li><a href="#source-code-organization-up-to-v2-3-and-later">Source Code Organization (up to v2.3 and later)</a></li>
 <li><a href="#policy-data">Policy data</a></li>
 <li><a href="#object-model">Object Model</a></li>
 <li><a href="#scripting">Scripting</a></li>
@@ -646,18 +658,30 @@
 <p>This page explains the design and internal organization of TFS Aggregator v2&rsquo;s code.
 If you want to rebuild, customize, submit changes this is the place to start.</p>
 
-<h1 id="major-components">Major Components</h1>
+<h2 id="major-components">Major Components</h2>
 
 <p>The <code>Aggregator.Core</code> assembly contains the logic to process a Work Item and run the aggregate scripts.
 It is normally used by <code>Aggregator.ServerPlugin</code> which intercept the TFS server side events and forward them to Aggregator.Core.
-<code>Aggregator.ConsoleApp</code> is a simple console app that helps users in developing and testing policies without installing the server plugin.</p>
+<code>Aggregator.ConsoleApp</code> is a simple console app that helps users in developing and testing policies without installing the server plugin.
+<code>Aggregator.WebHooks</code> (new in 2.3) is a WebAPI application that uses Web Hooks to receive notifications from TFS/VSTS.</p>
 
-<h1 id="source-code-organization">Source Code Organization</h1>
+<h2 id="source-code-organization-up-to-v2-2-1">Source Code Organization (up to v2.2.1)</h2>
 
 <p>The project is available on <a href="https://github.com/tfsaggregator/tfsaggregator">GitHub</a>.
 We use a simple master/develop/pull-request branching scheme.
 All the source is available in the <code>TFS-Aggregator-2.sln</code> Visual Studio 2015 solution.
-To produce the MSI, see [Local build/contrib/local-build).</p>
+To produce the MSI, see <a href="https://tfsaggregator.github.io/contrib/local-build">Local build</a>.</p>
+
+<h2 id="source-code-organization-up-to-v2-3-and-later">Source Code Organization (up to v2.3 and later)</h2>
+
+<p>Code is split in three repositories:
+ 1. <em>tfsaggregator-core</em> contains the core code of Aggregator; there are 2 different project files <code>Aggregator.Core.Plugin.csproj</code> and <code>Aggregator.Core.WebHooks.csproj</code> both producing <code>Aggregator.Core.dll</code>, they <strong>must</strong> be manually synched using a tool like <a href="https://www.scootersoftware.com/">Beyond Compare</a> or <a href="http://winmerge.org/">WinMerge</a>; in addition the repo holds the Unit tests.
+ 2. <em>tfsaggregator</em> use <em>tfsaggregator-core</em> as submodule; it contains the <code>tfs-aggregator-plugin.sln</code> solution that produce the Server Plugin; see <a href="https://tfsaggregator.github.io/contrib/local-build">Local build</a> for MSI details.
+ 3. <em>tfsaggregator-webhooks</em> use <em>tfsaggregator-core</em> as submodule; it contains the <code>TFS-Aggregator-WebHook.sln</code> solution that produce the Web Service which is not included in the MSI</p>
+
+<blockquote>
+<p><strong>Git Tip</strong>: add remotes to each submodule so they reference each other and you can quickly synchronize the local folders.</p>
+</blockquote>
 
 <h2 id="policy-data">Policy data</h2>
 
@@ -682,7 +706,7 @@ That class is also the root of the configuration data model: Aggregator code get
 
 <p>Aggregator.Core/Script contains the build and execute logic for all scripting engines.
 For C# and VB, the script code is compiled once and the produced assembly is reused until the plug-in restarts.
-The <code>DotNetScriptEngine</code> base class contains all the logic while <code>CSharpScriptEngine</code> and <code>VBNetScriptEngine</code> define how to sew the script&rsquo;s code snippets toghether.
+The <code>DotNetScriptEngine</code> base class contains all the logic while <code>CSharpScriptEngine</code> and <code>VBNetScriptEngine</code> define how to sew the script&rsquo;s code snippets together.
 Powershell support is experimental.</p>
 
 <h2 id="logging">Logging</h2>
@@ -708,7 +732,7 @@ This way the same event generate a message in the log file or on the console. Im
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 5, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/134c142ebc4c7804ac10ac2a833b2eced77fa13c">Initial commit (134c142)</a>
+<p>Last revision: July 31, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/36ce3279f542b683164657cf35c95b8ebc6beec3">Aligned docs for 2.3 RC (36ce327)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>

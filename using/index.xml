@@ -224,7 +224,8 @@ See &lt;a href=&#34;Scripting&#34;&gt;Scripting&lt;/a&gt; for additional details
 &lt;pre&gt;&lt;code&gt;        &amp;lt;templateScope name=&amp;quot;Scrum&amp;quot; /&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;strong&gt;templateScope&lt;/strong&gt;: Scope the policy to Team Projects using a particular Process Template. (Optional, Repeatable)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;templateScope&lt;/strong&gt;: Scope the policy to Team Projects using a particular Process Template. (Optional, Repeatable)
+&amp;gt; DEPRECATED: our implementation does not work with VSTS or recent versions of TFS.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;name&lt;/strong&gt;: Name of Process Template matching. (Mandatory, mutually exclusive with typeid)&lt;/li&gt;
@@ -415,6 +416,20 @@ if (!self.HasChildren())
 &lt;pre&gt;&lt;code&gt;self.AddHyperlink(&amp;quot;https://github.com/tfsaggregator/tfsaggregator&amp;quot;, &amp;quot;Automatically added&amp;quot;);
 &lt;/code&gt;&lt;/pre&gt;
 
+&lt;h2 id=&#34;workitemlinks-property-v2-3&#34;&gt;WorkItemLinks property (&lt;strong&gt;v2.3&lt;/strong&gt;)&lt;/h2&gt;
+
+&lt;p&gt;Collection of existing work item links.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;foreach (var link in self.WorkItemLinks) {
+   if (link.Target.Id == 1) {
+       logger.Log(
+           &amp;quot;RemoveLinkRule removing {0} to #{1}&amp;quot;
+           , link.LinkTypeEndImmutableName, link.Target.Id);
+       break;
+   }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h2 id=&#34;removeworkitemlink-method-v2-3&#34;&gt;RemoveWorkItemLink method (&lt;strong&gt;v2.3&lt;/strong&gt;)&lt;/h2&gt;
 
 &lt;p&gt;Remove a link to another work item.&lt;/p&gt;
@@ -568,6 +583,8 @@ It exposes these methods:&lt;/p&gt;
 &lt;li&gt;&lt;code&gt;GetWorkItem&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;MakeNewWorkItem&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;GetGlobalList&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;AddItemToGlobalList&lt;/code&gt; (&lt;strong&gt;v2.3&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;RemoveItemFromGlobalList&lt;/code&gt; (&lt;strong&gt;v2.3&lt;/strong&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;getworkitem-method&#34;&gt;GetWorkItem method&lt;/h2&gt;
@@ -600,6 +617,28 @@ It exposes these methods:&lt;/p&gt;
 &lt;p&gt;Retrieves the collection of items for the named Global List.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;var items = store.GetGlobalList(&amp;quot;Aggregator - UserParameters&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The global list name must be unique per-collection.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;additemtogloballist-method-v2-3&#34;&gt;AddItemToGlobalList method (&lt;strong&gt;v2.3&lt;/strong&gt;)&lt;/h2&gt;
+
+&lt;p&gt;Add an element to the named Global List. If the Global List does not exists, it is created.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;store.AddItemToGlobalList(&amp;quot;Aggregator - UserParameters&amp;quot;,&amp;quot;userValue1&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The global list name must be unique per-collection.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;removeitemfromgloballist-method-v2-3&#34;&gt;RemoveItemFromGlobalList method (&lt;strong&gt;v2.3&lt;/strong&gt;)&lt;/h2&gt;
+
+&lt;p&gt;Remove an element from the named Global List.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;store.RemoveItemFromGlobalList(&amp;quot;Aggregator - UserParameters&amp;quot;,&amp;quot;userValue1&amp;quot;);
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;blockquote&gt;

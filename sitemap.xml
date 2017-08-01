@@ -3,7 +3,7 @@
   
   <url>
     <loc>https://tfsaggregator.github.io/intro/</loc>
-    <lastmod>2017-01-09T22:45:58+01:00</lastmod>
+    <lastmod>2017-07-31T15:45:35+02:00</lastmod>
   </url>
   
   <url>
@@ -28,7 +28,7 @@
   
   <url>
     <loc>https://tfsaggregator.github.io/using/policy-syntax/</loc>
-    <lastmod>2017-04-29T09:39:28+02:00</lastmod>
+    <lastmod>2017-07-31T15:45:35+02:00</lastmod>
   </url>
   
   <url>
@@ -43,7 +43,7 @@
   
   <url>
     <loc>https://tfsaggregator.github.io/using/objects-reference/self-object/</loc>
-    <lastmod>2017-04-24T10:02:52+02:00</lastmod>
+    <lastmod>2017-07-31T15:45:35+02:00</lastmod>
   </url>
   
   <url>
@@ -53,7 +53,7 @@
   
   <url>
     <loc>https://tfsaggregator.github.io/using/objects-reference/store-object/</loc>
-    <lastmod>2017-01-13T22:55:14+01:00</lastmod>
+    <lastmod>2017-07-31T15:45:35+02:00</lastmod>
   </url>
   
   <url>
@@ -133,12 +133,12 @@
   
   <url>
     <loc>https://tfsaggregator.github.io/admin/logging/</loc>
-    <lastmod>2017-04-14T11:17:53+02:00</lastmod>
+    <lastmod>2017-07-31T22:11:16+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/admin/troubleshooting/</loc>
-    <lastmod>2017-04-14T11:17:53+02:00</lastmod>
+    <lastmod>2017-07-31T15:45:35+02:00</lastmod>
   </url>
   
   <url>
@@ -158,32 +158,37 @@
   
   <url>
     <loc>https://tfsaggregator.github.io/contrib/developer-intro/</loc>
-    <lastmod>2017-01-09T22:45:58+01:00</lastmod>
+    <lastmod>2017-07-31T15:45:35+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/contrib/source-code/</loc>
-    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
+    <lastmod>2017-07-31T15:45:35+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/contrib/local-build/</loc>
-    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
+    <lastmod>2017-07-31T15:45:35+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://tfsaggregator.github.io/contrib/debugging/</loc>
-    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
+    <loc>https://tfsaggregator.github.io/contrib/debugging/debugging/</loc>
+    <lastmod>2017-07-31T22:11:16+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/contrib/continuous-integration/</loc>
-    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
+    <lastmod>2017-07-31T15:45:35+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://tfsaggregator.github.io/contrib/documentation/</loc>
+    <lastmod>2017-07-31T15:45:35+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://tfsaggregator.github.io/CHANGELOG/</loc>
-    <lastmod>2017-01-07T01:08:16+01:00</lastmod>
+    <lastmod>2017-07-31T22:11:16+02:00</lastmod>
   </url>
   
   <url>
@@ -194,7 +199,7 @@
   
   <url>
     <loc>https://tfsaggregator.github.io/contrib/</loc>
-    <lastmod>2017-01-05T23:51:01+01:00</lastmod>
+    <lastmod>2017-07-31T15:45:35+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -206,7 +211,7 @@
   
   <url>
     <loc>https://tfsaggregator.github.io/</loc>
-    <lastmod>2017-01-07T01:08:16+01:00</lastmod>
+    <lastmod>2017-07-31T22:11:16+02:00</lastmod>
     <priority>0</priority>
   </url>
   

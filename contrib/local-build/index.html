@@ -520,8 +520,8 @@
           
           
           
-            <li class="dd-item " data-nav-id="/contrib/debugging/">
-              <a href="https://tfsaggregator.github.io/contrib/debugging/">
+            <li class="dd-item " data-nav-id="/contrib/debugging/debugging/">
+              <a href="https://tfsaggregator.github.io/contrib/debugging/debugging/">
                 <span>
                   
                   Debugging     </i></span>
@@ -535,6 +535,16 @@
                 <span>
                   
                   Continuous Integration     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/contrib/documentation/">
+              <a href="https://tfsaggregator.github.io/contrib/documentation/">
+                <span>
+                  
+                  Documentation     </i></span>
               </a>
             </li>
           
@@ -646,12 +656,16 @@
 
 <h2 id="building-the-solution">Building the Solution</h2>
 
-<p>To rebuild, edit or debug the code you must use Visual Studio 2015, Community or Professional Edition at a minimum.
-In addition you must install the following extensions from Visual Studio Gallery:
-- WiX 3.10
-- xUnit.net 1.0</p>
+<p>To rebuild, edit or debug the code you must use Visual Studio 2017, Community or Professional Edition at a minimum.
+In addition you must install the following extensions from Visual Studio Gallery:</p>
 
-<p>TFS is not required to build nor debugging (for this latter you can use <a href="https://msdn.microsoft.com/en-us/library/y7f5zaaa.aspx">Remote Debugging</a>).</p>
+<ul>
+<li>xUnit.net 1.0</li>
+<li>WiX 3.10 (optional)</li>
+</ul>
+
+<p>TFS is not required to build nor debugging if you copy locally the required DLLs (for this latter you can use <a href="https://msdn.microsoft.com/en-us/library/y7f5zaaa.aspx">Remote Debugging</a>).
+WiX is not required if you use the <code>build-installer.proj</code> MSBuild script.</p>
 
 <h3 id="references">References</h3>
 
@@ -663,6 +677,7 @@ In addition you must install the following extensions from Visual Studio Gallery
 <li>TFS 2015 Update 1: <code>References/2015.1/PLACEHOLDER.txt</code></li>
 <li>TFS 2015 Update 2: <code>References/2015.2/PLACEHOLDER.txt</code></li>
 <li>TFS 2017: <code>References/2017/PLACEHOLDER.txt</code></li>
+<li>TFS 2017 Update 2: <code>References/2017.2/PLACEHOLDER.txt</code></li>
 </ul>
 
 <p>if you have TFS installed on your development machine, the assemblies for that version will be loaded automatically from the installation folder.</p>
@@ -672,6 +687,8 @@ In addition you must install the following extensions from Visual Studio Gallery
 <p>The Build Configuration selected, like <em>Debug-2013</em> or <em>Release-2015</em>, determines the target TFS version, that is the referenced assemblies.</p>
 
 <p>Sadly, similar <a href="http://blogs.ripple-rock.com/rorystreet/2014/05/08/WhereIsWorkItemChangedEventInTFS2013Update2.aspx">to the release of TFS 2013 update 2 when there were breaking changes</a>, <a href="http://blogs.msdn.com/b/visualstudioalm/archive/2015/10/13/breaking-change-in-tfs-2015-update-1-for-server-side-plugins.aspx">TFS 2015 Update 1 introduces a breaking change in the API</a>, so you can find some <a href="https://msdn.microsoft.com/en-us/library/4y6tbswk.aspx">conditionally compiled</a> code based on the symbols <code>TFS2013</code>, <code>TFS2015</code> or <code>TFS2015u1</code>.</p>
+
+<p>See <a href="https://tfsaggregator.github.io/intro#supported-tfs-versions">Supported TFS versions</a> for the full list.</p>
 
 <h3 id="version-numbers">Version numbers</h3>
 
@@ -684,17 +701,17 @@ In addition you must install the following extensions from Visual Studio Gallery
 <p>The MSI packages all three Aggregator flavors, one for each supported TFS version.
 The installer detects the TFS version installed and deploy the correct assemblies.</p>
 
-<p>The MSBuild script builds three times the <code>TFS-Aggregator-2.sln</code> solution, one for each supported TFS version.
+<p>The MSBuild script builds multiple times the <code>tfs-aggregator-plugin.sln</code> solution, one for each supported TFS version.
 Then the files are copied in a simple layout in the <code>_collect</code> folder. Some WiX source is generated and finally the <code>Setup.Aggregator\Setup.Aggregator.wixproj</code> is launched to produce the MSI package.</p>
 
 <blockquote>
-<p><strong>Caveat: TFS versions values are all-over the places</strong>, e.g.
+<p><strong>Caveat: TFS versions values are in multiple places</strong>, e.g.
 - source code conditional compile
 - WiX sources
 - MSBuild project files</p>
 </blockquote>
 
-<p>To generate the MSI, in an <em>MSBuild Command Prompt</em> (VS2015) or a <em>Developer Command Prompt</em> (VS2013) run</p>
+<p>To generate the MSI, in an <em>MSBuild Command Prompt</em> (VS2015+) or a <em>Developer Command Prompt</em> (VS2013) run</p>
 
 <pre><code>msbuild build-installer.proj /p:Configuration=Release
 </code></pre>
@@ -717,7 +734,7 @@ Then the files are copied in a simple layout in the <code>_collect</code> folder
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 5, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/134c142ebc4c7804ac10ac2a833b2eced77fa13c">Initial commit (134c142)</a>
+<p>Last revision: July 31, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/36ce3279f542b683164657cf35c95b8ebc6beec3">Aligned docs for 2.3 RC (36ce327)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>

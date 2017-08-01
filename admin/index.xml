@@ -567,6 +567,10 @@ your policy files before applying to TFS.&lt;/p&gt;
 
 &lt;p&gt;TFS Aggregator logging is quite rich but the exact configuration depends on your environment.&lt;/p&gt;
 
+&lt;h2 id=&#34;logging-levels&#34;&gt;Logging levels&lt;/h2&gt;
+
+&lt;p&gt;The possible Logging levels are: &lt;code&gt;Critical&lt;/code&gt;, &lt;code&gt;Error&lt;/code&gt;, &lt;code&gt;Warning&lt;/code&gt;, &lt;code&gt;Information&lt;/code&gt; or &lt;code&gt;Normal&lt;/code&gt;, &lt;code&gt;Verbose&lt;/code&gt;, and &lt;code&gt;Diagnostic&lt;/code&gt;.&lt;/p&gt;
+
 &lt;h2 id=&#34;enable-debug-logging&#34;&gt;Enable Debug Logging&lt;/h2&gt;
 
 &lt;p&gt;To control the verbosity in TFS Aggregator, you have to set a &lt;code&gt;level&lt;/code&gt; attribute to the &lt;code&gt;logging&lt;/code&gt; element in your &lt;code&gt;TFSAggregator2.ServerPlugin.policies&lt;/code&gt; file.
@@ -581,23 +585,38 @@ Use a value like &lt;code&gt;Verbose&lt;/code&gt; or &lt;code&gt;Diagnostic&lt;/
 
 &lt;p&gt;Note that you can use the &lt;a href=&#34;https://tfsaggregator.github.io/using/objects-reference/logger-object/&#34;&gt;&lt;code&gt;logger&lt;/code&gt; object&lt;/a&gt; in your rules to trace execution and  values.&lt;/p&gt;
 
+&lt;h2 id=&#34;startup-logging-2-3&#34;&gt;Startup logging (2.3)&lt;/h2&gt;
+
+&lt;p&gt;During TFS Aggregator start, before the Policies file is read, the logging level is controlled by &lt;code&gt;TFSAggregator2.ServerPlugin.dll.config&lt;/code&gt;, for the Server Plugin, and by &lt;code&gt;Web.config&lt;/code&gt;, for the Web Service, through the &lt;code&gt;DefaultLoggingLevel&lt;/code&gt; key in the &lt;code&gt;appSettings&lt;/code&gt; section, as in this example.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;configuration&amp;gt;
+  &amp;lt;appSettings&amp;gt;
+    &amp;lt;add key=&amp;quot;DefaultLoggingLevel&amp;quot; value=&amp;quot;Verbose&amp;quot;/&amp;gt;
+  &amp;lt;/appSettings&amp;gt;
+&amp;lt;/configuration&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If the file or section is absent, the default value is &lt;code&gt;Normal&lt;/code&gt;.&lt;/p&gt;
+
 &lt;h2 id=&#34;capturing-log-on-tfs&#34;&gt;Capturing log on TFS&lt;/h2&gt;
 
-&lt;p&gt;For TFS on premisses or hosted, you can download &lt;a href=&#34;https://technet.microsoft.com/en-us/sysinternals/debugview.aspx&#34;&gt;&lt;strong&gt;DebugView&lt;/strong&gt;&lt;/a&gt; from Microsoft&amp;rsquo;s SysInternals site.&lt;/p&gt;
+&lt;p&gt;For TFS on premises or hosted, you can download &lt;a href=&#34;https://technet.microsoft.com/en-us/sysinternals/debugview.aspx&#34;&gt;&lt;strong&gt;DebugView&lt;/strong&gt;&lt;/a&gt; from Microsoft&amp;rsquo;s SysInternals site.&lt;/p&gt;
 
-&lt;p&gt;DebugView is a Trace Listener and will capture the trace messages from TFSAggregator.
+&lt;p&gt;DebugView is a Trace Listener and will capture the trace messages from TFS Aggregator.
 &lt;img src=&#34;./messages-in-dbgview.png&#34; alt=&#34;TFSAggregator messages in DebugView&#34; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;You have to run DebugView on &lt;em&gt;all&lt;/em&gt; TFS Application Tier machines&lt;/strong&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;We would recommend adding the &lt;code&gt;*TFSAggregator*&lt;/code&gt; filter to DebugView so that you only see the TFSAggregator traces.&lt;/p&gt;
+&lt;p&gt;We would recommend adding the &lt;code&gt;*TFSAggregator*&lt;/code&gt; filter to DebugView so that you only see the TFS Aggregator traces.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;./dbg-view-filter.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Make sure to enable the &lt;strong&gt;Capture Global Win32&lt;/strong&gt; option.
-Download DebugView at &lt;a href=&#34;http://technet.microsoft.com/en-us/sysinternals/bb896647&#34;&gt;http://technet.microsoft.com/en-us/sysinternals/bb896647&lt;/a&gt;.&lt;/p&gt;
+&lt;img src=&#34;./dbg-view-capture.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Download DebugView at &lt;a href=&#34;http://technet.microsoft.com/en-us/sysinternals/bb896647&#34;&gt;http://technet.microsoft.com/en-us/sysinternals/bb896647&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&#34;capturing-log-on-azure&#34;&gt;Capturing log on Azure&lt;/h2&gt;
 
@@ -699,13 +718,13 @@ Download DebugView at &lt;a href=&#34;http://technet.microsoft.com/en-us/sysinte
 
 &lt;ul&gt;
 &lt;li&gt;You copied the DLLs and the Policies file to the plugins location on all TFS Application Tier Servers (Usually at: &lt;Drive&gt;&lt;code&gt;:\Program Files\Microsoft Team Foundation Server {version}\Application Tier\Web Services\bin\Plugins&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;You have given permission to the user running the plugin, e.g. add the &amp;ldquo;TFS Service Account&amp;rdquo; to the &lt;strong&gt;Project Collection Administrators&lt;/strong&gt; TFS Group.
+&lt;li&gt;You have given permission to the user running the plugin, e.g. add the &amp;ldquo;TFS Service Account&amp;rdquo; to the &lt;strong&gt;Project Collection Administrators&lt;/strong&gt; TFS Group; if the user has not permission, you see a similar error in the Event Log of the TFS Server(s) &lt;img src=&#34;./most-common-tfs30063.png&#34; alt=&#34;&#34; /&gt;
 
 &lt;ul&gt;
-&lt;li&gt;You may have to do this from the commandline using &lt;code&gt;tfssecurity /collection:http://server:8080/tfs/DefaultCollection /g+ &amp;quot;Project Collection administrators&amp;quot; &amp;quot;LOCAL SERVICE&amp;quot;&lt;/code&gt; if your service account is either LocalService, NetworkService or any other Windows Well-known identity, since they are no longer shown in the permission UI.&lt;/li&gt;
+&lt;li&gt;You may have to do this from the command line using &lt;code&gt;tfssecurity /collection:http://server:8080/tfs/DefaultCollection /g+ &amp;quot;Project Collection administrators&amp;quot; &amp;quot;LOCAL SERVICE&amp;quot;&lt;/code&gt; if your service account is either LocalService, NetworkService or any other Windows Well-known identity, since they are no longer shown in the permission UI.&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;When using the Impersonation option, make sure the user executing the plugin (generally the TFS Service account) has the &amp;ldquo;Make requests on behalf of others&amp;rdquo; &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/ms252587.aspx&#34;&gt;permission at the server level&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;If you upgraded your TFS from 2013.x to 2015.* or to 2017.* and from 2015 RTM to 2015.1 and did not uninstall the TFS Aggregator before doing this TFS upgrade the aggregator does not work. Remove the TFS Aggregator from the TFS 2013 Program Files folder or run the uninstall of the TFS Aggegrator (backup your policies!). Then re-install the TFS Aggegrator setup or install manually for TFS 2015 or 2017 &lt;a href=&#34;https://tfsaggregator.github.io/admin/install&#34;&gt;as described here&lt;/a&gt;. Every TFS version has its &amp;ldquo;own&amp;rdquo; assembly for the aggregator so it is important to use the right version against the right TFS.&lt;/li&gt;
+&lt;li&gt;If you upgraded your TFS and did not uninstall the TFS Aggregator before doing this TFS upgrade, the Aggregator does not work. Remove the TFS Aggregator from the TFS Program Files folder or run the uninstall of the TFS Aggegrator (backup your policies!). Then re-install the TFS Aggegrator setup or install manually for TFS 2015 or 2017 &lt;a href=&#34;https://tfsaggregator.github.io/admin/install&#34;&gt;as described here&lt;/a&gt;. Every TFS version has its &amp;ldquo;own&amp;rdquo; assembly for the aggregator so it is important to use the right version against the right TFS.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Also if you are having issues we recommend debugging your Policies file using &lt;code&gt;TFSAggregator2.ConsoleApp.exe&lt;/code&gt; and trying that out (see below).&lt;/p&gt;

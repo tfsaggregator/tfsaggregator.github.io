@@ -520,8 +520,8 @@
           
           
           
-            <li class="dd-item " data-nav-id="/contrib/debugging/">
-              <a href="https://tfsaggregator.github.io/contrib/debugging/">
+            <li class="dd-item " data-nav-id="/contrib/debugging/debugging/">
+              <a href="https://tfsaggregator.github.io/contrib/debugging/debugging/">
                 <span>
                   
                   Debugging     </i></span>
@@ -535,6 +535,16 @@
                 <span>
                   
                   Continuous Integration     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/contrib/documentation/">
+              <a href="https://tfsaggregator.github.io/contrib/documentation/">
+                <span>
+                  
+                  Documentation     </i></span>
               </a>
             </li>
           
@@ -620,7 +630,9 @@
 <ul>
 <li>
 <ul>
+<li><a href="#logging-levels">Logging levels</a></li>
 <li><a href="#enable-debug-logging">Enable Debug Logging</a></li>
+<li><a href="#startup-logging-2-3">Startup logging (2.3)</a></li>
 <li><a href="#capturing-log-on-tfs">Capturing log on TFS</a></li>
 <li><a href="#capturing-log-on-azure">Capturing log on Azure</a></li>
 <li><a href="#tfs-production-logging-2-1">TFS Production Logging (2.1)</a></li>
@@ -643,6 +655,10 @@
 
 <p>TFS Aggregator logging is quite rich but the exact configuration depends on your environment.</p>
 
+<h2 id="logging-levels">Logging levels</h2>
+
+<p>The possible Logging levels are: <code>Critical</code>, <code>Error</code>, <code>Warning</code>, <code>Information</code> or <code>Normal</code>, <code>Verbose</code>, and <code>Diagnostic</code>.</p>
+
 <h2 id="enable-debug-logging">Enable Debug Logging</h2>
 
 <p>To control the verbosity in TFS Aggregator, you have to set a <code>level</code> attribute to the <code>logging</code> element in your <code>TFSAggregator2.ServerPlugin.policies</code> file.
@@ -657,23 +673,38 @@ Use a value like <code>Verbose</code> or <code>Diagnostic</code>.</p>
 
 <p>Note that you can use the <a href="https://tfsaggregator.github.io/using/objects-reference/logger-object/"><code>logger</code> object</a> in your rules to trace execution and  values.</p>
 
+<h2 id="startup-logging-2-3">Startup logging (2.3)</h2>
+
+<p>During TFS Aggregator start, before the Policies file is read, the logging level is controlled by <code>TFSAggregator2.ServerPlugin.dll.config</code>, for the Server Plugin, and by <code>Web.config</code>, for the Web Service, through the <code>DefaultLoggingLevel</code> key in the <code>appSettings</code> section, as in this example.</p>
+
+<pre><code>&lt;configuration&gt;
+  &lt;appSettings&gt;
+    &lt;add key=&quot;DefaultLoggingLevel&quot; value=&quot;Verbose&quot;/&gt;
+  &lt;/appSettings&gt;
+&lt;/configuration&gt;
+</code></pre>
+
+<p>If the file or section is absent, the default value is <code>Normal</code>.</p>
+
 <h2 id="capturing-log-on-tfs">Capturing log on TFS</h2>
 
-<p>For TFS on premisses or hosted, you can download <a href="https://technet.microsoft.com/en-us/sysinternals/debugview.aspx"><strong>DebugView</strong></a> from Microsoft&rsquo;s SysInternals site.</p>
+<p>For TFS on premises or hosted, you can download <a href="https://technet.microsoft.com/en-us/sysinternals/debugview.aspx"><strong>DebugView</strong></a> from Microsoft&rsquo;s SysInternals site.</p>
 
-<p>DebugView is a Trace Listener and will capture the trace messages from TFSAggregator.
+<p>DebugView is a Trace Listener and will capture the trace messages from TFS Aggregator.
 <img src="./messages-in-dbgview.png" alt="TFSAggregator messages in DebugView" /></p>
 
 <blockquote>
 <p><strong>You have to run DebugView on <em>all</em> TFS Application Tier machines</strong>.</p>
 </blockquote>
 
-<p>We would recommend adding the <code>*TFSAggregator*</code> filter to DebugView so that you only see the TFSAggregator traces.</p>
+<p>We would recommend adding the <code>*TFSAggregator*</code> filter to DebugView so that you only see the TFS Aggregator traces.</p>
 
 <p><img src="./dbg-view-filter.png" alt="" /></p>
 
 <p>Make sure to enable the <strong>Capture Global Win32</strong> option.
-Download DebugView at <a href="http://technet.microsoft.com/en-us/sysinternals/bb896647">http://technet.microsoft.com/en-us/sysinternals/bb896647</a>.</p>
+<img src="./dbg-view-capture.png" alt="" /></p>
+
+<p>Download DebugView at <a href="http://technet.microsoft.com/en-us/sysinternals/bb896647">http://technet.microsoft.com/en-us/sysinternals/bb896647</a>.</p>
 
 <h2 id="capturing-log-on-azure">Capturing log on Azure</h2>
 
@@ -749,7 +780,7 @@ Download DebugView at <a href="http://technet.microsoft.com/en-us/sysinternals/b
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: April 14, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/7d4f61fac4d7c3d07d55670dd4c22a1217ff056c">Collected al logging info in a page, revised some pics (7d4f61f)</a>
+<p>Last revision: July 31, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/34594f88c86aa4248cd953c8d9b58f1a1fa6fbde">Global default logging level &amp; debugging Web Service (34594f8)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>

@@ -520,8 +520,8 @@
           
           
           
-            <li class="dd-item " data-nav-id="/contrib/debugging/">
-              <a href="https://tfsaggregator.github.io/contrib/debugging/">
+            <li class="dd-item " data-nav-id="/contrib/debugging/debugging/">
+              <a href="https://tfsaggregator.github.io/contrib/debugging/debugging/">
                 <span>
                   
                   Debugging     </i></span>
@@ -535,6 +535,16 @@
                 <span>
                   
                   Continuous Integration     </i></span>
+              </a>
+            </li>
+          
+          
+          
+            <li class="dd-item " data-nav-id="/contrib/documentation/">
+              <a href="https://tfsaggregator.github.io/contrib/documentation/">
+                <span>
+                  
+                  Documentation     </i></span>
               </a>
             </li>
           
@@ -654,11 +664,12 @@ These check can be:
 - source code conditional compile
 - WiX sources
 - MSBuild project files
-So, <em>caveat emptor</em>: TFS versions are scattered all-over the places.</p>
+So, <em>caveat emptor</em>: TFS versions are scattered in many places.</p>
 
 <h2 id="compile">Compile</h2>
 
-<p>Note that to rebuild, edit or debug the code you must use Visual Studio 2015, Community or Professional Edition at a minimum (see <a href="https://tfsaggregator.github.io/contrib/local-build">Local build</a> for details).
+<p>Note that to rebuild, edit or debug the code you must use Visual Studio 2017, Community or Professional Edition at a minimum (see <a href="https://tfsaggregator.github.io/contrib/local-build">Local build</a> for details).
+The Community edition is free.
 TFS is not required locally: you can use Remote Debugging.</p>
 
 <p>The <a href="https://tfsaggregator.github.io/contrib/continuous-integration">CI build</a> page explains some important things of our CI build infrastructure in <a href="https://tfsaggregator.visualstudio.com/">VSTS</a>.</p>
@@ -690,7 +701,7 @@ TFS is not required locally: you can use Remote Debugging.</p>
 <tr>
 <td>release/*</td>
 <td>Yes</td>
-<td>Release candidates, branch named after soon-to-be-relased version, tags mark interim releases</td>
+<td>Release candidates, branch named after soon-to-be-released version, tags mark interim releases</td>
 </tr>
 
 <tr>
@@ -707,6 +718,8 @@ TFS is not required locally: you can use Remote Debugging.</p>
 </tbody>
 </table>
 
+<p>Note: you must take care of using the same branches in all the repositories involved in a change.</p>
+
 <h2 id="documentation">Documentation</h2>
 
 <p><a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo">tfsaggregator-docs-hugo</a> <code>master</code> branch content must match the latest release.
@@ -718,14 +731,14 @@ To prepare documentation for a future release, use a branch as in the code repos
 <li>collect solved issues</li>
 <li>prepare Markdown release notes</li>
 <li>update tfsaggregator-docs-hugo <code>release/v#</code> branch</li>
-<li>tag repo</li>
+<li>tag all three repos</li>
 <li>merge <code>release/v#</code> branch to <code>master</code> (use PR when possible)</li>
-<li>create GitHub Release pasting release notes</li>
+<li>create GitHub Release by pasting release notes</li>
 <li>merge tfsaggregator-docs-hugo <code>release/v#</code> branch to <code>master</code> and delete it</li>
 <li>download binaries and upload to Release</li>
 <li>merge <code>master</code> branch to <code>develop</code></li>
 <li>increment v# in <code>develop</code> branch and push</li>
-<li>update Visual Studio Gallery pasting release notes</li>
+<li>update Visual Studio Marketplace extensions pasting release notes</li>
 <li>spread the news: Twitter, Blog</li>
 <li>wait for bugs to arrive</li>
 </ul>
@@ -735,7 +748,7 @@ To prepare documentation for a future release, use a branch as in the code repos
       </div>
           <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 9, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/0da38c3ec4c046ff5aab05e1a00acf1d3982cc23">Fix wiki references, ugly .// URLs, replace WebHooks with WebService, hacked how-it-works and CoC (0da38c3)</a>
+<p>Last revision: July 31, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/36ce3279f542b683164657cf35c95b8ebc6beec3">Aligned docs for 2.3 RC (36ce327)</a>
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>
