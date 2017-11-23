@@ -466,7 +466,7 @@ property returns the uniform resource identifier (Uri) of this work item.&lt;/p&
 
 &lt;p&gt;Set the state of &lt;code&gt;self&lt;/code&gt; Work Item.&lt;/p&gt;
 
-&lt;p&gt;A Process Templates can limt the possibile transition states, for example
+&lt;p&gt;A Process Templates can limit the possibile transition states, for example
 many templates do not allow you to go directly from a &lt;code&gt;New&lt;/code&gt; state to a &lt;code&gt;Done&lt;/code&gt; state.
 With this method TFS Aggregator will cycle the work item through what ever states it needs to to find the &lt;strong&gt;shortest route&lt;/strong&gt; to the target state.
 (For most templates that is also the route that makes the most sense from a business perspective too.)&lt;/p&gt;
