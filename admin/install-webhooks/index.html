@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us" class="js csstransforms3d">
+<html lang="en" class="js csstransforms3d">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://tfsaggregator.github.io/images/favicon.png" type="image/x-icon" />
 
     
-    <title>Installing the Web Service</title>
+    <title>Installing WebHooks</title>
     <link href="https://tfsaggregator.github.io//css/nucleus.css" rel="stylesheet">
     <link href="https://tfsaggregator.github.io//css/font-awesome.min.css" rel="stylesheet">
     <link href="https://tfsaggregator.github.io//css/hybrid.css" rel="stylesheet">
@@ -29,9 +29,10 @@
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
-      <table style="border: none">
-  <tr>
-<td style="border: none">
+      <div halign="center">
+  <strong>TFS Aggregator</strong>
+</div>
+
 <a id="logo" href="https://tfsaggregator.github.io/">
   <svg width="64pt" height="64pt" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path fill="#67217a" d=" M 0.00 0.00 L 256.00 0.00 L 256.00 256.00 L 0.00 256.00 L 0.00 0.00 Z" />
@@ -41,28 +42,8 @@
   <path fill="#ffffff" d=" M 102.11 100.26 C 105.75 102.38 108.43 105.69 111.41 108.59 C 115.46 112.73 119.70 116.68 123.61 120.96 C 119.83 125.06 115.77 128.89 111.86 132.87 C 108.73 135.96 105.82 139.35 102.10 141.77 C 102.76 139.96 103.55 138.19 104.78 136.69 C 109.18 131.18 113.80 125.86 118.09 120.26 C 112.85 113.54 106.10 107.85 102.11 100.26 Z" />
   </svg>
 </a>
-</td>
-    <td style="border: none; text-align: left">
-<div style="font-weight: 300">
-  TFS Aggregator
-</div>
-    </td>
-</tr>
-</table>
-    </div>
-    
-        <div class="searchbox">
-    <label for="search-by"><i class="fa fa-search"></i></label>
-    <input id="search-by" type="text" placeholder="Search">
-    <span data-search-clear=""><i class="fa fa-close"></i></span>
-</div>
-<script type="text/javascript" src="https://tfsaggregator.github.io//js/lunr.min.js"></script>
-<script type="text/javascript" src="https://tfsaggregator.github.io//js/horsey.js"></script>
-<script type="text/javascript">
-    var baseurl = "https:\/\/tfsaggregator.github.io\/";
-</script>
-<script type="text/javascript" src="https://tfsaggregator.github.io//js/search.js"></script>
 
+    </div>
     
 </div>
 
@@ -118,9 +99,7 @@
           
             <li class="dd-item " data-nav-id="/intro/how-it-works/">
               <a href="https://tfsaggregator.github.io/intro/how-it-works/">
-                <span>
-                  
-                  How it Works     </i></span>
+                <span>How it Works     </i></span>
               </a>
             </li>
           
@@ -128,9 +107,7 @@
           
             <li class="dd-item " data-nav-id="/intro/slack-coc/">
               <a href="https://tfsaggregator.github.io/intro/slack-coc/">
-                <span>
-                  
-                  Code of Conduct     </i></span>
+                <span>Code of Conduct     </i></span>
               </a>
             </li>
           
@@ -164,11 +141,9 @@
           
           
           
-            <li class="dd-item " data-nav-id="/using/writing-rules/writing-rules/">
-              <a href="https://tfsaggregator.github.io/using/writing-rules/writing-rules/">
-                <span>
-                  
-                  Writing Rules and Policies     </i></span>
+            <li class="dd-item " data-nav-id="/using/writing-rules/">
+              <a href="https://tfsaggregator.github.io/using/writing-rules/">
+                <span>Writing Rules and Policies     </i></span>
               </a>
             </li>
           
@@ -176,9 +151,7 @@
           
             <li class="dd-item " data-nav-id="/using/policy-syntax/">
               <a href="https://tfsaggregator.github.io/using/policy-syntax/">
-                <span>
-                  
-                  Configuration XML syntax     </i></span>
+                <span>Configuration XML syntax     </i></span>
               </a>
             </li>
           
@@ -186,9 +159,7 @@
           
             <li class="dd-item " data-nav-id="/using/scripting/">
               <a href="https://tfsaggregator.github.io/using/scripting/">
-                <span>
-                  
-                  Scripting the Rules     </i></span>
+                <span>Scripting the Rules     </i></span>
               </a>
             </li>
           
@@ -196,9 +167,7 @@
           
             <li class="dd-item " data-nav-id="/using/object-model/">
               <a href="https://tfsaggregator.github.io/using/object-model/">
-                <span>
-                  
-                  Objects Reference     </i></span>
+                <span>Objects Reference     </i></span>
               </a>
             </li>
           
@@ -206,23 +175,7 @@
           
             <li class="dd-item " data-nav-id="/using/objects-reference/self-object/">
               <a href="https://tfsaggregator.github.io/using/objects-reference/self-object/">
-                <span>
-                  
-                    -&nbsp;
-                  
-                  self Object     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/using/objects-reference/field-object/">
-              <a href="https://tfsaggregator.github.io/using/objects-reference/field-object/">
-                <span>
-                  
-                    -&nbsp;
-                  
-                  Field Object     </i></span>
+                <span>self Object     </i></span>
               </a>
             </li>
           
@@ -230,11 +183,7 @@
           
             <li class="dd-item " data-nav-id="/using/objects-reference/store-object/">
               <a href="https://tfsaggregator.github.io/using/objects-reference/store-object/">
-                <span>
-                  
-                    -&nbsp;
-                  
-                  store Object     </i></span>
+                <span>store Object     </i></span>
               </a>
             </li>
           
@@ -242,11 +191,7 @@
           
             <li class="dd-item " data-nav-id="/using/objects-reference/logger-object/">
               <a href="https://tfsaggregator.github.io/using/objects-reference/logger-object/">
-                <span>
-                  
-                    -&nbsp;
-                  
-                  logger Object     </i></span>
+                <span>logger Object     </i></span>
               </a>
             </li>
           
@@ -254,11 +199,7 @@
           
             <li class="dd-item " data-nav-id="/using/objects-reference/library-objects/">
               <a href="https://tfsaggregator.github.io/using/objects-reference/library-objects/">
-                <span>
-                  
-                    -&nbsp;
-                  
-                  Library Objects     </i></span>
+                <span>Library Objects     </i></span>
               </a>
             </li>
           
@@ -266,33 +207,7 @@
           
             <li class="dd-item " data-nav-id="/using/policy-examples/">
               <a href="https://tfsaggregator.github.io/using/policy-examples/">
-                <span>
-                  
-                  Examples of Policies     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/using/examples/accumulate-to-grand-parent/">
-              <a href="https://tfsaggregator.github.io/using/examples/accumulate-to-grand-parent/">
-                <span>
-                  
-                    -&nbsp;
-                  
-                  Accumulate to grand-parent example     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/using/examples/auto-create-children/">
-              <a href="https://tfsaggregator.github.io/using/examples/auto-create-children/">
-                <span>
-                  
-                    -&nbsp;
-                  
-                  Auto-Create Children example     </i></span>
+                <span>Examples of Policies     </i></span>
               </a>
             </li>
           
@@ -300,33 +215,23 @@
           
             <li class="dd-item " data-nav-id="/using/examples/auto-open-auto-close/">
               <a href="https://tfsaggregator.github.io/using/examples/auto-open-auto-close/">
-                <span>
-                  
-                    -&nbsp;
-                  
-                  Auto-Open and Auto-Close example     </i></span>
+                <span>Auto-Open and Auto-Close     </i></span>
               </a>
             </li>
           
           
           
-            <li class="dd-item " data-nav-id="/using/examples/rollup/">
-              <a href="https://tfsaggregator.github.io/using/examples/rollup/">
-                <span>
-                  
-                    -&nbsp;
-                  
-                  Rollup examples     </i></span>
+            <li class="dd-item " data-nav-id="/using/examples/auto-create-children/">
+              <a href="https://tfsaggregator.github.io/using/examples/auto-create-children/">
+                <span>Auto-Create Children     </i></span>
               </a>
             </li>
           
           
           
-            <li class="dd-item " data-nav-id="/using/scripting-tricks-n-tips/scripting-tricks-n-tips/">
-              <a href="https://tfsaggregator.github.io/using/scripting-tricks-n-tips/scripting-tricks-n-tips/">
-                <span>
-                  
-                  Tricks &amp; Tips     </i></span>
+            <li class="dd-item " data-nav-id="/using/scripting-tricks-n-tips/">
+              <a href="https://tfsaggregator.github.io/using/scripting-tricks-n-tips/">
+                <span>Tricks &amp; Tips     </i></span>
               </a>
             </li>
           
@@ -334,21 +239,15 @@
           
             <li class="dd-item " data-nav-id="/using/scripting-pitfalls/">
               <a href="https://tfsaggregator.github.io/using/scripting-pitfalls/">
-                <span>
-                  
-                  Common Pitfalls     </i></span>
+                <span>Common Pitfalls     </i></span>
               </a>
             </li>
           
           
           
-            <li class="dd-item " data-nav-id="/using/field-history/">
-              <a href="https://tfsaggregator.github.io/using/field-history/">
-                <span>
-                  
-                    -&nbsp;
-                  
-                  History field     </i></span>
+            <li class="dd-item " data-nav-id="/using/History-Field/">
+              <a href="https://tfsaggregator.github.io/using/History-Field/">
+                <span>History field     </i></span>
               </a>
             </li>
           
@@ -356,9 +255,7 @@
           
             <li class="dd-item " data-nav-id="/using/upgrade-from-v1/">
               <a href="https://tfsaggregator.github.io/using/upgrade-from-v1/">
-                <span>
-                  
-                  Upgrading from v1     </i></span>
+                <span>Upgrading from v1     </i></span>
               </a>
             </li>
           
@@ -394,9 +291,7 @@
           
             <li class="dd-item " data-nav-id="/admin/install/">
               <a href="https://tfsaggregator.github.io/admin/install/">
-                <span>
-                  
-                  Installing the Server Plugin     </i></span>
+                <span>Installing the Plugin     </i></span>
               </a>
             </li>
           
@@ -404,9 +299,7 @@
           
             <li class="dd-item active" data-nav-id="/admin/install-webhooks/">
               <a href="https://tfsaggregator.github.io/admin/install-webhooks/">
-                <span>
-                  
-                  Installing the Web Service     </i></span>
+                <span>Installing WebHooks     </i></span>
               </a>
             </li>
           
@@ -414,19 +307,7 @@
           
             <li class="dd-item " data-nav-id="/admin/console-app/">
               <a href="https://tfsaggregator.github.io/admin/console-app/">
-                <span>
-                  
-                  Using the console to test Policies     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/admin/logging/">
-              <a href="https://tfsaggregator.github.io/admin/logging/">
-                <span>
-                  
-                  Logging     </i></span>
+                <span>Using the console to test Policies     </i></span>
               </a>
             </li>
           
@@ -434,19 +315,7 @@
           
             <li class="dd-item " data-nav-id="/admin/troubleshooting/">
               <a href="https://tfsaggregator.github.io/admin/troubleshooting/">
-                <span>
-                  
-                  Troubleshooting     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/admin/support/">
-              <a href="https://tfsaggregator.github.io/admin/support/">
-                <span>
-                  
-                  Support     </i></span>
+                <span>Troubleshooting     </i></span>
               </a>
             </li>
           
@@ -454,9 +323,7 @@
           
             <li class="dd-item " data-nav-id="/admin/security/">
               <a href="https://tfsaggregator.github.io/admin/security/">
-                <span>
-                  
-                  Security     </i></span>
+                <span>Security     </i></span>
               </a>
             </li>
           
@@ -492,9 +359,7 @@
           
             <li class="dd-item " data-nav-id="/contrib/developer-intro/">
               <a href="https://tfsaggregator.github.io/contrib/developer-intro/">
-                <span>
-                  
-                  Introduction to Contributors     </i></span>
+                <span>Introduction to Contributors     </i></span>
               </a>
             </li>
           
@@ -502,9 +367,7 @@
           
             <li class="dd-item " data-nav-id="/contrib/source-code/">
               <a href="https://tfsaggregator.github.io/contrib/source-code/">
-                <span>
-                  
-                  Source Code     </i></span>
+                <span>Source Code     </i></span>
               </a>
             </li>
           
@@ -512,19 +375,15 @@
           
             <li class="dd-item " data-nav-id="/contrib/local-build/">
               <a href="https://tfsaggregator.github.io/contrib/local-build/">
-                <span>
-                  
-                  Local Build     </i></span>
+                <span>Local Build     </i></span>
               </a>
             </li>
           
           
           
-            <li class="dd-item " data-nav-id="/contrib/debugging/debugging/">
-              <a href="https://tfsaggregator.github.io/contrib/debugging/debugging/">
-                <span>
-                  
-                  Debugging     </i></span>
+            <li class="dd-item " data-nav-id="/contrib/debugging/">
+              <a href="https://tfsaggregator.github.io/contrib/debugging/">
+                <span>Debugging     </i></span>
               </a>
             </li>
           
@@ -532,19 +391,7 @@
           
             <li class="dd-item " data-nav-id="/contrib/continuous-integration/">
               <a href="https://tfsaggregator.github.io/contrib/continuous-integration/">
-                <span>
-                  
-                  Continuous Integration     </i></span>
-              </a>
-            </li>
-          
-          
-          
-            <li class="dd-item " data-nav-id="/contrib/documentation/">
-              <a href="https://tfsaggregator.github.io/contrib/documentation/">
-                <span>
-                  
-                  Documentation     </i></span>
+                <span>Continuous Integration     </i></span>
               </a>
             </li>
           
@@ -556,20 +403,10 @@
       
     </ul>
     <hr>
-     
-     <section id="contacts">
-  <div style="padding-left: 1em; ">
-    <a href="mailto:tfsaggregator@outlook.com"><i class="fa fa-envelope">&nbsp;</i>tfsaggregator@outlook.com</a>
-    <br/>
-    <a href="https://twitter.com/tfsaggregator"><i class="fa fa-twitter">&nbsp;</i>@tfsaggregator</a>
-    <br/>
-    <div style="padding-top: 4pt;">
-    <a href="https://slackin-tfsaggregator.herokuapp.com/">
+    <a class="padding" href="https://slackin-tfsaggregator.herokuapp.com/">
       <img alt="Slack Team Badge" src="https://slackin-tfsaggregator.herokuapp.com/badge.svg" />
     </a>
-    </div>
-  </div>
-</section>
+     
     <section id="footer">
       <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fa fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
     </section>
@@ -621,7 +458,7 @@
                 
                   
                 
-                <span itemprop="title"> Installing the Web Service</span>
+                <span itemprop="title"> Installing WebHooks</span>
               </div>
               
                   <div class="progress">
@@ -636,7 +473,7 @@
 <li><a href="#2-tfs-only-account-permissions">2. [TFS only] Account permissions</a></li>
 <li><a href="#3-tfs-only-explicit-credentials">3. [TFS only] Explicit credentials</a></li>
 </ul></li>
-<li><a href="#deploy-tfsaggregator-web-application">Deploy TfsAggregator web application</a>
+<li><a href="#deploy-tfsaggregator-webhooks-web-application">Deploy TfsAggregator WebHooks web application</a>
 <ul>
 <li><a href="#1-tfs-only-install-on-iis">1. [TFS only] Install on IIS</a></li>
 <li><a href="#2-deploy-to-azure">2. Deploy to Azure</a></li>
@@ -669,24 +506,20 @@
             
     	        <div id="body-inner">
                 
-                <h1>Installing the Web Service</h1>
+                <h1>Installing WebHooks</h1>
                 
 
 
 
-<blockquote>
-<p>This information does <strong>not</strong> apply to theServer Plugin version.</p>
-</blockquote>
-
-<p>Installing TFS Aggregator Web Service is a six step process:</p>
+<p>Installing TFS Aggregator WebHooks is a six step process:</p>
 
 <ol>
 <li><a href="#grant-access-to-vststfs">Grant access to VSTS/TFS</a></li>
-<li><a href="#deploy-tfsaggregator-webhooks-web-application">Deploy TfsAggregator web application</a></li>
+<li><a href="#deploy-tfsaggregator-webhooks-web-application">Deploy TfsAggregator WebHooks web application</a></li>
 <li><a href="#configure-tfs-aggregator">Configure TFS Aggregator</a></li>
 <li><a href="#define-the-policy">Define the policy</a></li>
 <li><a href="#setup-logging-optional">Setup logging (optional)</a></li>
-<li><a href="#setup-the-web-hooks-in-tfs-vsts">Setup the Web Hooks in TFS/VSTS</a></li>
+<li><a href="#setup-the-web-hooks-in-tfsvsts">Setup the Web Hooks in TFS/VSTS</a></li>
 </ol>
 
 <h2 id="grant-access-to-vsts-tfs">Grant access to VSTS/TFS</h2>
@@ -695,13 +528,9 @@
 
 <h3 id="1-using-a-personal-access-token">1. Using a Personal Access Token</h3>
 
-<p>a. Create a Personal Access Token <img src="./0-PAT1.png" alt="Create Personal Access Token  screenshot" /></p>
-
-<blockquote>
-<p>Leave <strong>All scopes</strong> select; TFS Aggregator use the old Object Model (see <a href="https://social.msdn.microsoft.com/Forums/vstudio/en-US/5564cb2b-4e46-4a41-b12c-bc50304c777b/authentication-issue-using-personal-access-token-when-all-options-of-selected-scope-are-selected?forum=TFService">Authentication issue using Personal Access Token when all options of &ldquo;Selected Scope&rdquo; are selected</a>).</p>
-</blockquote>
-
-<p>b. Capture Personal Access Token&rsquo;s value and store it for later <img src="./0-PAT2.png" alt="Personal Access Token's value" /></p>
+<p>a. Create a Personal Access Token <img src=".//0-PAT1.png" alt="Create Personal Access Token  screenshot" />
+&gt; Leave <strong>All scopes</strong> select; TFS Aggregator use the old Object Model (see <a href="https://social.msdn.microsoft.com/Forums/vstudio/en-US/5564cb2b-4e46-4a41-b12c-bc50304c777b/authentication-issue-using-personal-access-token-when-all-options-of-selected-scope-are-selected?forum=TFService">Authentication issue using Personal Access Token when all options of &ldquo;Selected Scope&rdquo; are selected</a>).
+b. Capture Personal Access Token&rsquo;s value and store it for later <img src=".//0-PAT2.png" alt="Personal Access Token's value" /></p>
 
 <blockquote>
 <p>NOTE: this is per-account value you can use (User Profile/Security)</p>
@@ -709,25 +538,22 @@
 
 <h3 id="2-tfs-only-account-permissions">2. [TFS only] Account permissions</h3>
 
-<p>instead of a PAT, you can give permission to the account running the Application Pool (see <a href="https://tfsaggregator.github.io/admin/troubleshooting/">Troubleshooting</a>)</p>
+<p>instead of a PAT, you can give permission to the account running the Application Pool (see <a href="https://github.com/tfsaggregator/tfsaggregator/wiki/troubleshooting">https://github.com/tfsaggregator/tfsaggregator/wiki/troubleshooting</a>)</p>
 
 <h3 id="3-tfs-only-explicit-credentials">3. [TFS only] Explicit credentials</h3>
 
 <p>or put username and password in clear text in the <code>/AggregatorConfiguration/runtime/authentication</code> node of the policy file</p>
 
 <p>If you do not allow access expect a similar error
-<img src="./0-error.png" alt="Access denied" /></p>
+<img src=".//0-error.png" alt="Access denied" /></p>
 
-<h2 id="deploy-tfsaggregator-web-application">Deploy TfsAggregator web application</h2>
+<h2 id="deploy-tfsaggregator-webhooks-web-application">Deploy TfsAggregator WebHooks web application</h2>
 
 <h3 id="1-tfs-only-install-on-iis">1. [TFS only] Install on IIS</h3>
 
-<p>To install TfsAggregator web application you can use the <code>Deploy-TfsAggregatorWebHooks.ps1</code> as a sample script</p>
-
-<ul>
-<li>use SSL to avoid exposing credentials</li>
-<li>the account running Aggregator application pool must have proper permissions on the target TFS <em>or</em> you set some credentials in the policy file</li>
-</ul>
+<p>To install TfsAggregator WebHooks web application you can use the <code>Deploy-TfsAggregatorWebHooks.ps1</code> as a sample script
+ * use SSL to avoid exposing credentials
+ * the account running Aggregator application pool must have proper permissions on the target TFS <em>or</em> you set some credentials in the policy file</p>
 
 <h3 id="2-deploy-to-azure">2. Deploy to Azure</h3>
 
@@ -736,27 +562,27 @@ This is the simplest option for VSTS.</p>
 
 <p>In the wizard specify the</p>
 
-<p><img src="./1-deploy1.png" alt="" /></p>
+<p><img src=".//1-deploy1.png" alt="" /></p>
 
-<p><img src="./1-deploy2.png" alt="" /></p>
+<p><img src=".//1-deploy2.png" alt="" /></p>
 
-<p><img src="./1-deploy3.png" alt="" /></p>
+<p><img src=".//1-deploy3.png" alt="" /></p>
 
 <p>Please take note of the URL for the next steps.</p>
 
 <p>You can check that the deploy worked, by opening a browser to the above URL appending <code>/api/workitem</code></p>
 
-<p><img src="./1-deploy4-validate.png" alt="" /></p>
+<p><img src=".//1-deploy4-validate.png" alt="" /></p>
 
 <h2 id="configure-tfs-aggregator">Configure TFS Aggregator</h2>
 
 <p>To edit the deployed files, use Kudu console</p>
 
-<p><img src="./2-config1.png" alt="Kudu console" /></p>
+<p><img src=".//2-config1.png" alt="Kudu console" /></p>
 
 <p>at the <code>https://</code><name_chosen_in_previous_step><code>.scm.azurewebsites.net</code> URL. Navigate to <code>site\wwwroot</code> folder via <strong>Debug console</strong> menu.</p>
 
-<p><img src="./2-config2.png" alt="" /></p>
+<p><img src=".//2-config2.png" alt="" /></p>
 
 <h3 id="add-users-to-web-config-file">Add users to <code>web.config</code> file</h3>
 
@@ -771,24 +597,21 @@ This is the simplest option for VSTS.</p>
 
 <p>Define the <code>policyFilePath</code> in <code>web.config</code>; the default value is the static path of the sample policy.</p>
 
-<p><img src="./2-config3.png" alt="" /></p>
+<p><img src=".//2-config3.png" alt="" /></p>
 
 <p>Instead of a static path you can use a variable value from the incoming request e.g. <code>&lt;add key=&quot;policyFilePath&quot; value=&quot;~/App_Data/{CollectionId}.policies&quot; /&gt;</code>.
-The possible variables for <code>policyFilePath</code>, extracted from the incoming request data are:</p>
-
-<ul>
-<li><code>{EventType}</code> could be <code>workitem.created</code> <code>workitem.updated</code> <code>workitem.restored</code> or <code>workitem.deleted</code></li>
-<li><code>{AccountId}</code> Guid of VSTS Account (TFS 2017 or later)</li>
-<li><code>{CollectionId}</code> Guid of collection</li>
-<li><code>{TeamProject}</code> name of the Team Project</li>
-<li><code>{TfsCollectionUri}</code> URL of the collection</li>
-</ul>
+The possible variables for <code>policyFilePath</code>, extracted from the incoming request data are:
+ * <code>{EventType}</code> could be <code>workitem.created</code> <code>workitem.updated</code> <code>workitem.restored</code> or <code>workitem.deleted</code>
+ * <code>{AccountId}</code> Guid of VSTS Account (TFS 2017 or later)
+ * <code>{CollectionId}</code> Guid of collection
+ * <code>{TeamProject}</code> name of the Team Project
+ * <code>{TfsCollectionUri}</code> URL of the collection</p>
 
 <h2 id="define-the-policy">Define the policy</h2>
 
 <p>Navigate to the <code>App_Data</code> folder to edit the policy files</p>
 
-<p><img src="./2-config4.png" alt="" /></p>
+<p><img src=".//2-config4.png" alt="" /></p>
 
 <blockquote>
 <p>The default HelloWorld policy works for any kind of work items.</p>
@@ -808,12 +631,29 @@ not much secure, but handy for testing and some edge scenario</li>
 
 <p>In the policies you may have to set the credentials chosen in the first step, e.g. the PAT.</p>
 
-<p><img src="./2-config5.png" alt="Personal Access Token in Policy file" /></p>
+<p><img src=".//2-config5.png" alt="Personal Access Token in Policy file" /></p>
 
 <h2 id="setup-logging-optional">Setup logging (optional)</h2>
 
-<p>This step is not mandatory, but recommended in the initial phase.
-See <a href="https://tfsaggregator.github.io/admin/logging/#capturing-log-on-azure">Capturing Log On Azure</a>.</p>
+<p>This step is not mandatory, but recommended in the initial phase.</p>
+
+<p>In the <a href="https://portal.azure.com/">Azure Portal</a> navigate to <strong>App Services</strong> and select the App Service hosting TFS Aggregator. Scroll down to <strong>Diagnostic logs</strong> and turn on <strong>Application Logging</strong>.</p>
+
+<p><img src=".//3-log1.png" alt="" /></p>
+
+<p>Select the Verbosity level and save.</p>
+
+<blockquote>
+<p>You can store the logs in Azure storage for auditing.</p>
+</blockquote>
+
+<p>In the Kudu console navigate to the <code>LogFiles\Application</code> folder to find the log files produced by TFS Aggregator.</p>
+
+<p><img src=".//3-log2.png" alt="" /></p>
+
+<p>By opening the file you see a snapshot of log file&rsquo;s content.</p>
+
+<p><img src=".//3-log3.png" alt="Content of a log file" /></p>
 
 <h2 id="setup-the-web-hooks-in-tfs-vsts">Setup the Web Hooks in TFS/VSTS</h2>
 
@@ -854,13 +694,13 @@ It requires six arguments and creates the subcription for create, update and res
 
 <tr>
 <td>aggregatorURL</td>
-<td>URL of TFS Aggregator Web Service API</td>
+<td>URL of TFS Aggregator WebHooks API</td>
 <td><code>https://mytfsaggregator.azurewebsites.net/api/workitem/</code></td>
 </tr>
 
 <tr>
 <td>aggregatorUsername</td>
-<td>Username listed in TFS Aggregator Web Service <code>web.config</code></td>
+<td>Username listed in TFS Aggregator WebHooks <code>web.config</code></td>
 <td><code>vsts</code></td>
 </tr>
 
@@ -883,70 +723,69 @@ This is an issue with VSTS/TFS that we cannot solve.</p>
 <p>NOTE: this is a per-project configuration (Project/Admin).</p>
 </blockquote>
 
-<p><img src="./4-hooks1.png" alt="" /></p>
+<p><img src=".//4-hooks1.png" alt="" /></p>
 
-<p><img src="./4-hooks2.png" alt="" /></p>
+<p><img src=".//4-hooks2.png" alt="" /></p>
 
 <p>Select <strong>Web Hooks</strong>
-<img src="./4-hooks3.png" alt="" /></p>
+<img src=".//4-hooks3.png" alt="" /></p>
 
 <p>Select the triggering event
-<img src="./4-hooks4.png" alt="" /></p>
+<img src=".//4-hooks4.png" alt="" /></p>
 
 <blockquote>
-<p>You may have to repeat this step for all four event:</p>
-
-<ul>
-<li>New/created</li>
-<li>Change/updated</li>
-<li>Delete</li>
-<li>Restore</li>
-</ul>
+<p>You may have to repeat this step for all four event:
+* New/created
+* Change/updated
+* Delete
+* Restore</p>
 </blockquote>
 
 <p>Insert the URL, e.g. <code>https://</code><name_chosen_in_deploy_step><code>.azurewebsites.net/api/workitem</code> and one user listed in TFS Aggregator <code>web.config</code> file.</p>
 
-<p><img src="./4-hooks5.png" alt="" /></p>
+<p><img src=".//4-hooks5.png" alt="" /></p>
 
 <blockquote>
 <p>NOTE the <strong>Test</strong> button above may send a well-formed document or not, so to test if everything works you really must create/modify some work item.</p>
 </blockquote>
 
 <p>This is the result with a single hooked event.
-<img src="./4-hooks6.png" alt="First service hook" /></p>
+<img src=".//4-hooks6.png" alt="First service hook" /></p>
 
 <p>And after all four events are defined.
-<img src="./4-hooks7.png" alt="Four service hooks, one per event" /></p>
+<img src=".//4-hooks7.png" alt="Four service hooks, one per event" /></p>
 
 <h2 id="final-testing">Final testing</h2>
 
 <p>At this point the configuration is complete and you can test, e.g. creating a new work item.</p>
 
-<p><img src="./5-test1.png" alt="New Work Item" /></p>
+<p><img src=".//5-test1.png" alt="New Work Item" /></p>
 
 <p>You see in the <strong>Service Hooks</strong> page</p>
 
-<p><img src="./5-test2.png" alt="Service Hooks page after a few calls" /></p>
+<p><img src=".//5-test2.png" alt="Service Hooks page after a few calls" /></p>
 
 <p>the success or failure.
 Remember that you can see the TFS Aggregator log to help troubleshooting.
-<img src="./3-log3.png" alt="Content of a log file" /></p>
+<img src=".//3-log3.png" alt="Content of a log file" /></p>
 
 
       
       </div>
-          <div class="row">
+
+      <div class="row">
           <div class="footer-panel">
-<p>Last revision: April 14, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/7d4f61fac4d7c3d07d55670dd4c22a1217ff056c">Collected al logging info in a page, revised some pics (7d4f61f)</a>
+<p>Last revision: January 1, 0001
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>
       </div>
+
     </div>
 
     <div id="navigation">
         
-        <a class="nav nav-prev" href="https://tfsaggregator.github.io//admin/install"> <i class="fa fa-chevron-left"></i></a>
+        <a class="nav nav-prev" href="https://tfsaggregator.github.io//admin/"> <i class="fa fa-chevron-left"></i></a>
         <a class="nav nav-next" href="https://tfsaggregator.github.io//admin/console-app" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
     </div>
 

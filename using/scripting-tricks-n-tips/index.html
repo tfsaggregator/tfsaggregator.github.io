@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us" class="js csstransforms3d">
+<html lang="en" class="js csstransforms3d">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -29,9 +29,10 @@
     <nav id="sidebar">
   <div id="header-wrapper">
     <div id="header">
-      <table style="border: none">
-  <tr>
-<td style="border: none">
+      <div halign="center">
+  <strong>TFS Aggregator</strong>
+</div>
+
 <a id="logo" href="https://tfsaggregator.github.io/">
   <svg width="64pt" height="64pt" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <path fill="#67217a" d=" M 0.00 0.00 L 256.00 0.00 L 256.00 256.00 L 0.00 256.00 L 0.00 0.00 Z" />
@@ -41,28 +42,8 @@
   <path fill="#ffffff" d=" M 102.11 100.26 C 105.75 102.38 108.43 105.69 111.41 108.59 C 115.46 112.73 119.70 116.68 123.61 120.96 C 119.83 125.06 115.77 128.89 111.86 132.87 C 108.73 135.96 105.82 139.35 102.10 141.77 C 102.76 139.96 103.55 138.19 104.78 136.69 C 109.18 131.18 113.80 125.86 118.09 120.26 C 112.85 113.54 106.10 107.85 102.11 100.26 Z" />
   </svg>
 </a>
-</td>
-    <td style="border: none; text-align: left">
-<div style="font-weight: 300">
-  TFS Aggregator
-</div>
-    </td>
-</tr>
-</table>
-    </div>
-    
-        <div class="searchbox">
-    <label for="search-by"><i class="fa fa-search"></i></label>
-    <input id="search-by" type="text" placeholder="Search">
-    <span data-search-clear=""><i class="fa fa-close"></i></span>
-</div>
-<script type="text/javascript" src="https://tfsaggregator.github.io//js/lunr.min.js"></script>
-<script type="text/javascript" src="https://tfsaggregator.github.io//js/horsey.js"></script>
-<script type="text/javascript">
-    var baseurl = "https:\/\/tfsaggregator.github.io\/";
-</script>
-<script type="text/javascript" src="https://tfsaggregator.github.io//js/search.js"></script>
 
+    </div>
     
 </div>
 
@@ -310,7 +291,7 @@
           
             <li class="dd-item " data-nav-id="/admin/install/">
               <a href="https://tfsaggregator.github.io/admin/install/">
-                <span>Installing the Server Plugin     </i></span>
+                <span>Installing the Plugin     </i></span>
               </a>
             </li>
           
@@ -318,7 +299,7 @@
           
             <li class="dd-item " data-nav-id="/admin/install-webhooks/">
               <a href="https://tfsaggregator.github.io/admin/install-webhooks/">
-                <span>Installing the Web Service     </i></span>
+                <span>Installing WebHooks     </i></span>
               </a>
             </li>
           
@@ -422,20 +403,10 @@
       
     </ul>
     <hr>
-     
-     <section id="contacts">
-  <div style="padding-left: 1em; ">
-    <a href="mailto:tfsaggregator@outlook.com"><i class="fa fa-envelope">&nbsp;</i>tfsaggregator@outlook.com</a>
-    <br/>
-    <a href="https://twitter.com/tfsaggregator"><i class="fa fa-twitter">&nbsp;</i>@tfsaggregator</a>
-    <br/>
-    <div style="padding-top: 4pt;">
-    <a href="https://slackin-tfsaggregator.herokuapp.com/">
+    <a class="padding" href="https://slackin-tfsaggregator.herokuapp.com/">
       <img alt="Slack Team Badge" src="https://slackin-tfsaggregator.herokuapp.com/badge.svg" />
     </a>
-    </div>
-  </div>
-</section>
+     
     <section id="footer">
       <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fa fa-heart"></i></a> from <a href="http://getgrav.org">Grav</a> and <a href="http://gohugo.io/">Hugo</a></p>
     </section>
@@ -651,13 +622,15 @@ self[&quot;Custom.PreviousRemainingWork&quot;] = (double)(self[&quot;Microsoft.V
 
       
       </div>
-          <div class="row">
+
+      <div class="row">
           <div class="footer-panel">
-<p>Last revision: January 5, 2017 | <a href="https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/134c142ebc4c7804ac10ac2a833b2eced77fa13c">Initial commit (134c142)</a>
+<p>Last revision: January 1, 0001
             <span style="float: right;">TFS Aggregator Documentation v2.3</span>
           </p>
           </div>
       </div>
+
     </div>
 
     <div id="navigation">

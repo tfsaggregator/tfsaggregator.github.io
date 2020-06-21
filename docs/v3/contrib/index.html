@@ -1,0 +1,78 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Build #  Building locally requires
+ Visual Studio 2019 with .Net Core 3.1 SDK Azure Functions and Web Jobs Tools  Debug #  Custom/development Aggregator runtime #  In Visual Studio, src\aggregator-function\Directory.Build.targets will automatically package and copy the runtime needed by CLI. You might have to change the version number in src\aggregator-function\aggregator-manifest.ini to force your local version.
+You can also use the Pack right-click command on the aggregator-function project and make sure to copy the created zip into your CLI directory so it uploads the correct one when creating an instance."><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="Contribute"><meta property="og:description" content="Aggregator Documentation"><meta property="og:type" content="website"><meta property="og:url" content="https://tfsaggregator.github.io/docs/v3/contrib/"><title>Contribute | Aggregator</title><link rel=manifest href=https://tfsaggregator.github.io/manifest.json><link rel=icon href=https://tfsaggregator.github.io/favicon.png type=image/x-icon><link rel=stylesheet href=https://tfsaggregator.github.io/book.min.b3215d9d1d18d9051e7fbe8f256ff80e30f41d29073b86348e230d297b771002.css integrity="sha256-syFdnR0Y2QUef76PJW/4DjD0HSkHO4Y0jiMNKXt3EAI="><script defer src=https://tfsaggregator.github.io/en.search.min.897d7310c05ff3e465c67fd03cebf6ba929ecebb18c6f2f366a93f0bd7162d37.js integrity="sha256-iX1zEMBf8+Rlxn/QPOv2upKezrsYxvLzZqk/C9cWLTc="></script><link rel=alternate type=application/rss+xml href=https://tfsaggregator.github.io/docs/v3/contrib/index.xml title=Aggregator></head><body><input type=checkbox class=hidden id=menu-control><main class="container flex"><aside class=book-menu><nav><h2 class=book-brand><a href=https://tfsaggregator.github.io/><span>Aggregator</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><a href=https://tfsaggregator.github.io/docs/v3/>Aggregator CLI</a><ul><li><a href=https://tfsaggregator.github.io/docs/v3/setup/>Setup</a><ul><li><a href=https://tfsaggregator.github.io/docs/v3/setup/production/>Production</a></li></ul></li><li><a href=https://tfsaggregator.github.io/docs/v3/commands/>Commands</a><ul><li><a href=https://tfsaggregator.github.io/docs/v3/commands/command-examples/>Examples</a></li></ul></li><li><a href=https://tfsaggregator.github.io/docs/v3/rules/>Rules</a><ul><li><a href=https://tfsaggregator.github.io/docs/v3/rules/rule-examples-basic/>Basic examples</a></li><li><a href=https://tfsaggregator.github.io/docs/v3/rules/rule-examples-advanced/>Advanced examples</a></li></ul></li><li><a href=https://tfsaggregator.github.io/docs/v3/design/>Design</a><ul><li><a href=https://tfsaggregator.github.io/docs/v3/design/parallelism/>Parallelism</a></li></ul></li><li><a href=https://tfsaggregator.github.io/docs/v3/contrib/ class=active>Contribute</a><ul></ul></li></ul></li><li><a href=https://tfsaggregator.github.io/docs/v2/>TFS Aggregator v2</a><ul><li><a href=https://tfsaggregator.github.io/docs/v2/intro/ class=collapsed>Introduction</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/using/ class=collapsed>Users' Guide</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/admin/ class=collapsed>Administrator Guide</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/contrib/ class=collapsed>Contributing</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/changelog/>Changelog</a></li></ul></li></ul></nav><script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=https://tfsaggregator.github.io/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>Contribute</strong>
+<label for=toc-control><img src=https://tfsaggregator.github.io/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><input type=checkbox class=hidden id=toc-control><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#build>Build</a></li><li><a href=#debug>Debug</a><ul><li><a href=#customdevelopment-aggregator-runtime>Custom/development Aggregator runtime</a></li><li><a href=#cli>CLI</a></li><li><a href=#debug-aggregator-runtime-locally>Debug Aggregator Runtime locally</a></li><li><a href=#debug-aggregator-runtime-live-azure-function>Debug Aggregator Runtime (live Azure Function)</a></li></ul></li><li><a href=#integration-tests>Integration tests</a></li></ul></nav></aside></header><article class=markdown><h2 id=build>Build
+<a class=anchor href=#build>#</a></h2><p>Building locally requires</p><ul><li>Visual Studio 2019 with .Net Core 3.1 SDK</li><li>Azure Functions and Web Jobs Tools</li></ul><h2 id=debug>Debug
+<a class=anchor href=#debug>#</a></h2><h3 id=customdevelopment-aggregator-runtime>Custom/development Aggregator runtime
+<a class=anchor href=#customdevelopment-aggregator-runtime>#</a></h3><p>In Visual Studio, <code>src\aggregator-function\Directory.Build.targets</code> will automatically package and copy the runtime needed by CLI.
+You might have to change the version number in <code>src\aggregator-function\aggregator-manifest.ini</code> to force your local version.</p><p>You can also use the <em>Pack</em> right-click command on the <code>aggregator-function</code> project and make sure to copy the created zip into your CLI directory so it uploads the correct one when creating an instance.</p><h3 id=cli>CLI
+<a class=anchor href=#cli>#</a></h3><p>Set <code>aggregator-cli</code> as Start-up project
+Use the Visual Studio Project properties to set the Command line arguments.</p><h3 id=debug-aggregator-runtime-locally>Debug Aggregator Runtime locally
+<a class=anchor href=#debug-aggregator-runtime-locally>#</a></h3><p>Open <strong>aggregator-cli.sln</strong> in Visual Studio.<br>Set <code>aggregator-function</code> as the Start-up project.<br>Start the project in Debug mode (hit F5).<br>Create a folder with the same name as the rule, e.g. <code>test1</code>.<br>Add to the folder a file with the same name and suffix <code>.rule</code>, <code>test1.rule</code> in this example, with the code you want to test, e.g.</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#e6db74>$&#34;Hello { self.WorkItemType } #{ self.Id } - { self.Title }!&#34;</span>
+</code></pre></div><p>Add to the folder a file named <code>function.json</code> with this</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;bindings&#34;</span>: [
+    {
+      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;httpTrigger&#34;</span>,
+      <span style=color:#f92672>&#34;direction&#34;</span>: <span style=color:#e6db74>&#34;in&#34;</span>,
+      <span style=color:#f92672>&#34;webHookType&#34;</span>: <span style=color:#e6db74>&#34;genericJson&#34;</span>,
+      <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;req&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;http&#34;</span>,
+      <span style=color:#f92672>&#34;direction&#34;</span>: <span style=color:#e6db74>&#34;out&#34;</span>,
+      <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;res&#34;</span>
+    }
+  ],
+  <span style=color:#f92672>&#34;disabled&#34;</span>: <span style=color:#66d9ef>false</span>
+}
+</code></pre></div><p>Add to the folder a file named <code>run.csx</code> with this content:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=color:#960050;background-color:#1e0010>#</span>r <span style=color:#e6db74>&#34;../bin/aggregator-function.dll&#34;</span>
+<span style=color:#960050;background-color:#1e0010>#</span>r <span style=color:#e6db74>&#34;../bin/aggregator-shared.dll&#34;</span>
+
+<span style=color:#66d9ef>using</span> aggregator;
+
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>async</span> Task&lt;<span style=color:#66d9ef>object</span>&gt; Run(HttpRequestMessage req, ILogger logger, ExecutionContext context)
+{
+    <span style=color:#66d9ef>var</span> handler = <span style=color:#66d9ef>new</span> AzureFunctionHandler(logger, context);
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>await</span> handler.Run(req);
+}
+</code></pre></div><p>Set a breakpoint.<br>Send the request message at http://localhost:7071/api/test1 using <a href=https://www.getpostman.com>Postman</a> or similar tool.</p><p>The Function should log a similar sequence of trace messages.</p><pre><code>[2019-08-19 12:07:04] Initial WorkItem 12345 retrieved from https://dev.azure.com/mytestorg/56789abc-def0-1234-5678-9abcdef01234
+[2019-08-19 12:07:04] Executing Rule...
+[2019-08-19 12:07:06] Rule succeeded with Hello Hazard #12345 - My test Work Item!
+[2019-08-19 12:07:06] No changes saved to Azure DevOps.
+[2019-08-19 12:07:06] execResult Hello Hazard #12345 - My test Work Item!
+[2019-08-19 12:07:06] Returning 'Hello Hazard #12345 - My test Work Item!' from 'test1'
+[2019-08-19 12:07:06] Executed 'Functions.test1' (Succeeded, Id=890abcde-f123-4567-890a-bcdef0123456)
+[2019-08-19 12:07:06] Executed HTTP request: {
+[2019-08-19 12:07:06]   &quot;requestId&quot;: &quot;f0123456-789a-bcde-f012-3456789abcde&quot;,
+[2019-08-19 12:07:06]   &quot;method&quot;: &quot;POST&quot;,
+[2019-08-19 12:07:06]   &quot;uri&quot;: &quot;/api/test1&quot;,
+[2019-08-19 12:07:06]   &quot;identities&quot;: [
+[2019-08-19 12:07:06]     {
+[2019-08-19 12:07:06]       &quot;type&quot;: &quot;WebJobsAuthLevel&quot;,
+[2019-08-19 12:07:06]       &quot;level&quot;: &quot;Admin&quot;
+[2019-08-19 12:07:06]     }
+[2019-08-19 12:07:06]   ],
+[2019-08-19 12:07:06]   &quot;status&quot;: 200,
+[2019-08-19 12:07:06]   &quot;duration&quot;: 2531
+[2019-08-19 12:07:06] }
+</code></pre><h3 id=debug-aggregator-runtime-live-azure-function>Debug Aggregator Runtime (live Azure Function)
+<a class=anchor href=#debug-aggregator-runtime-live-azure-function>#</a></h3><h4 id=view-live-aggregator-log-messages>View live Aggregator log messages
+<a class=anchor href=#view-live-aggregator-log-messages>#</a></h4><p>In Azure Portal, open the Resource Group hosting the Instance (<code>aggregator-</code> followed by name of instance).
+Open the App Service hosting the Instance (instance name followed by <code>aggregator</code>).
+Switch to the <strong>Platform features</strong> tab and click on <em>Log streaming</em> like in the picture.
+<img src=log-streaming-from-azure-portal.png alt="Log streaming"></p><h2 id=integration-tests>Integration tests
+<a class=anchor href=#integration-tests>#</a></h2><p>Integration tests emulate a user running Aggregator CLI.</p><p>These tests require configuration data in <code>src/integrationtests-cli/logon-data.json</code> to connect to Azure and Azure DevOps and run the tests.</p><pre><code>{
+	&quot;subscription&quot;: &quot;PUT-AZURE-SUBSCRIPTION-GUID-HERE&quot;,
+	&quot;client&quot;: &quot;PUT-AZURE-SERVICE-PRINCIPAL-GUID-HERE&quot;,
+	&quot;password&quot;: &quot;PUT-AZURE-SERVICE-PRINCIPAL-PASSWORD-HERE&quot;,
+	&quot;tenant&quot;: &quot;PUT-AZURE-TENANT-GUID-HERE&quot;,
+	&quot;devopsUrl&quot;: &quot;https://dev.azure.com/PUT-AZUREDEVOPS-ORGANIZATION-NAME-HERE&quot;,
+	&quot;pat&quot;: &quot;PUT-AZUREDEVOPS-PAT-HERE&quot;,
+	&quot;location&quot;: &quot;PUT-AZURE-REGION-NAME-HERE&quot;,
+	&quot;resourceGroup&quot;: &quot;PUT-AZURE-RESOURCE-GROUP-NAME-HERE&quot;,
+	&quot;projectName&quot;: &quot;PUT-AZUREDEVOPS-PROJECT-NAME-HERE&quot;
+}
+</code></pre><p>To avoid committing this file in Git, use <code>git update-index --assume-unchanged src/integrationtests-cli/logon-data.json</code> and edit the file content</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/f900c8565762077ade874ea3b14d483ce07ee18c title="Last modified by Giulio Vian | June 21, 2020" target=_blank rel=noopener><img src=https://tfsaggregator.github.io/svg/calendar.svg class=book-icon alt=Calendar>
+<span>June 21, 2020</span></a></div><div><a class="flex align-center" href=https://github.com/tfsaggregator/tfsaggregator-docs-hugo/edit/master/content//docs/v3/contrib/_index.md target=_blank rel=noopener><img src=https://tfsaggregator.github.io/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span></a></div></div></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents><ul><li><a href=#build>Build</a></li><li><a href=#debug>Debug</a><ul><li><a href=#customdevelopment-aggregator-runtime>Custom/development Aggregator runtime</a></li><li><a href=#cli>CLI</a></li><li><a href=#debug-aggregator-runtime-locally>Debug Aggregator Runtime locally</a></li><li><a href=#debug-aggregator-runtime-live-azure-function>Debug Aggregator Runtime (live Azure Function)</a></li></ul></li><li><a href=#integration-tests>Integration tests</a></li></ul></nav></aside></main></body></html>

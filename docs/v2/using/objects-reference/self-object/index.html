@@ -1,0 +1,98 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Represents the work item that triggered the rule and corresponds to the IWorkItemExposed interface.
+Fields collection #  You can directly access a Field using its name:
+self.Fields[&#34;field_name&#34;] Prefer using Reference names e.g. System.Title as they do not depend on localization and are more resilient to Process template changes.
+To simply access a field value, you can use self[&#34;field_name&#34;] as a shorthand for self.Fields[&#34;field_name&#34;].Value
+For numeric and dates you may prefer using"><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="self Object"><meta property="og:description" content="Represents the work item that triggered the rule and corresponds to the IWorkItemExposed interface.
+Fields collection #  You can directly access a Field using its name:
+self.Fields[&#34;field_name&#34;] Prefer using Reference names e.g. System.Title as they do not depend on localization and are more resilient to Process template changes.
+To simply access a field value, you can use self[&#34;field_name&#34;] as a shorthand for self.Fields[&#34;field_name&#34;].Value
+For numeric and dates you may prefer using"><meta property="og:type" content="article"><meta property="og:url" content="https://tfsaggregator.github.io/docs/v2/using/objects-reference/self-object/"><meta property="article:modified_time" content="2020-06-21T21:30:58+01:00"><title>self Object | Aggregator</title><link rel=manifest href=https://tfsaggregator.github.io/manifest.json><link rel=icon href=https://tfsaggregator.github.io/favicon.png type=image/x-icon><link rel=stylesheet href=https://tfsaggregator.github.io/book.min.b3215d9d1d18d9051e7fbe8f256ff80e30f41d29073b86348e230d297b771002.css integrity="sha256-syFdnR0Y2QUef76PJW/4DjD0HSkHO4Y0jiMNKXt3EAI="><script defer src=https://tfsaggregator.github.io/en.search.min.897d7310c05ff3e465c67fd03cebf6ba929ecebb18c6f2f366a93f0bd7162d37.js integrity="sha256-iX1zEMBf8+Rlxn/QPOv2upKezrsYxvLzZqk/C9cWLTc="></script></head><body><input type=checkbox class=hidden id=menu-control><main class="container flex"><aside class=book-menu><nav><h2 class=book-brand><a href=https://tfsaggregator.github.io/><span>Aggregator</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><a href=https://tfsaggregator.github.io/docs/v3/>Aggregator CLI</a><ul><li><a href=https://tfsaggregator.github.io/docs/v3/setup/>Setup</a><ul><li><a href=https://tfsaggregator.github.io/docs/v3/setup/production/>Production</a></li></ul></li><li><a href=https://tfsaggregator.github.io/docs/v3/commands/>Commands</a><ul><li><a href=https://tfsaggregator.github.io/docs/v3/commands/command-examples/>Examples</a></li></ul></li><li><a href=https://tfsaggregator.github.io/docs/v3/rules/>Rules</a><ul><li><a href=https://tfsaggregator.github.io/docs/v3/rules/rule-examples-basic/>Basic examples</a></li><li><a href=https://tfsaggregator.github.io/docs/v3/rules/rule-examples-advanced/>Advanced examples</a></li></ul></li><li><a href=https://tfsaggregator.github.io/docs/v3/design/>Design</a><ul><li><a href=https://tfsaggregator.github.io/docs/v3/design/parallelism/>Parallelism</a></li></ul></li><li><a href=https://tfsaggregator.github.io/docs/v3/contrib/>Contribute</a><ul></ul></li></ul></li><li><a href=https://tfsaggregator.github.io/docs/v2/>TFS Aggregator v2</a><ul><li><a href=https://tfsaggregator.github.io/docs/v2/intro/ class=collapsed>Introduction</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/using/ class=collapsed>Users' Guide</a><ul><li><a href=https://tfsaggregator.github.io/docs/v2/using/writing-rules/writing-rules/>Writing Rules and Policies</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/using/policy-syntax/>Configuration XML syntax</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/using/scripting/>Scripting the Rules</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/using/objects-reference/>Objects Reference</a><ul><li><a href=https://tfsaggregator.github.io/docs/v2/using/objects-reference/self-object/ class=active>self Object</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/using/objects-reference/field-object/>Field Object</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/using/objects-reference/store-object/>store Object</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/using/objects-reference/logger-object/>logger Object</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/using/objects-reference/library-objects/>Library Objects</a></li></ul></li><li><a href=https://tfsaggregator.github.io/docs/v2/using/examples/>Examples of Policies</a><ul><li><a href=https://tfsaggregator.github.io/docs/v2/using/examples/accumulate-to-grand-parent/>Accumulate to grand-parent example</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/using/examples/auto-create-children/>Auto-Create Children example</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/using/examples/auto-open-auto-close/>Auto-Open and Auto-Close example</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/using/examples/log-time-synch/>Remaining Work and Completed Work synchronization for Task WI</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/using/examples/rollup/>Rollup examples</a></li></ul></li><li><a href=https://tfsaggregator.github.io/docs/v2/using/scripting-tricks-n-tips/scripting-tricks-n-tips/>Tricks & Tips</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/using/scripting-pitfalls/>Common Pitfalls</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/using/field-history/>History field</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/using/upgrade-from-v1/>Upgrading from v1</a></li></ul></li><li><a href=https://tfsaggregator.github.io/docs/v2/admin/ class=collapsed>Administrator Guide</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/contrib/ class=collapsed>Contributing</a></li><li><a href=https://tfsaggregator.github.io/docs/v2/changelog/>Changelog</a></li></ul></li></ul></nav><script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=https://tfsaggregator.github.io/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>self Object</strong>
+<label for=toc-control><img src=https://tfsaggregator.github.io/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><input type=checkbox class=hidden id=toc-control><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#fields-collection>Fields collection</a></li><li><a href=#parent-property>Parent property</a></li><li><a href=#children-property>Children property</a></li><li><a href=#hasparent--haschildren--hasrelation-methods>HasParent / HasChildren / HasRelation methods</a></li><li><a href=#addworkitemlink-methods>AddWorkItemLink methods</a></li><li><a href=#addhyperlink-method>AddHyperlink method</a></li><li><a href=#workitemlinks-property-v23>WorkItemLinks property (<strong>v2.3</strong>)</a></li><li><a href=#removeworkitemlink-method-v23>RemoveWorkItemLink method (<strong>v2.3</strong>)</a></li><li><a href=#history-and-related-properties>History and related properties</a></li><li><a href=#miscellaneous-properties>Miscellaneous properties</a></li><li><a href=#transitiontostate-method>TransitionToState method</a></li><li><a href=#fluent-queries>Fluent Queries</a><ul><li><a href=#example>Example</a></li></ul></li><li><a href=#linq>Linq</a><ul><li><a href=#examples>Examples</a></li></ul></li></ul></nav></aside></header><article class=markdown><p>Represents the work item that triggered the rule and corresponds to the <code>IWorkItemExposed</code> interface.</p><h2 id=fields-collection>Fields collection
+<a class=anchor href=#fields-collection>#</a></h2><p>You can directly access a Field using its name:</p><pre><code>self.Fields[&quot;field_name&quot;]
+</code></pre><p>Prefer using Reference names e.g. <code>System.Title</code> as they do not depend on localization and are more resilient to Process template changes.</p><p>To simply access a field value, you can use <code>self["field_name"]</code> as a shorthand for <code>self.Fields["field_name"].Value</code></p><p>For numeric and dates you may prefer using</p><pre><code>var num = self.GetField&lt;int&gt;(&quot;field_name&quot;, 42);
+</code></pre><p>for other type of fields we suggest to use the following syntax</p><pre><code>var str = self[&quot;field_name&quot;]?.ToString();
+</code></pre><p>See <a href=https://tfsaggregator.github.io/using/objects-reference/field-object><code>Field</code></a> for more information.</p><h2 id=parent-property>Parent property
+<a class=anchor href=#parent-property>#</a></h2><p>Helper property to navigate a work item&rsquo;s parent in the Parent-Child hierarchy. Applies to any work item object.</p><pre><code>self.Parent[&quot;System.Title&quot;]
+</code></pre><h2 id=children-property>Children property
+<a class=anchor href=#children-property>#</a></h2><p>Helper property to navigate a work item&rsquo;s children in the Parent-Child hierarchy.</p><pre><code>foreach (var child in self.Children)
+{
+   if (child.TypeName == &quot;Bug&quot;)
+   {
+      //...
+   }
+}
+</code></pre><h2 id=hasparent--haschildren--hasrelation-methods>HasParent / HasChildren / HasRelation methods
+<a class=anchor href=#hasparent--haschildren--hasrelation-methods>#</a></h2><p>Helper methods to avoid referencing null properties. Applies to any work item object.</p><pre><code>if (self.HasParent()) {
+   self.Parent[&quot;System.Title&quot;] = &quot;*** &quot; + self.Parent[&quot;System.Title&quot;];
+}
+</code></pre><p>Always prefer the Immutable name of the Link Type, e.g. <code>System.LinkTypes.Hierarchy-Reverse</code> instead of <code>Parent</code> in
+<code>HasRelation</code>.
+You can use the pre-defined <code>WorkItemImplementationBase.ChildRelationship</code> and <code>WorkItemImplementationBase.ParentRelationship</code>.</p><h2 id=addworkitemlink-methods>AddWorkItemLink methods
+<a class=anchor href=#addworkitemlink-methods>#</a></h2><p>Add a link to another work item, the arguments are the linked workitem and the name of Link Type.</p><pre><code>var parent = self;
+if (!self.HasChildren())
+{
+    var child = store.MakeNewWorkItem((string)parent[&quot;System.TeamProject&quot;], &quot;Task&quot;);
+    child[&quot;Title&quot;] = &quot;Task auto-generated for &quot; + parent[&quot;Title&quot;];
+    child.AddWorkItemLink(parent, WorkItemImplementationBase.ParentRelationship);
+}
+</code></pre><p>You can use the pre-defined <code>WorkItemImplementationBase.ChildRelationship</code> and <code>WorkItemImplementationBase.ParentRelationship</code> for the name.</p><blockquote><p>Be careful to use the Immutable name of a Link Type, e.g. <code>System.LinkTypes.Hierarchy-Reverse</code>.</p></blockquote><h2 id=addhyperlink-method>AddHyperlink method
+<a class=anchor href=#addhyperlink-method>#</a></h2><p>Add an hyperlink to an URL, with an optional comment.</p><pre><code>self.AddHyperlink(&quot;https://github.com/tfsaggregator/tfsaggregator&quot;, &quot;Automatically added&quot;);
+</code></pre><h2 id=workitemlinks-property-v23>WorkItemLinks property (<strong>v2.3</strong>)
+<a class=anchor href=#workitemlinks-property-v23>#</a></h2><p>Collection of existing work item links.</p><pre><code>foreach (var link in self.WorkItemLinks) {
+   if (link.Target.Id == 1) {
+       logger.Log(
+           &quot;RemoveLinkRule removing {0} to #{1}&quot;
+           , link.LinkTypeEndImmutableName, link.Target.Id);
+       break;
+   }
+}
+</code></pre><h2 id=removeworkitemlink-method-v23>RemoveWorkItemLink method (<strong>v2.3</strong>)
+<a class=anchor href=#removeworkitemlink-method-v23>#</a></h2><p>Remove a link to another work item.</p><pre><code>foreach (var link in self.WorkItemLinks) {
+   if (link.Target.Id == 1) {
+       logger.Log(
+           &quot;RemoveLinkRule removing {0} to #{1}&quot;
+           , link.LinkTypeEndImmutableName, link.Target.Id);
+       self.RemoveWorkItemLink(link);
+       break;
+   }
+}
+</code></pre><h2 id=history-and-related-properties>History and related properties
+<a class=anchor href=#history-and-related-properties>#</a></h2><p><code>self</code> offers the <a href=https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.history.aspx><code>History</code></a>,
+<a href=https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.reviseddate.aspx><code>RevisedDate</code></a>
+and <a href=https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.revision.aspx><code>Revision</code></a> properties.</p><p>In addition, the <code>LastRevision</code> property offers access to latest Fields values. While <code>PreviousRevision</code> and <code>NextRevision</code> can be used to traverse the history of the workitem.</p><h2 id=miscellaneous-properties>Miscellaneous properties
+<a class=anchor href=#miscellaneous-properties>#</a></h2><p>The <a href=https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.isvalid.aspx><code>IsValid</code></a> method is important to check is you set some invalid field value on a work item.</p><p>You can get the <a href=https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.id.aspx><code>Id</code></a>
+and <a href=https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitemtype.name.aspx><code>TypeName</code></a> of a work item.
+The <a href=https://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.workitemtracking.client.workitem.uri.aspx><code>Uri</code></a>
+property returns the uniform resource identifier (Uri) of this work item.</p><h2 id=transitiontostate-method>TransitionToState method
+<a class=anchor href=#transitiontostate-method>#</a></h2><p>Set the state of <code>self</code> Work Item.</p><p>A Process Templates can limit the possibile transition states, for example
+many templates do not allow you to go directly from a <code>New</code> state to a <code>Done</code> state.
+With this method TFS Aggregator will cycle the work item through what ever states it needs to to find the <strong>shortest route</strong> to the target state.
+(For most templates that is also the route that makes the most sense from a business perspective too.)</p><pre><code>self.TransitionToState(&quot;Closed&quot;, &quot;Closed by TFS Aggregator&quot;);
+</code></pre><h2 id=fluent-queries>Fluent Queries
+<a class=anchor href=#fluent-queries>#</a></h2><p>You can get work items related using the utility methods to build a query. Applies to any work item object.</p><ul><li><code>WhereTypeIs</code> filters on work item type</li><li><code>AtMost</code> depth of search, i.e. maximum number of links to follow</li><li><code>FollowingLinks</code> filters on link type</li></ul><p>It is particularly useful for traversing many links.</p><h3 id=example>Example
+<a class=anchor href=#example>#</a></h3><pre><code>var tests = self.FollowingLinks(&quot;Microsoft.VSTS.Common.TestedBy-Forward&quot;).WhereTypeIs(&quot;Test Case&quot;);
+foreach (var test in tests)
+{
+   if (test[&quot;Microsoft.VSTS.Common.Severity&quot;] == &quot;1 - Critical&quot;) {
+      // do something
+   }
+}
+</code></pre><h2 id=linq>Linq
+<a class=anchor href=#linq>#</a></h2><p>You can use Linq queries on these collections:</p><ul><li><code>Children</code></li><li><code>Fields</code></li></ul><h3 id=examples>Examples
+<a class=anchor href=#examples>#</a></h3><p>Roll-up code</p><pre><code>var totalEffort = self.Parent.Children.Where(child =&gt; child.TypeName == &quot;Task&quot;).Sum(child =&gt; child.GetField(&quot;TaskEffort&quot;, 0));
+</code></pre><p>Sum children&rsquo;s estimate</p><pre><code>foreach (var child in self.Children.Where(child =&gt; child.Field.Any(field =&gt; field.ReferenceName == &quot;Microsoft.VSTS.Scheduling.OriginalEstimate&quot;)))
+{
+   if (child.TypeName != &quot;autogenerated&quot;)
+   {
+      checkedValue += child.GetField&lt;double&gt;(&quot;Microsoft.VSTS.Scheduling.OriginalEstimate&quot;, 0.0);
+      othersCount += 1;
+   }
+   else
+   {
+      autogeneratedCount += 1;
+   }
+}
+</code></pre></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/tfsaggregator/tfsaggregator-docs-hugo/commit/f900c8565762077ade874ea3b14d483ce07ee18c title="Last modified by Giulio Vian | June 21, 2020" target=_blank rel=noopener><img src=https://tfsaggregator.github.io/svg/calendar.svg class=book-icon alt=Calendar>
+<span>June 21, 2020</span></a></div><div><a class="flex align-center" href=https://github.com/tfsaggregator/tfsaggregator-docs-hugo/edit/master/content//docs/v2/using/objects-reference/self-object.md target=_blank rel=noopener><img src=https://tfsaggregator.github.io/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span></a></div></div></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents><ul><li><a href=#fields-collection>Fields collection</a></li><li><a href=#parent-property>Parent property</a></li><li><a href=#children-property>Children property</a></li><li><a href=#hasparent--haschildren--hasrelation-methods>HasParent / HasChildren / HasRelation methods</a></li><li><a href=#addworkitemlink-methods>AddWorkItemLink methods</a></li><li><a href=#addhyperlink-method>AddHyperlink method</a></li><li><a href=#workitemlinks-property-v23>WorkItemLinks property (<strong>v2.3</strong>)</a></li><li><a href=#removeworkitemlink-method-v23>RemoveWorkItemLink method (<strong>v2.3</strong>)</a></li><li><a href=#history-and-related-properties>History and related properties</a></li><li><a href=#miscellaneous-properties>Miscellaneous properties</a></li><li><a href=#transitiontostate-method>TransitionToState method</a></li><li><a href=#fluent-queries>Fluent Queries</a><ul><li><a href=#example>Example</a></li></ul></li><li><a href=#linq>Linq</a><ul><li><a href=#examples>Examples</a></li></ul></li></ul></nav></aside></main></body></html>
